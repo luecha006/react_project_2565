@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Navbar, Nav } from 'react-bootstrap'
+import Image from 'react-bootstrap/Image'
 import {
     BrowserRouter as Router,
     Switch,
@@ -11,20 +12,24 @@ import Home from './Home';
 import Contact from './Contact';
 import Login from './Login'
 
+import './ComponentStyle.css';
+
 export default class NavbarComp extends Component {
     render() {
         return (
             <Router>
                 <div>
-                    <Navbar bg="dark" variant={"dark"} expand="lg">
-
-                        <Navbar.Brand href="#">Cactus Family</Navbar.Brand>
+                    <Navbar className='NavbarStyle' bg="dark" variant={"dark"} expand="lg">
+                        <span>
+                            <Image className='imageLogo' src='/Images/cactus_logo.jpg'></Image>
+                        </span>
+                        <Navbar.Brand href="#">CACTUS FAMILY</Navbar.Brand>
                         <Navbar.Toggle aria-controls="navbarScroll" />
                         <Navbar.Collapse id="navbarScroll">
-                            <div style={{ width: "100%"}}>
+                            <div style={{ width: "100%" }}>
                                 <Nav
                                     className="mr-auto my-2 my-lg-0 justify-content-end"
-                                    style={{ maxHeight: '100px', width: "100%"}}
+                                    style={{ maxHeight: '100px', width: "100%" }}
                                     navbarScroll
                                 >
                                     <Nav.Link as={Link} to="/home">Home</Nav.Link>

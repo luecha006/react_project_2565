@@ -3,8 +3,8 @@ import './ComponentStyle.css';
 
 
 const Footer = () => (
-    <footer className="footer " bg="dark">
-        <p>This is react sticky footer!!</p>
+    <footer className="footer">
+        <p style={{margin: "8px"}}>Copyright &copy;</p>
     </footer>
 );
 
