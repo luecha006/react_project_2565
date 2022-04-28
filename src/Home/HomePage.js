@@ -3,10 +3,10 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import {InputGroup, FormControl, Button, Container, Row, Col, Card} from "react-bootstrap";
 import { BsFillChatTextFill, BsFillPhoneFill, BsFillPeopleFill } from "react-icons/bs";
 
-import './ComponentStyle.css';
+import './HomePage.css';
 
 
-export default class Home extends Component {
+export default class HomePage extends Component {
     render() {
         let about = (
             "เว็บไซต์ของเราให้ความรู้เกี่ยวกับผู้เริ่มต้นปลูกกระบองเพชรหรือสนใจที่จะศึกษาข้อมูลอีกทั้งเรายังมีแอปพลิเคชันบริการอีกด้วย"

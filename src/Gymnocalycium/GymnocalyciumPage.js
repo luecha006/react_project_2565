@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
 
-export default class Contact extends Component {
+export default class GymnocalyciumPage extends Component {
     render() {
         return (
             <div>
-                <h2>Cactus Page</h2>
+                <h2>Gymnocalycium Page</h2>
             </div>
         )
     }

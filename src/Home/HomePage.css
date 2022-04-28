@@ -1,0 +1,41 @@
+/* home page */
+
+.SpaceHomePage {
+  width: 100%;
+  height: 100%;
+  padding-top: 14%;
+  padding-bottom: 20%;
+}
+
+.imageLogo {
+  width: 25px;
+  height: 25px;
+  margin-right: 10px;
+}
+
+.SearchStyle {
+  width: 50%;
+}
+
+.bg {
+  background-image: url("https://mdbootstrap.com/img/Photos/Horizontal/Nature/full page/img(11).webp");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.cardStyle {
+  margin-top: 25px;
+  width: 80%;
+  height: 100%;
+}
+
+.Card {
+  padding: 5px;
+  width: auto;
+  height: 100%;
+}
+
+.iconSize {
+  font-size: 30px;
+}
