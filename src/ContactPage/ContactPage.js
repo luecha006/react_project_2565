@@ -3,7 +3,7 @@ import { Card, Container, Row, Col, Button, Image } from 'react-bootstrap';
 
 import { Link } from "react-router-dom";
 
-import { Navbar, Nav } from 'react-bootstrap';
+import { Nav } from 'react-bootstrap';
 import './ContactPage.css';
 
 
