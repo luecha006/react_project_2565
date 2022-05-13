@@ -1,47 +1,59 @@
-import React, { Component, useContext } from 'react';
+import React, { Component } from 'react';
 import { Form, Button, Card } from 'react-bootstrap';
-
-import { loginContext } from '../Context/Context';
-
 import './LoginPage.css'
-
 export default class LoginPage extends Component {
 
-    // static context  = loginContext.value;
-    
     constructor(props) {
         super(props)
         this.state = {
-            username: '',
+            email: '',
             password: '',
-            checkbox: false
+            checkbox: false,
+            isLogin: false,
         }
-
-        // this.handleLogin = this.handleLogin.bind(this);
     }
+
     render() {
-        // const authLogin = useContext(loginContext);
-        // console.log('value ',value);
-
         const headleLogin = () => {
-            const user = 'admin';
-            const pass = '0000';
 
-            console.log('click login')
+            const admin1 = {
+                email: 'admin001@gmail.com',
+                password: '0000'
+            }
+
+            const admin2 = {
+                email: 'admin002@gmail.com',
+                password: '0000'
+            }
+
+            console.log('click login');
+
+            if (((this.state.email === admin1.email) && (this.state.password === admin1.password)) || ((this.state.email === admin2.email) && (this.state.password === admin2.password))) {
+
+                this.setState({ isLogin: true });
+                alert('login successfully');
+                // console.log('');
+                // localStorage.setItem('isLogin', JSON.stringify(this.state.isLogin));
+                // sessionStorage.setItem('isLogin', this.state.isLogin);
+            } else {
+                this.setState({ isLogin: false });
+                alert('login failed');
+                // console.log('login failed');
+                // sessionStorage.setItem('isLogin', this.state.isLogin);
+                // localStorage.setItem('isLogin', JSON.stringify(this.state.isLogin));
+            }
         }
 
         const handleUsername = even => {
-            this.username = even.target.value;
+            this.setState({ email: even.target.value });
         }
 
         const handlePassword = even => {
-            this.password = even.target.value;
+            this.setState({ password: even.target.value });
         }
         const handleCheckBox = even => {
-            this.checkbox = even.target.checked;
+            this.setState({ checkbox: even.target.checked });
         }
-
-
 
         return (
             <div className='container' style={{ width: '30%', height: '100%' }}>
