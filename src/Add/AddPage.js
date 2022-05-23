@@ -1,14 +1,20 @@
+import 'primeicons/primeicons.css';
+import 'primereact/resources/themes/lara-light-indigo/theme.css';
+import 'primereact/resources/primereact.css';
+import 'primeflex/primeflex.css';
+
 import React, { useEffect, useState } from 'react';
 import { Form, Button, Image, Card, Row, Col } from 'react-bootstrap';
 
-// import firebaseConfig from '../Firebase/config.js';
 import firebaseConfig from '../Firebase/config';
-import { collection, addDoc, setDoc, getFirestore, doc } from "firebase/firestore";
+import { addDoc, getFirestore, collection } from "firebase/firestore";
+import { ProgressSpinner } from 'primereact/progressspinner';
 
 export default function AddPage() {
 
     var sumUrls = [];
 
+    const [isUpload, setIsUpload] = useState(false);
     const [cactusFamily, setCactusFamily] = useState(''); //ตระกุล
     const [scientificName, setScientificName] = useState(''); //ชื่อทางวิทยา
     const [commonName, setCommonName] = useState(''); //ชื่อทั่วไป
@@ -211,7 +217,7 @@ export default function AddPage() {
         const db = getFirestore(firebaseConfig);
         console.log('uploadToFirestrore');
         try {
-            await setDoc(doc(db, "WebCactusInformation", `${scientificName}`), {
+            await addDoc(collection(db, "WebCactusInformation"), {
                 cactusFamily: `${cactusFamily}`,
                 imageProfile: `${url[0]}`,
                 scientificName: `${scientificName}`,
@@ -237,11 +243,11 @@ export default function AddPage() {
                 imageDisease3: `${url[12]}`,
                 diseaseDetails3: `${diseaseDetails3}`
             });
+            // console.log("Document written with ID: ", docRef.id);
         } catch (e) {
             console.error("Error adding document: ", e);
         }
     }
-
     return (
         <div className='container' style={{ width: '50%', height: '100%', marginBottom: '4%' }}>
             <br />
