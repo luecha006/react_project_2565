@@ -269,6 +269,7 @@ export default function AddPage() {
                             </Row>
                             <Row>
                                 <Col style={{ textAlign: 'center' }}>
+                                    <h5>รูปโปรไฟล์</h5>
                                     <Image src={imageProfileURLs} rounded style={{ width: "340px", height: "auto" }} />
                                 </Col>
                             </Row>

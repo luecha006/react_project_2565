@@ -3,148 +3,183 @@ import 'primereact/resources/themes/lara-light-indigo/theme.css';
 import 'primereact/resources/primereact.css';
 import 'primeflex/primeflex.css';
 
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState } from 'react';
 import { ProgressSpinner } from 'primereact/progressspinner';
 import { Sidebar } from 'primereact/sidebar';
 import { Form, Button, Image, Card, Row, Col } from 'react-bootstrap';
-import { getFirestore, getDocs, collection, deleteDoc, doc } from "firebase/firestore";
+import { getFirestore, getDocs, collection, deleteDoc, doc, setDoc } from "firebase/firestore";
+import { getStorage, ref } from "firebase/storage";
 
 import './ManagePage.css';
 
 import firebaseConfig from '../Firebase/config';
 const db = getFirestore(firebaseConfig);
+const storage = getStorage(firebaseConfig);
+let indexTable = 0;
 
 function ManagePage() {
     var sumUrls = [];
+    let url = [];
 
+    const [dataToshowTable, setDataToshowTable] = useState([]);
     const [firestoreData, setFirestoreData] = useState([]);
     const [isGetFirebase, setIsGetFirebase] = useState(false);
     const [isOpenEditForm, setIsOpenEditForm] = useState(false);
-    const toast = useRef(null);
+    // const [indexTable, setIndexTable] = useState(0);
 
-    const [cactusFamily, setCactusFamily] = useState('xsadsad'); //ตระกุล
-    const [scientificName, setScientificName] = useState('dsadasd'); //ชื่อทางวิทยา
-    const [commonName, setCommonName] = useState('dasdasd'); //ชื่อทั่วไป
-    const [otherNames, setOtherNames] = useState('dsadsad'); //ชื่ออื่นๆ
-    const [family, setFamily] = useState('dsadsadsa'); //วงศ์
-    const [descriptionImageGrup1, setDescriptionImageGrup1] = useState('dsadasdsa'); //คำอธิบายรูปภาพชุดแรก 1-3
-    const [descriptionImageGrup2, setDescriptionImageGrup2] = useState('dsadsad'); //คำอธิบายรูปภาพชุดสอง 4-6
-    const [descriptionImageGrup3, setDescriptionImageGrup3] = useState('dsadasd'); //คำอธิบายรูปภาพชุดสาม 7-9
-    const [diseaseDetails1, setDiseaseDetails1] = useState('dsadsad'); //คำอธิบายรูปภาพโรคที่1
-    const [diseaseDetails2, setDiseaseDetails2] = useState('dsadsad'); //คำอธิบายรูปภาพโรคที่2
-    const [diseaseDetails3, setDiseaseDetails3] = useState('dsdadsa'); //คำอธิบายรูปภาพโรคที่3
-
-    const [imageProfile, setImageProfile] = useState([]);
-    const [imageProfileURLs, setImageProfileURLs] = useState([]);
-
-    const [image1, setImage1] = useState([]);
-    const [imagesURL1, setImagesURL1] = useState([]);
-
-    const [image2, setImage2] = useState([]);
-    const [imagesURL2, setImagesURL2] = useState([]);
-
-    const [image3, setImage3] = useState([]);
-    const [imagesURL3, setImagesURL3] = useState([]);
-
-    const [image4, setImage4] = useState([]);
-    const [imagesURL4, setImagesURL4] = useState([]);
-
-    const [image5, setImage5] = useState([]);
-    const [imagesURL5, setImagesURL5] = useState([]);
-
-    const [image6, setImage6] = useState([]);
-    const [imagesURL6, setImagesURL6] = useState([]);
-
-    const [image7, setImage7] = useState([]);
-    const [imagesURL7, setImagesURL7] = useState([]);
-
-    const [image8, setImage8] = useState([]);
-    const [imagesURL8, setImagesURL8] = useState([]);
-
-    const [image9, setImage9] = useState([]);
-    const [imagesURL9, setImagesURL9] = useState([]);
-
-    const [imageDisease1, setImageDisease1] = useState([]);
-    const [imageDiseaseURL1, setImagesDiseaseURL1] = useState([]);
-
-    const [imageDisease2, setImageDisease2] = useState([]);
-    const [imageDiseaseURL2, setImagesDiseaseURL2] = useState([]);
-
-    const [imageDisease3, setImageDisease3] = useState([]);
-    const [imageDiseaseURL3, setImagesDiseaseURL3] = useState([]);
-
+    const [cactusFamily, setCactusFamily] = useState(''); //ตระกุล
+    const [scientificName, setScientificName] = useState(''); //ชื่อทางวิทยา
+    const [commonName, setCommonName] = useState(''); //ชื่อทั่วไป
+    const [otherNames, setOtherNames] = useState(''); //ชื่ออื่นๆ
+    const [family, setFamily] = useState(''); //วงศ์
+    const [descriptionImageGrup1, setDescriptionImageGrup1] = useState(''); //คำอธิบายรูปภาพชุดแรก 1-3
+    const [descriptionImageGrup2, setDescriptionImageGrup2] = useState(''); //คำอธิบายรูปภาพชุดสอง 4-6
+    const [descriptionImageGrup3, setDescriptionImageGrup3] = useState(''); //คำอธิบายรูปภาพชุดสาม 7-9
+    const [diseaseDetails1, setDiseaseDetails1] = useState(''); //คำอธิบายรูปภาพโรคที่1
+    const [diseaseDetails2, setDiseaseDetails2] = useState(''); //คำอธิบายรูปภาพโรคที่2
+    const [diseaseDetails3, setDiseaseDetails3] = useState(''); //คำอธิบายรูปภาพโรคที่3
+    const [imageProfile, setImageProfile] = useState(null);
+    const [image1, setImage1] = useState(null);
+    const [image2, setImage2] = useState(null);
+    const [image3, setImage3] = useState(null);
+    const [image4, setImage4] = useState(null);
+    const [image5, setImage5] = useState(null);
+    const [image6, setImage6] = useState(null);
+    const [image7, setImage7] = useState(null);
+    const [image8, setImage8] = useState(null);
+    const [image9, setImage9] = useState(null);
+    const [imageDisease1, setImageDisease1] = useState(null);
+    const [imageDisease2, setImageDisease2] = useState(null);
+    const [imageDisease3, setImageDisease3] = useState(null);
 
     useEffect(() => {
         const getFirestrore = async () => {
-            // console.log('start useEffect');
             let index = 1;
             if (isGetFirebase === false) {
-                // console.log('isGetFirebase start', isGetFirebase);
                 try {
+                    setDataToshowTable([]);
                     setFirestoreData([]);
-                    const querySnapshot = await getDocs(collection(db, "test"));
+                    const querySnapshot = await getDocs(collection(db, "WebCactusInformation"));
                     querySnapshot.forEach((doc) => {
-                        var flightdata = {
+                        var data = {
                             id: doc.id,
                             index: index,
-                            name: doc.data().name,
-                            cactusFamily: doc.data().lastName
+                            name: doc.data().scientificName,
+                            cactusFamily: doc.data().cactusFamily
                         }
-                        setFirestoreData(firestoreData => [...firestoreData, flightdata]);
+                        setDataToshowTable(dataToshowTable => [...dataToshowTable, data]);
+                        setFirestoreData(firestoreData => [...firestoreData, doc.data()]);
                         index += 1;
-
-                        // console.log('flightdata :',flightdata);
                     });
 
                 } catch (e) {
                     console.log("Error getting cached document:", e);
                 }
-                // console.log('isGetFirebase end', isGetFirebase);
             }
-            console.log('firestoreData is ', firestoreData);
         }
 
         getFirestrore();
         setIsGetFirebase(true);
-        // console.log('end useEffect');
-    }, [firestoreData, isGetFirebase]);
 
+        // console.log('dataToshowTable is', dataToshowTable);
+        // console.log('firestoreData is', firestoreData);
+    }, [dataToshowTable, isGetFirebase, firestoreData, scientificName, commonName]);
 
     const onDelete = async (index) => {
-        var documant = firestoreData[index - 1].id;
-        // console.log('documant ', documant);
-        await deleteDoc(doc(db, "test", documant));
-        // showSuccess();
+        var documant = dataToshowTable[index - 1].id;
+        await deleteDoc(doc(db, "WebCactusInformation", documant));
         setIsGetFirebase(false);
     }
 
+    const setValueToEdit = () => {
+        setImageProfile(firestoreData[indexTable].imageProfile);
+        setImage1(firestoreData[indexTable].image1);
+        setImage2(firestoreData[indexTable].image2);
+        setImage3(firestoreData[indexTable].image3);
+        setImage4(firestoreData[indexTable].image4);
+        setImage5(firestoreData[indexTable].image5);
+        setImage6(firestoreData[indexTable].image6);
+        setImage7(firestoreData[indexTable].image7);
+        setImage8(firestoreData[indexTable].image8);
+        setImage9(firestoreData[indexTable].image9);
+        setImageDisease1(firestoreData[indexTable].imageDisease1);
+        setImageDisease2(firestoreData[indexTable].imageDisease2);
+        setImageDisease3(firestoreData[indexTable].imageDisease3);
+
+        setCactusFamily(firestoreData[indexTable].cactusFamily);
+        setFamily(firestoreData[indexTable].family);
+        setScientificName(firestoreData[indexTable].scientificName);
+        setCommonName(firestoreData[indexTable].commonName);
+        setOtherNames(firestoreData[indexTable].otherNames);
+        setFamily(firestoreData[indexTable].family);
+        setDescriptionImageGrup1(firestoreData[indexTable].descriptionImageGrup1);
+        setDescriptionImageGrup2(firestoreData[indexTable].descriptionImageGrup2);
+        setDescriptionImageGrup3(firestoreData[indexTable].descriptionImageGrup3);
+        setDiseaseDetails1(firestoreData[indexTable].diseaseDetails1);
+        setDiseaseDetails2(firestoreData[indexTable].diseaseDetails2);
+        setDiseaseDetails3(firestoreData[indexTable].diseaseDetails3);
+    }
+
     const onEdit = async (index) => {
+        indexTable = index - 1;
+        setValueToEdit();
         setIsOpenEditForm(true);
-        console.log('onEdit ', index)
     }
 
-    const onUpdate = () => {
+    const onUpdate = async () => {
+        var documant = dataToshowTable[indexTable].id;
 
+        await setDoc(doc(db, "WebCactusInformation", documant), {
+            cactusFamily: `${cactusFamily}`,
+            imageProfile: `${url[0]}`,
+            scientificName: `${scientificName}`,
+            commonName: `${commonName}`,
+            otherNames: `${otherNames}`,
+            family: `${family}`,
+            image1: `${url[1]}`,
+            image2: `${url[2]}`,
+            image3: `${url[3]}`,
+            descriptionImageGrup1: `${descriptionImageGrup1}`,
+            image4: `${url[4]}`,
+            image5: `${url[5]}`,
+            image6: `${url[6]}`,
+            descriptionImageGrup2: `${descriptionImageGrup2}`,
+            image7: `${url[7]}`,
+            image8: `${url[8]}`,
+            image9: `${url[9]}`,
+            descriptionImageGrup3: `${descriptionImageGrup3}`,
+            imageDisease1: `${url[10]}`,
+            diseaseDetails1: `${diseaseDetails1}`,
+            imageDisease2: `${url[11]}`,
+            diseaseDetails2: `${diseaseDetails2}`,
+            imageDisease3: `${url[12]}`,
+            diseaseDetails3: `${diseaseDetails3}`
+        });
+
+        setIsOpenEditForm(false);
+        setIsGetFirebase(false);
+        setValueToEdit();
     }
 
-    if (firestoreData.length !== 0) {
+    if (dataToshowTable.length !== 0) {
         return (
             <>
                 <div className="container">
                     <Sidebar visible={isOpenEditForm} fullScreen onHide={() => setIsOpenEditForm(false)}>
                         <div >
-                            <div className='container' style={{ width: '50%', height: '100%', marginBottom: '4%', textAlign: 'center' }}>
+                            <div className='container' style={{ width: '60%', height: '100%', marginBottom: '4%', textAlign: 'center' }}>
                                 <br />
                                 <Card border="secondary" style={{ background: '#ECEFF1' }}>
                                     <Card.Body>
-                                        <h2>From</h2>
+                                        <h2>From Edit</h2>
                                         <br />
                                         <br />
                                         <div>
                                             <Form style={{ textAlign: 'start' }}>
                                                 <Row className='mb-2'>
                                                     <Col>
-                                                        <Form.Select aria-label="select" onChange={e => setCactusFamily(e.target.value)}>
+                                                        <Form.Select aria-label="select" value={cactusFamily}
+                                                            onChange={e => setCactusFamily(e.target.value)}>
                                                             <option value="0">เลือกตระกุล</option>
                                                             <option value="Mammillaria">Mammillaria</option>
                                                             <option value="Gymnocalycium">Gymnocalycium</option>
@@ -153,16 +188,17 @@ function ManagePage() {
                                                 </Row>
                                                 <Row>
                                                     <Col style={{ textAlign: 'center' }}>
-                                                        <Image src={imageProfileURLs} rounded style={{ width: "340px", height: "auto" }} />
+                                                        <h5>รูปโปรไฟล์</h5>
+                                                        <Image src={imageProfile} rounded style={{ width: "250px", height: "auto" }} />
                                                     </Col>
                                                 </Row>
                                                 <Row>
-                                                    <Col xl lg xxl="3" style={{ textAlign: 'center' }}></Col>
+                                                    <Col xl lg xxl="4" style={{ textAlign: 'center' }}></Col>
                                                     <Col style={{ textAlign: 'center' }}>
-                                                        <Form.Control style={{ width: '100%', textAlign: 'center' }} className='mt-2 mb-2'
+                                                        <Form.Control className='mt-2 mb-2' disabled={true} style={{ width: '100%', textAlign: 'center' }}
                                                             type="file" onChange={e => setImageProfile([...e.target.files])} />
                                                     </Col>
-                                                    <Col xl lg xxl="3" style={{ textAlign: 'center' }}></Col>
+                                                    <Col xl lg xxl="4" style={{ textAlign: 'center' }}></Col>
                                                 </Row>
                                                 <Row>
                                                     <Col>
@@ -175,23 +211,23 @@ function ManagePage() {
                                                     <Col>
                                                         <Form.Group className="mb-3" controlId="formCommonName">
                                                             <Form.Label>ชื่อสามัญ</Form.Label>
-                                                            <Form.Control type="text" placeholder="ชื่อสามัญ"
+                                                            <Form.Control type="text" placeholder="ชื่อสามัญ" value={commonName}
                                                                 onChange={e => setCommonName(e.target.value)} />
                                                         </Form.Group>
                                                     </Col>
                                                 </Row>
                                                 <Row>
                                                     <Col>
-                                                        <Form.Group className="mb-3" controlId="formScientificName">
+                                                        <Form.Group className="mb-3" controlId="formOtherNames">
                                                             <Form.Label>ชื่ออื่นๆ</Form.Label>
-                                                            <Form.Control type="text" placeholder="ชื่อวิทยาศาสตร์"
+                                                            <Form.Control type="text" placeholder="ชื่ออื่นๆ" value={otherNames}
                                                                 onChange={e => setOtherNames(e.target.value)} />
                                                         </Form.Group>
                                                     </Col>
                                                     <Col>
                                                         <Form.Group className="mb-3" controlId="formFamily">
                                                             <Form.Label>วงศ์</Form.Label>
-                                                            <Form.Control type="text" placeholder="วงศ์"
+                                                            <Form.Control type="text" placeholder="วงศ์" value={family}
                                                                 onChange={e => setFamily(e.target.value)} />
                                                         </Form.Group>
                                                     </Col>
@@ -200,34 +236,35 @@ function ManagePage() {
                                                 <h5>ลักษณะของกระบองเพชร</h5>
                                                 <Row className='mt-3'>
                                                     <Col style={{ textAlign: 'center' }}>
-                                                        <Image src={imagesURL1} rounded style={{ width: "210px", height: "auto" }} />
+                                                        <Image src={image1} rounded style={{ width: "210px", height: "auto" }} />
                                                     </Col>
                                                     <Col style={{ textAlign: 'center' }}>
-                                                        <Image src={imagesURL2} rounded style={{ width: "210px", height: "auto" }} />
+                                                        <Image src={image2} rounded style={{ width: "210px", height: "auto" }} />
                                                     </Col>
                                                     <Col style={{ textAlign: 'center' }}>
-                                                        <Image src={imagesURL3} rounded style={{ width: "210px", height: "auto" }} />
+                                                        <Image src={image3} rounded style={{ width: "210px", height: "auto" }} />
                                                     </Col>
                                                 </Row>
                                                 <Row>
-                                                    <Col style={{ textAlign: 'center' }}>
-                                                        <Form.Control className='mt-2 styleInput' type="file"
+                                                    <Col>
+                                                        <Form.Control className='mt-2 styleInput' type="file" disabled={true}
                                                             onChange={e => setImage1([...e.target.files])} />
                                                     </Col>
-                                                    <Col style={{ textAlign: 'center' }}>
-                                                        <Form.Control className='mt-2' type="file"
+                                                    <Col>
+                                                        <Form.Control className='mt-2 styleInput' type="file" disabled={true}
                                                             onChange={e => setImage2([...e.target.files])} />
                                                     </Col>
-                                                    <Col style={{ textAlign: 'center' }}>
-                                                        <Form.Control className='mt-2' type="file"
+                                                    <Col>
+                                                        <Form.Control className='mt-2 styleInput' type="file" disabled={true}
                                                             onChange={e => setImage3([...e.target.files])} />
                                                     </Col>
                                                 </Row>
                                                 <Row className='mt-2 mb-3'>
                                                     <Col>
-                                                        <Form.Group className="mb-2" controlId="natureOfCactus">
+                                                        <Form.Group className="mb-2" controlId="descriptionImageGrup1">
                                                             <Form.Label>คำอธิบาย</Form.Label>
-                                                            <Form.Control as="textarea" rows={3} placeholder="ลักษณะของกระบองเพชร"
+                                                            <Form.Control as="textarea" rows={4} placeholder="ลักษณะของกระบองเพชร"
+                                                                value={descriptionImageGrup1}
                                                                 onChange={e => setDescriptionImageGrup1(e.target.value)} />
                                                         </Form.Group>
                                                     </Col>
@@ -236,34 +273,34 @@ function ManagePage() {
                                                 <h5>การปลูก</h5>
                                                 <Row>
                                                     <Col style={{ textAlign: 'center' }}>
-                                                        <Image src={imagesURL4} rounded style={{ width: "210px", height: "auto" }} />
+                                                        <Image src={image4} rounded style={{ width: "210px", height: "auto" }} />
                                                     </Col>
                                                     <Col style={{ textAlign: 'center' }}>
-                                                        <Image src={imagesURL5} rounded style={{ width: "210px", height: "auto" }} />
+                                                        <Image src={image5} rounded style={{ width: "210px", height: "auto" }} />
                                                     </Col>
                                                     <Col style={{ textAlign: 'center' }}>
-                                                        <Image src={imagesURL6} rounded style={{ width: "210px", height: "auto" }} />
+                                                        <Image src={image6} rounded style={{ width: "210px", height: "auto" }} />
                                                     </Col>
                                                 </Row>
                                                 <Row>
-                                                    <Col style={{ textAlign: 'center' }}>
-                                                        <Form.Control className='mt-2 styleInput' type="file"
+                                                    <Col >
+                                                        <Form.Control className='mt-2 styleInput' type="file" disabled={true}
                                                             onChange={e => setImage4([...e.target.files])} />
                                                     </Col>
-                                                    <Col style={{ textAlign: 'center' }}>
-                                                        <Form.Control className='mt-2' type="file"
+                                                    <Col >
+                                                        <Form.Control className='mt-2 styleInput' type="file" disabled={true}
                                                             onChange={e => setImage5([...e.target.files])} />
                                                     </Col>
-                                                    <Col style={{ textAlign: 'center' }}>
-                                                        <Form.Control className='mt-2' type="file"
+                                                    <Col>
+                                                        <Form.Control className='mt-2 styleInput' type="file" disabled={true}
                                                             onChange={e => setImage6([...e.target.files])} />
                                                     </Col>
                                                 </Row>
                                                 <Row className='mt-2 mb-3'>
                                                     <Col>
-                                                        <Form.Group className="mb-2" controlId="natureOfCactus">
+                                                        <Form.Group className="mb-2" controlId="descriptionImageGrup2">
                                                             <Form.Label>คำอธิบาย</Form.Label>
-                                                            <Form.Control as="textarea" rows={3} placeholder="คำอธิบายการปลูก"
+                                                            <Form.Control as="textarea" rows={4} placeholder="คำอธิบายการปลูก" value={descriptionImageGrup2}
                                                                 onChange={e => setDescriptionImageGrup2(e.target.value)} />
                                                         </Form.Group>
                                                     </Col>
@@ -272,34 +309,34 @@ function ManagePage() {
                                                 <h5>การขยายพันธ์</h5>
                                                 <Row>
                                                     <Col style={{ textAlign: 'center' }}>
-                                                        <Image src={imagesURL7} rounded style={{ width: "210px", height: "auto" }} />
+                                                        <Image src={image7} rounded style={{ width: "210px", height: "auto" }} />
                                                     </Col>
                                                     <Col style={{ textAlign: 'center' }}>
-                                                        <Image src={imagesURL8} rounded style={{ width: "210px", height: "auto" }} />
+                                                        <Image src={image8} rounded style={{ width: "210px", height: "auto" }} />
                                                     </Col>
                                                     <Col style={{ textAlign: 'center' }}>
-                                                        <Image src={imagesURL9} rounded style={{ width: "210px", height: "auto" }} />
+                                                        <Image src={image9} rounded style={{ width: "210px", height: "auto" }} />
                                                     </Col>
                                                 </Row>
                                                 <Row>
-                                                    <Col style={{ textAlign: 'center' }}>
-                                                        <Form.Control className='mt-2 styleInput' type="file"
+                                                    <Col>
+                                                        <Form.Control className='mt-2 styleInput' type="file" disabled={true}
                                                             onChange={e => setImage7([...e.target.files])} />
                                                     </Col>
-                                                    <Col style={{ textAlign: 'center' }}>
-                                                        <Form.Control className='mt-2' type="file"
+                                                    <Col >
+                                                        <Form.Control className='mt-2 styleInput' type="file" disabled={true}
                                                             onChange={e => setImage8([...e.target.files])} />
                                                     </Col>
-                                                    <Col style={{ textAlign: 'center' }}>
-                                                        <Form.Control className='mt-2' type="file"
+                                                    <Col >
+                                                        <Form.Control className='mt-2 styleInput' type="file" disabled={true}
                                                             onChange={e => setImage9([...e.target.files])} />
                                                     </Col>
                                                 </Row>
                                                 <Row className='mt-2 mb-3'>
                                                     <Col>
-                                                        <Form.Group className="mb-2" controlId="natureOfCactus">
+                                                        <Form.Group className="mb-2" controlId="descriptionImageGrup3">
                                                             <Form.Label>คำอธิบาย</Form.Label>
-                                                            <Form.Control as="textarea" rows={3} placeholder="คำอธิบายการขยายพันธ์"
+                                                            <Form.Control as="textarea" rows={4} placeholder="คำอธิบายการขยายพันธ์" value={descriptionImageGrup3}
                                                                 onChange={e => setDescriptionImageGrup3(e.target.value)} />
                                                         </Form.Group>
                                                     </Col>
@@ -308,22 +345,23 @@ function ManagePage() {
                                                 <h5>โรคที่1</h5>
                                                 <Row>
                                                     <Col style={{ textAlign: 'center' }}>
-                                                        <Image src={imageDiseaseURL1} rounded style={{ width: "340px", height: "auto" }} />
+                                                        <Image src={imageDisease1} rounded style={{ width: "340px", height: "auto" }} />
                                                     </Col>
                                                 </Row>
                                                 <Row>
                                                     <Col xl lg xxl="3" style={{ textAlign: 'center' }}></Col>
-                                                    <Col style={{ textAlign: 'center' }}>
-                                                        <Form.Control style={{ width: '100%', textAlign: 'center' }} className='mt-2 mb-2'
-                                                            type="file" onChange={e => setImageDisease1([...e.target.files])} />
+                                                    <Col>
+                                                        <Form.Control className='mt-2 mb-2 styleInput' type="file" disabled={true}
+                                                            style={{ width: '100%', textAlign: 'center' }}
+                                                            onChange={e => setImageDisease1([...e.target.files])} />
                                                     </Col>
                                                     <Col xl lg xxl="3" style={{ textAlign: 'center' }}></Col>
                                                 </Row>
                                                 <Row className='mt-2 mb-3'>
                                                     <Col>
-                                                        <Form.Group className="mb-2" controlId="natureOfCactus">
+                                                        <Form.Group className="mb-2" controlId="diseaseDetails1">
                                                             <Form.Label>คำอธิบาย</Form.Label>
-                                                            <Form.Control as="textarea" rows={3} placeholder="คำอธิบายโรคที่1"
+                                                            <Form.Control as="textarea" rows={4} placeholder="คำอธิบายโรคที่1" value={diseaseDetails1}
                                                                 onChange={e => setDiseaseDetails1(e.target.value)} />
                                                         </Form.Group>
                                                     </Col>
@@ -332,22 +370,23 @@ function ManagePage() {
                                                 <h5>โรคที่2</h5>
                                                 <Row>
                                                     <Col style={{ textAlign: 'center' }}>
-                                                        <Image src={imageDiseaseURL2} rounded style={{ width: "340px", height: "auto" }} />
+                                                        <Image src={imageDisease2} rounded style={{ width: "340px", height: "auto" }} />
                                                     </Col>
                                                 </Row>
                                                 <Row>
                                                     <Col xl lg xxl="3" style={{ textAlign: 'center' }}></Col>
                                                     <Col style={{ textAlign: 'center' }}>
-                                                        <Form.Control style={{ width: '100%', textAlign: 'center' }} className='mt-2 mb-2'
-                                                            type="file" onChange={e => setImageDisease2([...e.target.files])} />
+                                                        <Form.Control className='mt-2 mb-2' type="file" disabled={true}
+                                                            style={{ width: '100%', textAlign: 'center' }}
+                                                            onChange={e => setImageDisease2([...e.target.files])} />
                                                     </Col>
                                                     <Col xl lg xxl="3" style={{ textAlign: 'center' }}></Col>
                                                 </Row>
                                                 <Row className='mt-2 mb-3'>
                                                     <Col>
-                                                        <Form.Group className="mb-2" controlId="natureOfCactus">
+                                                        <Form.Group className="mb-2" controlId="diseaseDetails2">
                                                             <Form.Label>คำอธิบาย</Form.Label>
-                                                            <Form.Control as="textarea" rows={3} placeholder="คำอธิบายโรคที่2"
+                                                            <Form.Control as="textarea" rows={4} placeholder="คำอธิบายโรคที่2" value={diseaseDetails2}
                                                                 onChange={e => setDiseaseDetails2(e.target.value)} />
                                                         </Form.Group>
                                                     </Col>
@@ -356,29 +395,31 @@ function ManagePage() {
                                                 <h5>โรคที่3</h5>
                                                 <Row>
                                                     <Col style={{ textAlign: 'center' }}>
-                                                        <Image src={imageDiseaseURL3} rounded style={{ width: "340px", height: "auto" }} />
+                                                        <Image src={imageDisease3} rounded style={{ width: "340px", height: "auto" }} />
                                                     </Col>
                                                 </Row>
                                                 <Row>
                                                     <Col xl lg xxl="3" style={{ textAlign: 'center' }}></Col>
-                                                    <Col style={{ textAlign: 'center' }}>
-                                                        <Form.Control style={{ width: '100%', textAlign: 'center' }} className='mt-2 mb-2'
+                                                    <Col>
+                                                        <Form.Control className='mt-2 mb-2' disabled={true}
                                                             type="file" onChange={e => setImageDisease3([...e.target.files])} />
                                                     </Col>
                                                     <Col xl lg xxl="3" style={{ textAlign: 'center' }}></Col>
                                                 </Row>
                                                 <Row className='mt-2 mb-3'>
                                                     <Col>
-                                                        <Form.Group className="mb-2" controlId="natureOfCactus">
+                                                        <Form.Group className="mb-2" controlId="diseaseDetails2">
                                                             <Form.Label>คำอธิบาย</Form.Label>
-                                                            <Form.Control as="textarea" rows={3} placeholder="คำอธิบายโรคที่3"
+                                                            <Form.Control as="textarea" rows={4} placeholder="คำอธิบายโรคที่3" value={diseaseDetails3}
                                                                 onChange={e => setDiseaseDetails3(e.target.value)} />
                                                         </Form.Group>
                                                     </Col>
                                                 </Row>
 
-                                                <div style={{ textAlign: 'center' }}>
-                                                    <Button style={{ width: '50%' }} variant="primary" onClick={onUpdate}>อัพโหลด</Button>
+                                                <div className='d-flex justify-content-center'>
+                                                    <Button style={{ width: '50%' }} variant="primary" onClick={onUpdate}>
+                                                        Update
+                                                    </Button>
                                                 </div>
                                             </Form>
                                         </div>
@@ -403,7 +444,7 @@ function ManagePage() {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {firestoreData.map(flight => {
+                                    {dataToshowTable.map(flight => {
                                         return (
                                             <tr key={flight.id}>
                                                 <td scope="row">{flight.index}</td>
