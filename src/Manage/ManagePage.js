@@ -18,7 +18,6 @@ const storage = getStorage(firebaseConfig);
 let indexTable = 0;
 
 function ManagePage() {
-    var sumUrls = [];
     let url = [];
 
     const [dataToshowTable, setDataToshowTable] = useState([]);
