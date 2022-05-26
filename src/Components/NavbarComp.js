@@ -57,50 +57,52 @@ export default function NavbarComp() {
 
     if (session.isLoggedIn === false) {
         return (
-            <Router>
-                <div>
-                    <Navbar className='NavbarStyle' bg="dark" variant={"dark"} expand="lg">
-                        <span>
-                            <Image className='imageLogo' src='/Images/cactus_logo.jpg'></Image>
-                        </span>
-                        <Navbar.Brand href="#">CACTUS FAMILY</Navbar.Brand>
-                        <Navbar.Toggle aria-controls="navbarScroll" />
-                        <Navbar.Collapse id="navbarScroll">
-                            <div style={{ width: "100%" }}>
-                                <Nav
-                                    className="mr-auto my-2 my-lg-0 justify-content-end"
-                                    style={{ maxHeight: '100px', width: "100%" }}
-                                    navbarScroll
-                                >
-                                    <Nav.Link as={Link} to="/home">Home</Nav.Link>
-                                    <Nav.Link as={Link} to="/cactus">Cactus</Nav.Link>
-                                    <Nav.Link as={Link} to="/login">Login</Nav.Link>
-                                </Nav>
-                            </div>
+            <>
+                <Router>
+                    <div>
+                        <Navbar className='NavbarStyle' bg="dark" variant={"dark"} expand="lg">
+                            <span>
+                                <Image className='imageLogo' src='/Images/cactus_logo.jpg'></Image>
+                            </span>
+                            <Navbar.Brand href="#">CACTUS FAMILY</Navbar.Brand>
+                            <Navbar.Toggle aria-controls="navbarScroll" />
+                            <Navbar.Collapse id="navbarScroll">
+                                <div style={{ width: "100%" }}>
+                                    <Nav
+                                        className="mr-auto my-2 my-lg-0 justify-content-end"
+                                        style={{ maxHeight: '100px', width: "100%" }}
+                                        navbarScroll
+                                    >
+                                        <Nav.Link as={Link} to="/home">Home</Nav.Link>
+                                        <Nav.Link as={Link} to="/cactus">Cactus</Nav.Link>
+                                        <Nav.Link as={Link} to="/login">Login</Nav.Link>
+                                    </Nav>
+                                </div>
 
-                        </Navbar.Collapse>
-                    </Navbar>
-                </div>
-                <div>
-                    <Switch>
-                        <Route path="/login">
-                            <LoginPage setSession={setSession} />
-                        </Route>
-                        <Route path="/cactus">
-                            <ContactPage />
-                        </Route>
-                        <Route path="/gymnocalycium">
-                            <GymnocalyciumPage />
-                        </Route>Gymnocalycium
-                        <Route path="/mammillaria">
-                            <MammillariaPage />
-                        </Route>
-                        <Route path="/">
-                            <HomePage />
-                        </Route>
-                    </Switch>
-                </div>
-            </Router >
+                            </Navbar.Collapse>
+                        </Navbar>
+                    </div>
+                    <div>
+                        <Switch>
+                            <Route path="/login">
+                                <LoginPage setSession={setSession} />
+                            </Route>
+                            <Route path="/cactus">
+                                <ContactPage />
+                            </Route>
+                            <Route path="/gymnocalycium">
+                                <GymnocalyciumPage />
+                            </Route>Gymnocalycium
+                            <Route path="/mammillaria">
+                                <MammillariaPage />
+                            </Route>
+                            <Route path="/">
+                                <HomePage />
+                            </Route>
+                        </Switch>
+                    </div>
+                </Router >
+            </>
         )
 
     } else {
