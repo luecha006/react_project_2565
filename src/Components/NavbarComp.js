@@ -135,14 +135,14 @@ export default function NavbarComp() {
                 </div>
                 <div>
                     <Switch>
-                        <Route path="/">
-                            <ManagePage />
-                        </Route>
                         <Route path="/picture">
                             <PicturePage />
                         </Route>
                         <Route path="/add">
                             <AddPage />
+                        </Route>
+                        <Route path="/">
+                            <ManagePage />
                         </Route>
                     </Switch>
                 </div>
