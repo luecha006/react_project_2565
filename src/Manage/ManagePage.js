@@ -8,7 +8,7 @@ import { ProgressSpinner } from 'primereact/progressspinner';
 import { Sidebar } from 'primereact/sidebar';
 import { Form, Button, Image, Card, Row, Col } from 'react-bootstrap';
 import { getFirestore, getDocs, collection, deleteDoc, doc, setDoc } from "firebase/firestore";
-import { getStorage, ref } from "firebase/storage";
+import { getStorage} from "firebase/storage";
 
 import './ManagePage.css';
 
@@ -431,6 +431,7 @@ function ManagePage() {
                             </div >
                         </div>
                     </Sidebar>
+
                     <div className="row mb5">
                         <span className='p-0' style={{ textAlign: 'start' }}>
                             <h2 className="text-left mt-2 ">จัดการ</h2>
@@ -447,15 +448,15 @@ function ManagePage() {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {dataToshowTable.map(flight => {
+                                    {dataToshowTable.map(cactus => {
                                         return (
-                                            <tr key={flight.id}>
-                                                <td scope="row">{flight.index}</td>
-                                                <td>{flight.name}</td>
-                                                <td>{flight.cactusFamily}</td>
+                                            <tr key={cactus.id}>
+                                                <td scope="row">{cactus.index}</td>
+                                                <td>{cactus.name}</td>
+                                                <td>{cactus.cactusFamily}</td>
                                                 <td>
                                                     <button onClick={() => {
-                                                        onEdit(flight.index)
+                                                        onEdit(cactus.index)
                                                     }}
                                                         type="button"
                                                         className="btn btn-sm btn-warning ml-2">
@@ -464,7 +465,7 @@ function ManagePage() {
                                                 </td>
                                                 <td>
                                                     <button onClick={() => {
-                                                        onDelete(flight.index);
+                                                        onDelete(cactus.index);
                                                     }}
                                                         type="button"
                                                         className="btn btn-sm btn-danger ml-2">

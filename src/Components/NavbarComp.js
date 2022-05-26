@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Navbar, Nav } from 'react-bootstrap'
 import Image from 'react-bootstrap/Image'
 import {
@@ -18,13 +18,44 @@ import AddPage from '../Add/AddPage';
 import ManagePage from '../Manage/ManagePage';
 import PicturePage from '../Picture/PicturePage';
 
-import './ComponentStyle.css';
+import firebaseConfig from '../Firebase/config';
 
-let isLogin = true //ตัวแปรเช็คว่า login หรือยัง
+import './ComponentStyle.css';
 
 export default function NavbarComp() {
 
-    if (isLogin === false) {
+    const [session, setSession] = useState({
+        isLoggedIn: false,
+        currentUser: null,
+        errorMessage: null
+    });
+
+    useEffect(() => {
+        const handleAuth = firebaseConfig.auth().onAuthStateChanged(user => {
+            if (user) {
+                setSession({
+                    isLoggedIn: true,
+                    currentUser: user,
+                    errorMessage: null
+                });
+            }
+        });
+
+        return () => {
+            handleAuth();
+        };
+    }, []);
+
+    const handleLogout = () => {
+        firebaseConfig.auth().signOut().then(response => {
+            setSession({
+                isLoggedIn: false,
+                currentUser: null
+            });
+        });
+    };
+
+    if (session.isLoggedIn === false) {
         return (
             <Router>
                 <div>
@@ -53,7 +84,7 @@ export default function NavbarComp() {
                 <div>
                     <Switch>
                         <Route path="/login">
-                            <LoginPage />
+                            <LoginPage setSession={setSession} />
                         </Route>
                         <Route path="/cactus">
                             <ContactPage />
@@ -93,7 +124,7 @@ export default function NavbarComp() {
                                     <Nav.Link as={Link} to="/add">Add</Nav.Link>
                                     <Nav.Link as={Link} to="/manage">Manage</Nav.Link>
                                     <Nav.Link as={Link} to="/picture">Picture</Nav.Link>
-                                    <Nav.Link as={Link} to="/logout">Logout</Nav.Link>
+                                    <Nav.Link as={Link} to="/logout" onClick={handleLogout}>Logout</Nav.Link>
                                 </Nav>
                             </div>
 
@@ -102,13 +133,13 @@ export default function NavbarComp() {
                 </div>
                 <div>
                     <Switch>
-                        <Route path="/manage">
+                        <Route path="/">
                             <ManagePage />
                         </Route>
                         <Route path="/picture">
                             <PicturePage />
                         </Route>
-                        <Route path="/">
+                        <Route path="/add">
                             <AddPage />
                         </Route>
                     </Switch>
