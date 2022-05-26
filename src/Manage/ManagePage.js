@@ -37,6 +37,7 @@ function ManagePage() {
     const [diseaseDetails1, setDiseaseDetails1] = useState(''); //คำอธิบายรูปภาพโรคที่1
     const [diseaseDetails2, setDiseaseDetails2] = useState(''); //คำอธิบายรูปภาพโรคที่2
     const [diseaseDetails3, setDiseaseDetails3] = useState(''); //คำอธิบายรูปภาพโรคที่3
+
     const [imageProfile, setImageProfile] = useState(null);
     const [image1, setImage1] = useState(null);
     const [image2, setImage2] = useState(null);
@@ -135,23 +136,23 @@ function ManagePage() {
             commonName: `${commonName}`,
             otherNames: `${otherNames}`,
             family: `${family}`,
-            image1: `${url[1]}`,
-            image2: `${url[2]}`,
-            image3: `${url[3]}`,
+            // image1: `${url[1]}`,
+            // image2: `${url[2]}`,
+            // image3: `${url[3]}`,
             descriptionImageGrup1: `${descriptionImageGrup1}`,
-            image4: `${url[4]}`,
-            image5: `${url[5]}`,
-            image6: `${url[6]}`,
+            // image4: `${url[4]}`,
+            // image5: `${url[5]}`,
+            // image6: `${url[6]}`,
             descriptionImageGrup2: `${descriptionImageGrup2}`,
-            image7: `${url[7]}`,
-            image8: `${url[8]}`,
-            image9: `${url[9]}`,
+            // image7: `${url[7]}`,
+            // image8: `${url[8]}`,
+            // image9: `${url[9]}`,
             descriptionImageGrup3: `${descriptionImageGrup3}`,
-            imageDisease1: `${url[10]}`,
+            // imageDisease1: `${url[10]}`,
             diseaseDetails1: `${diseaseDetails1}`,
-            imageDisease2: `${url[11]}`,
+            // imageDisease2: `${url[11]}`,
             diseaseDetails2: `${diseaseDetails2}`,
-            imageDisease3: `${url[12]}`,
+            // imageDisease3: `${url[12]}`,
             diseaseDetails3: `${diseaseDetails3}`
         });
 
@@ -416,9 +417,12 @@ function ManagePage() {
                                                 </Row>
 
                                                 <div className='d-flex justify-content-center'>
-                                                    <Button style={{ width: '50%' }} variant="primary" onClick={onUpdate}>
+                                                    <Button className='p-2 px-4 p-button-info'
+                                                        style={{ width: '50%' }}
+                                                        onClick={onUpdate} >
+                                                        <i className='pi pi-upload pt-1' style={{ float: 'left' }}></i>
                                                         Update
-                                                    </Button>
+                                                    </ Button>
                                                 </div>
                                             </Form>
                                         </div>
@@ -482,7 +486,6 @@ function ManagePage() {
     } else {
         return (
             <div className='container'>
-                {/* <p>Loading...</p> */}
                 <ProgressSpinner style={{ width: '70px', height: '70px', marginTop: '250px' }}
                     strokeWidth="5"
                     fill="var(--surface-ground)"

@@ -3,17 +3,15 @@ import 'primereact/resources/themes/lara-light-indigo/theme.css';
 import 'primereact/resources/primereact.css';
 import 'primeflex/primeflex.css';
 
-import React, { useEffect, useState } from 'react';
-import { Form, Button, Image, Card, Row, Col } from 'react-bootstrap';
+import React, { useEffect, useState, useRef } from 'react';
+import { Form, Image, Button, Card, Row, Col } from 'react-bootstrap';
+import { Toast } from 'primereact/toast';
 
 import firebaseConfig from '../Firebase/config';
 import { addDoc, getFirestore, collection } from "firebase/firestore";
-import { ProgressSpinner } from 'primereact/progressspinner';
 
 export default function AddPage() {
-
-    var sumUrls = [];
-
+    // const [sumUrls, setSumUrls] = useState([]);
     const [isUpload, setIsUpload] = useState(false);
     const [cactusFamily, setCactusFamily] = useState(''); //ตระกุล
     const [scientificName, setScientificName] = useState(''); //ชื่อทางวิทยา
@@ -29,42 +27,32 @@ export default function AddPage() {
 
     const [imageProfile, setImageProfile] = useState([]);
     const [imageProfileURLs, setImageProfileURLs] = useState([]);
-
     const [image1, setImage1] = useState([]);
     const [imagesURL1, setImagesURL1] = useState([]);
-
     const [image2, setImage2] = useState([]);
     const [imagesURL2, setImagesURL2] = useState([]);
-
     const [image3, setImage3] = useState([]);
     const [imagesURL3, setImagesURL3] = useState([]);
-
     const [image4, setImage4] = useState([]);
     const [imagesURL4, setImagesURL4] = useState([]);
-
     const [image5, setImage5] = useState([]);
     const [imagesURL5, setImagesURL5] = useState([]);
-
     const [image6, setImage6] = useState([]);
     const [imagesURL6, setImagesURL6] = useState([]);
-
     const [image7, setImage7] = useState([]);
     const [imagesURL7, setImagesURL7] = useState([]);
-
     const [image8, setImage8] = useState([]);
     const [imagesURL8, setImagesURL8] = useState([]);
-
     const [image9, setImage9] = useState([]);
     const [imagesURL9, setImagesURL9] = useState([]);
-
     const [imageDisease1, setImageDisease1] = useState([]);
     const [imageDiseaseURL1, setImagesDiseaseURL1] = useState([]);
-
     const [imageDisease2, setImageDisease2] = useState([]);
     const [imageDiseaseURL2, setImagesDiseaseURL2] = useState([]);
-
     const [imageDisease3, setImageDisease3] = useState([]);
     const [imageDiseaseURL3, setImagesDiseaseURL3] = useState([]);
+
+    const toast = useRef(null);
 
     useEffect(() => {
         if (imageProfile.length < 1);
@@ -159,97 +147,118 @@ export default function AddPage() {
     }, [imageProfile, image1, image2,
         image3, image4, image5,
         image6, image7, image8, image9,
-        imageDisease1, imageDisease2, imageDisease3]);
+        imageDisease1, imageDisease2, imageDisease3, isUpload]);
 
-    async function uploadToFirebase() {
+    function makeid(fileExtension) { // random ชื่อ
+        let currentDate = new Date();
+        currentDate = currentDate.toISOString("th-TH");
+        var result = '';
+        var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+        var charactersLength = characters.length;
+        for (var i = 0; i < 60; i++) {
+            result += characters.charAt(Math.floor(Math.random() *
+                charactersLength));
+        }
+        return result + currentDate + fileExtension.substr(-4);
+    }
 
+    async function onUpload() {
         var sumfile = [];
         var sumName = [];
+        var sumUrls = [];
 
         if ((imageProfile.length !== 0) && (image1.length !== 0) && (image2.length !== 0) && (image3.length !== 0) && (image3.length !== 0)
             && (image4.length !== 0) && (image5.length !== 0) && (image6.length !== 0) && (image7.length !== 0) && (image8.length !== 0)
             && (image9.length !== 0) && (imageDisease1.length !== 0) && (imageDisease2.length !== 0) && (imageDisease3.length !== 0)) {
 
+            setIsUpload(true);
             sumfile.push(imageProfile[0]);
-            sumName.push(imageProfile[0].name);
+            sumName.push(makeid(imageProfile[0].name));
             sumfile.push(image1[0]);
-            sumName.push(image1[0].name);
+            sumName.push(makeid(image1[0].name));
             sumfile.push(image2[0]);
-            sumName.push(image2[0].name);
+            sumName.push(makeid(image2[0].name));
             sumfile.push(image3[0]);
-            sumName.push(image3[0].name);
+            sumName.push(makeid(image3[0].name));
             sumfile.push(image4[0]);
-            sumName.push(image4[0].name);
+            sumName.push(makeid(image4[0].name));
             sumfile.push(image5[0]);
-            sumName.push(image5[0].name);
+            sumName.push(makeid(image5[0].name));
             sumfile.push(image6[0]);
-            sumName.push(image6[0].name);
+            sumName.push(makeid(image6[0].name));
             sumfile.push(image7[0]);
-            sumName.push(image7[0].name);
+            sumName.push(makeid(image7[0].name));
             sumfile.push(image8[0]);
-            sumName.push(image8[0].name);
+            sumName.push(makeid(image8[0].name));
             sumfile.push(image9[0]);
-            sumName.push(image9[0].name);
+            sumName.push(makeid(image9[0].name));
             sumfile.push(imageDisease1[0]);
-            sumName.push(imageDisease1[0].name);
+            sumName.push(makeid(imageDisease1[0].name));
             sumfile.push(imageDisease2[0]);
-            sumName.push(imageDisease2[0].name);
+            sumName.push(makeid(imageDisease2[0].name));
             sumfile.push(imageDisease3[0]);
-            sumName.push(imageDisease3[0].name);
+            sumName.push(makeid(imageDisease3[0].name));
 
             const storageRef = firebaseConfig.storage().ref();
 
-            for (let i = 0; i < sumfile.length; i++) { //อัพรูปเก็บ url
-                await storageRef.child(`WebAddImages/${sumName[i]}`).put(sumfile[i]).then((snapshot) => {
-                    storageRef.child(`WebAddImages/${sumName[i]}`).getDownloadURL().then(function (url) {
+            // let i = 0;
+            // while (sumUrls.length < 13) {
+            for (var i = 0; i < sumName.length; i++) { //อัพรูปเก็บ url
+                await storageRef.child(`WebAddImages/${sumName[i]}`).put(sumfile[i]).then(async (snapshot) => {
+                    await storageRef.child(`WebAddImages/${sumName[i]}`).getDownloadURL().then(function (url) {
+                        console.log('count ', i);
                         sumUrls.push(url);
                     });
                 });
             }
+            console.log('sumUrls.length ', sumUrls.length);
             await uploadToFirestrore(sumUrls);
-            alert('เพิ่มสายพันธุ์เสร็จสิ้น');
+            toast.current.show({ severity: 'success', summary: 'แจ้งเตือน', detail: 'เพิ่มสายพันธุ์สำเร็จ', life: 3000 });
+
         } else {
-            alert('กรุณาเลือกรูปภาพให้ครบ!!!');
+            toast.current.show({ severity: 'warn', summary: 'แจ้งเตือน', detail: 'กรุณาเลือกรูปภาพให้ครบ!!!', life: 3000 });
+            setIsUpload(false);
         }
     }
 
-    async function uploadToFirestrore(url) {
+    async function uploadToFirestrore(sumUrls) {
         const db = getFirestore(firebaseConfig);
-        console.log('uploadToFirestrore');
+
         try {
             await addDoc(collection(db, "WebCactusInformation"), {
                 cactusFamily: `${cactusFamily}`,
-                imageProfile: `${url[0]}`,
+                imageProfile: `${sumUrls[0]}`,
                 scientificName: `${scientificName}`,
                 commonName: `${commonName}`,
                 otherNames: `${otherNames}`,
                 family: `${family}`,
-                image1: `${url[1]}`,
-                image2: `${url[2]}`,
-                image3: `${url[3]}`,
+                image1: `${sumUrls[1]}`,
+                image2: `${sumUrls[2]}`,
+                image3: `${sumUrls[3]}`,
                 descriptionImageGrup1: `${descriptionImageGrup1}`,
-                image4: `${url[4]}`,
-                image5: `${url[5]}`,
-                image6: `${url[6]}`,
+                image4: `${sumUrls[4]}`,
+                image5: `${sumUrls[5]}`,
+                image6: `${sumUrls[6]}`,
                 descriptionImageGrup2: `${descriptionImageGrup2}`,
-                image7: `${url[7]}`,
-                image8: `${url[8]}`,
-                image9: `${url[9]}`,
+                image7: `${sumUrls[7]}`,
+                image8: `${sumUrls[8]}`,
+                image9: `${sumUrls[9]}`,
                 descriptionImageGrup3: `${descriptionImageGrup3}`,
-                imageDisease1: `${url[10]}`,
+                imageDisease1: `${sumUrls[10]}`,
                 diseaseDetails1: `${diseaseDetails1}`,
-                imageDisease2: `${url[11]}`,
+                imageDisease2: `${sumUrls[11]}`,
                 diseaseDetails2: `${diseaseDetails2}`,
-                imageDisease3: `${url[12]}`,
+                imageDisease3: `${sumUrls[12]}`,
                 diseaseDetails3: `${diseaseDetails3}`
             });
-            // console.log("Document written with ID: ", docRef.id);
+            setIsUpload(false);
         } catch (e) {
             console.error("Error adding document: ", e);
         }
     }
     return (
         <div className='container' style={{ width: '50%', height: '100%', marginBottom: '4%' }}>
+            <Toast ref={toast} />
             <br />
             <Card border="secondary" style={{ background: '#ECEFF1' }}>
                 <Card.Body>
@@ -493,9 +502,14 @@ export default function AddPage() {
                                     </Form.Group>
                                 </Col>
                             </Row>
-
                             <div style={{ textAlign: 'center' }}>
-                                <Button style={{ width: '50%' }} variant="primary" onClick={uploadToFirebase}>อัพโหลด</Button>
+                                <Button className='p-2 px-4 p-button-info'
+                                    style={{ width: '50%' }}
+                                    disabled={isUpload}
+                                    onClick={onUpload} >
+                                    <i className='pi pi-upload pt-1' style={{ float: 'left' }}></i>
+                                    {isUpload ? 'Uploading...' : 'Upload'}
+                                </ Button>
                             </div>
                         </Form>
                     </div>
