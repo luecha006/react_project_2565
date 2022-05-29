@@ -4,7 +4,7 @@ import './ComponentStyle.css';
 
 const Footer = () => (
     <footer className="footer">
-        <p style={{margin: "8px"}}>Copyright &copy;</p>
+        <p className='footer-copy' style={{margin: "8px"}}>Copyright &copy; All Rights Reserved 2021-2022</p>
     </footer>
 );
 

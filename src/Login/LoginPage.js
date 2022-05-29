@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react';
-import { Form, Button, Card } from 'react-bootstrap';
+import { Form, Button, Card, Image } from 'react-bootstrap';
 import { Toast } from 'primereact/toast';
 import './LoginPage.css'
 
@@ -53,18 +53,15 @@ const LoginPage = ({ setSession }) => {
     }
 
     return (
-        <div className='container mb-7' style={{ width: '30%', height: '100%' }}>
+        <div id='loing_page' className='container mb-7' style={{ width: '30%', height: '100%' }}>
             <Toast ref={toast} />
             <br />
             <br />
             <br />
             <Card border="secondary" style={{ background: '#ECEFF1' }}>
                 <Card.Body>
+                <Image src="/Images/login.png" style={{ width: 100, heigh: 100 }}></Image>
                     <h2>Login</h2>
-
-                    <br />
-                    <br />
-                    <br />
                     <br />
                     <div>
                         <Form style={{ textAlign: 'start' }}>
@@ -90,11 +87,11 @@ const LoginPage = ({ setSession }) => {
                                     onChange={e => setCheckbox(e.target.checked)} />
                             </Form.Group>
                             <Button
-                                variant="secondary"
+                                variant="success"
                                 type="submit"
                                 style={{ width: "100%" }}
                                 onClick={headleLogin}>
-                                Submit
+                                Login
                             </Button>
                         </Form>
                     </div>

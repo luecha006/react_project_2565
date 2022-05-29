@@ -33,7 +33,7 @@ export default class HomePage extends Component {
                                 aria-describedby="basic-addon2"
                                 id='search'
                             />
-                            <Button variant="secondary" id="button-addon2">
+                            <Button variant="success" id="button-addon2">
                                 Search
                             </Button>
                         </InputGroup>

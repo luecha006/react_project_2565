@@ -61,6 +61,7 @@ function MammillariaPage() {
                     setFirestoreData([]);
                     const querySnapshot = await getDocs(collection(db, "WebCactusInformation"));
                     querySnapshot.forEach((doc) => {
+                       if(doc.data().cactusFamily === 'Mammillaria'){
                         var data = {
                             id: doc.id,
                             index: index,
@@ -73,6 +74,7 @@ function MammillariaPage() {
                         setFirestoreData(firestoreData => [...firestoreData, doc.data()]);
                         index += 1;
                       console.log(dataToshowTable);  
+                       }
                     });
                     
 
@@ -167,115 +169,109 @@ function MammillariaPage() {
 
     if (dataToshowTable.length !== 0) {
         return (
-            <>
+            <div className='bgm'>
                 <div className="container">
-                    <Sidebar visible={isOpenPage} fullScreen onHide={() => setIsOpenEditForm(false)}>
+                    <Sidebar className='side-bar' visible={isOpenPage}  fullScreen  onHide={() => setIsOpenEditForm(false)}>
                         <div >
                             <div className='container' style={{ width: '100%', height: '100%', marginBottom: '4%', textAlign: 'center' }}>
                                 <br />
                                 <Card border="secondary" style={{ background: '#ECEFF1' }}>
+                                   
                                     <Card.Body>
                                         
                                         <div>
                                             <Form style={{ textAlign: 'start' }}>
                                                
                                                 <Row>
-                                                    <Col style={{ textAlign: 'center' }}>
-                                                       <Image className='imgPro' src={imageProfile}/>
+                                                    <Col className='colpro' style={{ textAlign: 'left' }}>
+                                                       <Image className='imgpro' src={imageProfile}/>
                                                     </Col>
-                                                </Row>
-                                              
-                                                <Row>
                                                     <Col>
-                                                        <Form.Group className="mb-3 " controlId="formScientificName">
-                                                            <h5>ชื่อวิทยาศาสตร์ : <span>{scientificName}</span></h5>
-                                                            <h5>ชื่อสามัญ : <span>{commonName}</span></h5>
-                                                            <h5>ชื่ออื่นๆ : <span>{otherNames}</span></h5>
-                                                            <h5>วงศ์ : <span>{family}</span></h5>
-                                                            
-                                                        </Form.Group>
+                                                    <div className='nameOf'>
+                                                            <h2>ชื่อวิทยาศาสตร์ : <span>{scientificName}</span></h2>
+                                                            <h4>ชื่อสามัญ : <span>{commonName}</span></h4>
+                                                            <h4>ชื่ออื่นๆ : <span>{otherNames}</span></h4>
+                                                            <h4>วงศ์ : <span>{family}</span></h4>
+                                                    </div>
                                                     </Col>
-                                                    
                                                 </Row>
+                    
                                                 {/* ------------------------------------------------- */}
-                                                <h5>ลักษณะทางพฤกษศาสตร์</h5>
-                                                <h6>{descriptionImageGrup1}</h6>
-                                                <Row className='mt-3'>
+                                                
+                                                <Row className='des'>
+                                                    <h3>ลักษณะทางพฤกษศาสตร์</h3>
+                                                    <p>{descriptionImageGrup1}</p>
+
                                                     <Col style={{ textAlign: 'center' }}>
-                                                        <Image src={image1} rounded style={{ width: "210px", height: "auto" }} />
+                                                        <Image className='desPic' src={image1}  />
                                                     </Col>
                                                     <Col style={{ textAlign: 'center' }}>
-                                                        <Image src={image2} rounded style={{ width: "210px", height: "auto" }} />
+                                                        <Image className='desPic' src={image2} />
                                                     </Col>
                                                     <Col style={{ textAlign: 'center' }}>
-                                                        <Image src={image3} rounded style={{ width: "210px", height: "auto" }} />
+                                                        <Image className='desPic' src={image3}/>
                                                     </Col>
                                                 </Row>
                                             
                                                 {/* ------------------------------------------------- */}
-                                                <h5>วิธีการปลูก</h5>
-                                                <h6>{descriptionImageGrup2}</h6>
-                                                <Row>
+                                                
+                                                <Row className='des'>
+                                                    <h3>วิธีการปลูก</h3>
+                                                    <p>{descriptionImageGrup2}</p>
                                                     <Col style={{ textAlign: 'center' }}>
-                                                        <Image src={image4} rounded style={{ width: "210px", height: "auto" }} />
+                                                        <Image className='desPic' src={image4}/>
                                                     </Col>
                                                     <Col style={{ textAlign: 'center' }}>
-                                                        <Image src={image5} rounded style={{ width: "210px", height: "auto" }} />
+                                                        <Image className='desPic' src={image5}/>
                                                     </Col>
                                                     <Col style={{ textAlign: 'center' }}>
-                                                        <Image src={image6} rounded style={{ width: "210px", height: "auto" }} />
+                                                        <Image className='desPic' src={image6}/>
                                                     </Col>
                                                 </Row>
                                                 
                                                 {/* ------------------------------------------------- */}
-                                                <h5>การขยายพันธ์</h5>
-                                                <h6>{descriptionImageGrup3}</h6>
-                                                <Row>
+                                               
+                                                <Row className='des'>
+                                                    <h3>การขยายพันธ์</h3>
+                                                    <p>{descriptionImageGrup3}</p>
                                                     <Col style={{ textAlign: 'center' }}>
-                                                        <Image src={image7} rounded style={{ width: "210px", height: "auto" }} />
+                                                        <Image className='desPic' src={image7}/>
                                                     </Col>
                                                     <Col style={{ textAlign: 'center' }}>
-                                                        <Image src={image8} rounded style={{ width: "210px", height: "auto" }} />
+                                                        <Image className='desPic' src={image8}/>
                                                     </Col>
                                                     <Col style={{ textAlign: 'center' }}>
-                                                        <Image src={image9} rounded style={{ width: "210px", height: "auto" }} />
+                                                        <Image className='desPic' src={image9}/>
                                                     </Col>
                                                 </Row>
                                                 
                                                 {/* ----------------------------------------------- */}
-                                                <h5>โรคเเละปัญหาที่พบบ่อย</h5>
-                                                <h6>{diseaseDetails1}</h6>
-                                                <Row>
+                                                
+                                                <Row className='des'>
+                                                    <h3>โรคเเละปัญหาที่พบบ่อย</h3>
+                                                    <p>{diseaseDetails1}</p>
                                                     <Col style={{ textAlign: 'center' }}>
-                                                        <Image src={imageDisease1} rounded style={{ width: "340px", height: "auto" }} />
+                                                        <Image className='desPic2' src={imageDisease1}/>
                                                     </Col>
                                                 </Row>
                                               
                                                 {/* ----------------------------------------------- */}
-                                                <h6>{diseaseDetails2}</h6>
-                                                <Row>
+                                                
+                                                <Row className='des'>
+                                                    <p>{diseaseDetails2}</p>
                                                     <Col style={{ textAlign: 'center' }}>
-                                                        <Image src={imageDisease2} rounded style={{ width: "340px", height: "auto" }} />
+                                                        <Image className='desPic2' src={imageDisease2}/>
                                                     </Col>
                                                 </Row>
                                                 
                                                 {/* ----------------------------------------------- */}
-                                                <h6>{diseaseDetails3}</h6>
-                                                <Row>
+                                                
+                                                <Row className='des'>
+                                                    <p>{diseaseDetails3}</p>
                                                     <Col style={{ textAlign: 'center' }}>
-                                                        <Image src={imageDisease3} rounded style={{ width: "340px", height: "auto" }} />
+                                                        <Image className='desPic2' src={imageDisease3}/>
                                                     </Col>
                                                 </Row>
-                                               
-
-                                                {/* <div className='d-flex justify-content-center'>
-                                                    <Button className='p-2 px-4 p-button-info'
-                                                        style={{ width: '50%' }}
-                                                        onClick={onUpdate} >
-                                                        <i className='pi pi-upload pt-1' style={{ float: 'left' }}></i>
-                                                        Update
-                                                    </ Button>
-                                                </div> */}
                                             </Form>
                                         </div>
                                     </Card.Body>
@@ -284,37 +280,35 @@ function MammillariaPage() {
                         </div>
                     </Sidebar>
                     <div className="row mb5">
-                        <span className='p-0' style={{ textAlign: 'start' }}>
-                            <h2 className="text-left mt-2 ">Mammillaria</h2>
+                        <span className='head_t'>
+                            <h2 className="text-center mt-lg-5 mb-lg-5 " style={{ fontSize: 50}}>Mammillaria</h2>
                         </span>
                         <div className="table-responsive border p-4 bg-light rounded" style={{ marginBottom: '50px' }}>
-                            <table className="table table-hover">
-                                <thead className="table-borderless table-secondary">
+                            <table className="table">
+                                <thead className="table-borderless">
+                                
                                     <tr>
-                                        <th scope="col" style={{ width: '10%' }}>NO.</th>
-                                        <th scope="col" style={{ width: '32%' }}>Picture</th>
-                                        <th scope="col" style={{ width: '32%' }}>Name</th>
-                                        <th scope="col" style={{ width: '8%' }}>Species</th>
-                                        <th scope="col" style={{ width: '8%' }}>Details</th>
+                                        {/* <th scope="col" style={{ width: '10%', fontSize: 20 }}>NO.</th> */}
+                                        <th scope="col" style={{ width: '20%', fontSize: 20 }}>Picture</th>
+                                        <th scope="col" style={{ width: '40%', fontSize: 20 }}>Name</th>
+                                        <th scope="col" style={{ width: '25%', fontSize: 20 }}>Species</th>
+                                        <th scope="col" style={{ width: '15%', fontSize: 20 }}>Details</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     {dataToshowTable.map(cactus => {
                                         return (
                                             <tr key={cactus.id}>
-                                                <td scope="row">{cactus.index}</td>
-                                                <td>
-                                                  <img className='imgpro' src={cactus.image}></img>
-                                                  
-                                                </td>
-                                                <td>{cactus.name}</td>
-                                                <td>{cactus.cactusFamily}</td>
+                                                {/* <td scope="row"><h5>{cactus.index}</h5></td> */}
+                                                <td><img className='img-list' src={cactus.image}></img></td>
+                                                <td><h5 className='info-td'>{cactus.name}</h5></td>
+                                                <td><h5 className='info-td'>{cactus.cactusFamily}</h5></td>
                                                 <td>
                                                 <button onClick={() => {
                                                         readMore(cactus.index)
                                                     }}
                                                         type="button"
-                                                        className="btn btn-sm btn-success ml-2">
+                                                        className=" btnt btn btn-md btn-success ml-2">
                                                         Read More
                                                     </button>
                                                 </td>
@@ -328,7 +322,7 @@ function MammillariaPage() {
                         </div>
                     </div>
                 </div>
-            </>
+            </div>
         );
     } else {
         return (
