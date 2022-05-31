@@ -5,6 +5,8 @@
   height: 100%;
   padding-top: 14%;
   padding-bottom: 20%;
+  
+
 }
 
 .imageLogo {
@@ -18,7 +20,7 @@
 }
 
 .bg {
-  background-image: url("https://mdbootstrap.com/img/Photos/Horizontal/Nature/full page/img(11).webp");
+  
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
