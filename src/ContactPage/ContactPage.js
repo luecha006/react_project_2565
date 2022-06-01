@@ -6,12 +6,14 @@ import { Link } from "react-router-dom";
 
 import { Nav } from "react-bootstrap";
 import "./ContactPage.css";
+const Background = '/Images/bg.jpg';
 
 export default class ContactPage extends Component {
     render() {
         return (
-            <div>
-                <h1 className="mt-5 mb-5">Select Species</h1>
+            <div className="container-fluid m-0 mb-6 p-0">
+            <div className="SpaceCactusPage bg" style={{backgroundImage: `url(${Background})`}}>
+                <h1 className="mt-0 mb-5 pt-lg-5 text-white ">Select Species</h1>
                 <br />
                 <div className="mt-5">
                     <Container>
@@ -61,6 +63,7 @@ export default class ContactPage extends Component {
                 </div>
                 <br />
                 <br />
+            </div>
             </div>
         );
     }

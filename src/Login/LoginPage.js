@@ -4,6 +4,7 @@ import { Toast } from 'primereact/toast';
 import './LoginPage.css'
 
 import firebaseConfig from '../Firebase/config';
+const Background = '/Images/bg-fade.jpg';
 
 const LoginPage = ({ setSession }) => {
 
@@ -19,13 +20,10 @@ const LoginPage = ({ setSession }) => {
 
     const headleLogin = (e) => {
         e.preventDefault();
-        // console.log('click login');
-        // console.log(email)
-        // console.log(password)
+        
         firebaseConfig.auth().signInWithEmailAndPassword(email, password)
             .then((userCredential) => {
                 console.log('OK')
-                // Signed in 
                 const user = userCredential.user;
                 console.log('user ', user.email);
 
@@ -53,12 +51,14 @@ const LoginPage = ({ setSession }) => {
     }
 
     return (
+        <div className='container-fluid m-0 mb-6 p-0'>
+        <div className='loginPageSpace bg' style={{backgroundImage: `url(${Background})`}}>
         <div id='loing_page' className='container mb-7' style={{ width: '30%', height: '100%' }}>
             <Toast ref={toast} />
             <br />
             <br />
             <br />
-            <Card border="secondary" style={{ background: '#ECEFF1' }}>
+            <Card  style={{ background: '#ECEFF1' }}>
                 <Card.Body>
                 <Image src="/Images/login.png" style={{ width: 100, heigh: 100 }}></Image>
                     <h2>Login</h2>
@@ -97,6 +97,8 @@ const LoginPage = ({ setSession }) => {
                     </div>
                 </Card.Body>
             </Card>
+        </div>
+        </div>
         </div>
     )
 }

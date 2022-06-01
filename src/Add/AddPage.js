@@ -4,11 +4,13 @@ import 'primereact/resources/primereact.css';
 import 'primeflex/primeflex.css';
 
 import React, { useEffect, useState, useRef } from 'react';
-import { Form, Image, Button, Card, Row, Col } from 'react-bootstrap';
+import { Form, Image, Button, Card, Row, Col, Container } from 'react-bootstrap';
 import { Toast } from 'primereact/toast';
 
 import firebaseConfig from '../Firebase/config';
 import { addDoc, getFirestore, collection } from "firebase/firestore";
+import'./AddPage.css'
+const Background = '/Images/bg-dark.jpg';
 
 export default function AddPage() {
     // const [sumUrls, setSumUrls] = useState([]);
@@ -257,11 +259,13 @@ export default function AddPage() {
         }
     }
     return (
-        <div className='container' style={{ width: '50%', height: '100%', marginBottom: '4%' }}>
+        
+        <div className='addPageSpace bg container-fluid m-0 mb-6 p-0 ' style={{backgroundImage: `url(${Background})`}}>
+        <div className='container' style={{ width: '70%', height: '100%', marginBottom: '4%' }}>
             <Toast ref={toast} />
             <br />
-            <Card border="secondary" style={{ background: '#ECEFF1' }}>
-                <Card.Body>
+            <Card className='card-body' >
+                <Card.Body className='card-body' >
                     <h2>From</h2>
                     <br />
                     <br />
@@ -270,7 +274,7 @@ export default function AddPage() {
                             <Row className='mb-2'>
                                 <Col>
                                     <Form.Select aria-label="select" onChange={e => setCactusFamily(e.target.value)}>
-                                        <option value="0">เลือกตระกุล</option>
+                                        <option value="0">Select Species</option>
                                         <option value="Mammillaria">Mammillaria</option>
                                         <option value="Gymnocalycium">Gymnocalycium</option>
                                     </Form.Select>
@@ -287,6 +291,7 @@ export default function AddPage() {
                                 <Col style={{ textAlign: 'center' }}>
                                     <Form.Control style={{ width: '100%', textAlign: 'center' }} className='mt-2 mb-2'
                                         type="file" onChange={e => setImageProfile([...e.target.files])} />
+                                        
                                 </Col>
                                 <Col xl lg xxl="3" style={{ textAlign: 'center' }}></Col>
                             </Row>
@@ -310,7 +315,7 @@ export default function AddPage() {
                                 <Col>
                                     <Form.Group className="mb-3" controlId="formScientificName">
                                         <Form.Label>ชื่ออื่นๆ</Form.Label>
-                                        <Form.Control type="text" placeholder="ชื่อวิทยาศาสตร์"
+                                        <Form.Control type="text" placeholder="ชื่ออื่นๆ"
                                             onChange={e => setOtherNames(e.target.value)} />
                                     </Form.Group>
                                 </Col>
@@ -516,5 +521,6 @@ export default function AddPage() {
                 </Card.Body>
             </Card>
         </div >
+        </div>
     )
 };

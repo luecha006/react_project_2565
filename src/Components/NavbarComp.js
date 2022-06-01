@@ -109,9 +109,6 @@ export default function NavbarComp() {
             <Router>
                 <div>
                     <Navbar className='NavbarStyle' bg="dark" variant={"dark"} expand="lg">
-                        <span>
-                            <Image className='imageLogo' src='/Images/cactus_logo.jpg'></Image>
-                        </span>
                         <Navbar.Brand href="#">CACTUS FAMILY</Navbar.Brand>
                         <Navbar.Toggle aria-controls="navbarScroll" />
                         <Navbar.Collapse id="navbarScroll">

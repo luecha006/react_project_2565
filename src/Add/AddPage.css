@@ -6,3 +6,17 @@
 .styleInput{
     width: 200px;
 }
+
+.addPageSpace {
+    width: 100%;
+    height: 100%;
+    padding-top: 15%;
+    padding-bottom: 40%;
+
+  
+  }
+
+  .card-body{
+      background-color: whitesmoke;
+      
+  }

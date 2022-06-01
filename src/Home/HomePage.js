@@ -5,8 +5,9 @@ import { BsFillChatTextFill, BsFillPhoneFill, BsFillPeopleFill } from "react-ico
 
 import './HomePage.css';
 
-
+const Background = '/Images/bg.jpg';
 export default class HomePage extends Component {
+    
     render() {
         let about = (
             "เว็บไซต์ของเราให้ความรู้เกี่ยวกับผู้เริ่มต้นปลูกกระบองเพชรหรือสนใจที่จะศึกษาข้อมูลอีกทั้งเรายังมีแอปพลิเคชันบริการอีกด้วย"
@@ -20,10 +21,10 @@ export default class HomePage extends Component {
             "โทร 092-453-4025 (หญิง) 062-376-2354 (ดิว) ทีมงานพัฒนาแอปพลิเคชันและเว็บไซต์"
         );
         return (
-            <div className="container-fluid m-0 p-0">
-                <div className='SpaceHomePage bg'>
-                    <div className="row  justify-content-center align-items-center">
-                        <h1>Welcome To Cactus Family</h1>
+            <div className="container-fluid m-0 mb-6 p-0">
+                <div className='SpaceHomePage bg' style={{backgroundImage: `url(${Background})`}}>
+                    <div className="row  justify-content-center align-items-center" >
+                        <h1 className='text-white'>Welcome To Cactus Family</h1>
                     </div>
                     <div className='row mt-4 justify-content-center align-items-center'>
                         <InputGroup className="SearchStyle">

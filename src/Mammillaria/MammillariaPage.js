@@ -16,6 +16,7 @@ import firebaseConfig from '../Firebase/config';
 const db = getFirestore(firebaseConfig);
 const storage = getStorage(firebaseConfig);
 let indexTable = 0;
+const Background = '/Images/bg-dark.jpg';
 
 function MammillariaPage() {
     let url = [];
@@ -87,8 +88,6 @@ function MammillariaPage() {
         getFirestrore();
         setIsGetFirebase(true);
 
-        // console.log('dataToshowTable is', dataToshowTable);
-        // console.log('firestoreData is', firestoreData);
     }, [dataToshowTable, isGetFirebase, firestoreData, scientificName, commonName]);
 
     const onDelete = async (index) => {
@@ -169,7 +168,7 @@ function MammillariaPage() {
 
     if (dataToshowTable.length !== 0) {
         return (
-            <div className='bgm'>
+            <div className='mamPageSpace bg' style={{backgroundImage: `url(${Background})`}}>
                 <div className="container">
                     <Sidebar className='side-bar' visible={isOpenPage}  fullScreen  onHide={() => setIsOpenEditForm(false)}>
                         <div >
@@ -281,7 +280,7 @@ function MammillariaPage() {
                     </Sidebar>
                     <div className="row mb5">
                         <span className='head_t'>
-                            <h2 className="text-center mt-lg-5 mb-lg-5 " style={{ fontSize: 50}}>Mammillaria</h2>
+                            <h2 className="text-center mt-lg-5 mb-lg-5 text-white " style={{ fontSize: 50}}>Mammillaria</h2>
                         </span>
                         <div className="table-responsive border p-4 bg-light rounded" style={{ marginBottom: '50px' }}>
                             <table className="table">
