@@ -280,7 +280,7 @@ function MammillariaPage() {
                     </Sidebar>
                     <div className="row mb5">
                         <span className='head_t'>
-                            <h2 className="text-center mt-lg-5 mb-lg-5 text-white " style={{ fontSize: 50}}>Mammillaria</h2>
+                            <h2 className="text-center mt-lg-5 mb-lg-5 text-white " style={{ fontSize: 40}}>สายพันธุ์ แมมมิลลาเรีย</h2>
                         </span>
                         <div className="table-responsive border p-4 bg-light rounded" style={{ marginBottom: '50px' }}>
                             <table className="table">
@@ -288,10 +288,10 @@ function MammillariaPage() {
                                 
                                     <tr>
                                         {/* <th scope="col" style={{ width: '10%', fontSize: 20 }}>NO.</th> */}
-                                        <th scope="col" style={{ width: '20%', fontSize: 20 }}>Picture</th>
-                                        <th scope="col" style={{ width: '40%', fontSize: 20 }}>Name</th>
-                                        <th scope="col" style={{ width: '25%', fontSize: 20 }}>Species</th>
-                                        <th scope="col" style={{ width: '15%', fontSize: 20 }}>Details</th>
+                                        <th scope="col" style={{ width: '20%', fontSize: 20 }}>รูปภาพ</th>
+                                        <th scope="col" style={{ width: '40%', fontSize: 20 }}>ชื่อ</th>
+                                        <th scope="col" style={{ width: '25%', fontSize: 20 }}>สายพันธุ์</th>
+                                        <th scope="col" style={{ width: '15%', fontSize: 20 }}>รายละเอียด</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -308,7 +308,7 @@ function MammillariaPage() {
                                                     }}
                                                         type="button"
                                                         className=" btnt btn btn-md btn-success ml-2">
-                                                        Read More
+                                                        ดูรายละเอียด
                                                     </button>
                                                 </td>
                                             </tr>

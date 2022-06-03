@@ -23,19 +23,19 @@ export default class HomePage extends Component {
         return (
             <div className="container-fluid m-0 mb-6 p-0">
                 <div className='SpaceHomePage bg' style={{backgroundImage: `url(${Background})`}}>
-                    <div className="row  justify-content-center align-items-center" >
-                        <h1 className='text-white'>Welcome To Cactus Family</h1>
+                    <div className="row  justify-content-center align-items-center  " >
+                        <h2 className='text-white font-weight-lighter'>ยินดีต้อนรับสู่ CACTUS FAMILY</h2>
                     </div>
-                    <div className='row mt-4 justify-content-center align-items-center'>
+                    <div className='row mt-0 justify-content-center align-items-center'>
                         <InputGroup className="SearchStyle">
                             <FormControl
-                                placeholder="Search"
+                                placeholder="ค้นหา"
                                 aria-label="Search"
                                 aria-describedby="basic-addon2"
                                 id='search'
                             />
                             <Button variant="success" id="button-addon2">
-                                Search
+                                ค้นหา
                             </Button>
                         </InputGroup>
                     </div>

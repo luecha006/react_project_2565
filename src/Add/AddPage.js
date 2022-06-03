@@ -20,6 +20,9 @@ export default function AddPage() {
     const [commonName, setCommonName] = useState(''); //ชื่อทั่วไป
     const [otherNames, setOtherNames] = useState(''); //ชื่ออื่นๆ
     const [family, setFamily] = useState(''); //วงศ์
+    const [head1, setHead1] = useState('');
+    const [head2, setHead2] = useState('');
+    const [head3, setHead3] = useState('');
     const [descriptionImageGrup1, setDescriptionImageGrup1] = useState(''); //คำอธิบายรูปภาพชุดแรก 1-3
     const [descriptionImageGrup2, setDescriptionImageGrup2] = useState(''); //คำอธิบายรูปภาพชุดสอง 4-6
     const [descriptionImageGrup3, setDescriptionImageGrup3] = useState(''); //คำอธิบายรูปภาพชุดสาม 7-9
@@ -234,6 +237,9 @@ export default function AddPage() {
                 commonName: `${commonName}`,
                 otherNames: `${otherNames}`,
                 family: `${family}`,
+                head1: `${head1}`,
+                head2: `${head2}`,
+                head3: `${head3}`,
                 image1: `${sumUrls[1]}`,
                 image2: `${sumUrls[2]}`,
                 image3: `${sumUrls[3]}`,
@@ -266,7 +272,7 @@ export default function AddPage() {
             <br />
             <Card className='card-body' >
                 <Card.Body className='card-body' >
-                    <h2>From</h2>
+                    <h3>เพิ่มข้อมูลกระบองเพชร</h3>
                     <br />
                     <br />
                     <div>
@@ -274,15 +280,15 @@ export default function AddPage() {
                             <Row className='mb-2'>
                                 <Col>
                                     <Form.Select aria-label="select" onChange={e => setCactusFamily(e.target.value)}>
-                                        <option value="0">Select Species</option>
-                                        <option value="Mammillaria">Mammillaria</option>
-                                        <option value="Gymnocalycium">Gymnocalycium</option>
+                                        <option value="0">- เลือกตระกูล -</option>
+                                        <option value="Mammillaria">แมมมิลลาเรีย</option>
+                                        <option value="Gymnocalycium">ยิมโนคาไลเซียม</option>
                                     </Form.Select>
                                 </Col>
                             </Row>
                             <Row>
                                 <Col style={{ textAlign: 'center' }}>
-                                    <h5>รูปโปรไฟล์</h5>
+                                    <h5 className=' font-weight-lighter '>รูปกระบองเพชร</h5>
                                     <Image src={imageProfileURLs} rounded style={{ width: "340px", height: "auto" }} />
                                 </Col>
                             </Row>
@@ -328,8 +334,15 @@ export default function AddPage() {
                                 </Col>
                             </Row>
                             {/* ------------------------------------------------- */}
-                            <h5>ลักษณะของกระบองเพชร</h5>
+                            
                             <Row className='mt-3'>
+                            <Col>
+                                    <Form.Group className="mb-3" controlId="formHead1">
+                                        <Form.Label>หัวข้อ</Form.Label>
+                                        <Form.Control type="text" placeholder="เพิ่มหัวข้อ"
+                                            onChange={e => setHead1(e.target.value)} />
+                                    </Form.Group>
+                                </Col>
                                 <Col style={{ textAlign: 'center' }}>
                                     <Image src={imagesURL1} rounded style={{ width: "210px", height: "auto" }} />
                                 </Col>
@@ -358,14 +371,20 @@ export default function AddPage() {
                                 <Col>
                                     <Form.Group className="mb-2" controlId="natureOfCactus">
                                         <Form.Label>คำอธิบาย</Form.Label>
-                                        <Form.Control as="textarea" rows={3} placeholder="ลักษณะของกระบองเพชร"
+                                        <Form.Control as="textarea" rows={3} placeholder="เพิ่มคำอธิบาย"
                                             onChange={e => setDescriptionImageGrup1(e.target.value)} />
                                     </Form.Group>
                                 </Col>
                             </Row>
                             {/* ------------------------------------------------- */}
-                            <h5>การปลูก</h5>
                             <Row>
+                            <Col>
+                                    <Form.Group className="mb-3" controlId="formHead2">
+                                        <Form.Label>หัวข้อ</Form.Label>
+                                        <Form.Control type="text" placeholder="เพิ่มหัวข้อ"
+                                            onChange={e => setHead2(e.target.value)} />
+                                    </Form.Group>
+                                </Col>
                                 <Col style={{ textAlign: 'center' }}>
                                     <Image src={imagesURL4} rounded style={{ width: "210px", height: "auto" }} />
                                 </Col>
@@ -394,14 +413,21 @@ export default function AddPage() {
                                 <Col>
                                     <Form.Group className="mb-2" controlId="natureOfCactus">
                                         <Form.Label>คำอธิบาย</Form.Label>
-                                        <Form.Control as="textarea" rows={3} placeholder="คำอธิบายการปลูก"
+                                        <Form.Control as="textarea" rows={3} placeholder="เพิ่มคำอธิบาย"
                                             onChange={e => setDescriptionImageGrup2(e.target.value)} />
                                     </Form.Group>
                                 </Col>
                             </Row>
                             {/* ------------------------------------------------- */}
-                            <h5>การขยายพันธ์</h5>
+                            
                             <Row>
+                            <Col>
+                                    <Form.Group className="mb-3" controlId="formHead3">
+                                        <Form.Label>หัวข้อ</Form.Label>
+                                        <Form.Control type="text" placeholder="เพิ่มหัวข้อ"
+                                            onChange={e => setHead3(e.target.value)} />
+                                    </Form.Group>
+                                </Col>
                                 <Col style={{ textAlign: 'center' }}>
                                     <Image src={imagesURL7} rounded style={{ width: "210px", height: "auto" }} />
                                 </Col>
@@ -430,7 +456,7 @@ export default function AddPage() {
                                 <Col>
                                     <Form.Group className="mb-2" controlId="natureOfCactus">
                                         <Form.Label>คำอธิบาย</Form.Label>
-                                        <Form.Control as="textarea" rows={3} placeholder="คำอธิบายการขยายพันธ์"
+                                        <Form.Control as="textarea" rows={3} placeholder="เพิ่มคำอธิบาย"
                                             onChange={e => setDescriptionImageGrup3(e.target.value)} />
                                     </Form.Group>
                                 </Col>
@@ -513,7 +539,7 @@ export default function AddPage() {
                                     disabled={isUpload}
                                     onClick={onUpload} >
                                     <i className='pi pi-upload pt-1' style={{ float: 'left' }}></i>
-                                    {isUpload ? 'Uploading...' : 'Upload'}
+                                    {isUpload ? 'กำลังเพิ่มข้อมูล...' : 'เพิ่มข้อมูล'}
                                 </ Button>
                             </div>
                         </Form>

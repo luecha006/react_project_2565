@@ -13,7 +13,7 @@ export default class ContactPage extends Component {
         return (
             <div className="container-fluid m-0 mb-6 p-0">
             <div className="SpaceCactusPage bg" style={{backgroundImage: `url(${Background})`}}>
-                <h1 className="mt-0 mb-5 pt-lg-5 text-white ">Select Species</h1>
+                <h1 className="mt-0 mb-5 pt-lg-5 text-white ">เลือกสายพันธุ์ที่สนใจ</h1>
                 <br />
                 <div className="mt-5">
                     <Container>
@@ -33,7 +33,7 @@ export default class ContactPage extends Component {
                                             to="/mammillaria"
                                             style={{ padding: "0px", margin: "0px", color: "white" }}
                                         >
-                                            Mammillaria
+                                            แมมมิลลาเรีย
                                         </Nav.Link>
                                     </Button>
                                
@@ -53,7 +53,7 @@ export default class ContactPage extends Component {
                                             to="/gymnocalycium"
                                             style={{ padding: "0px", margin: "0px", color: "white" }}
                                         >
-                                            Gymnocalycium
+                                            ยิมโนคาไลเซียม
                                         </Nav.Link>
                                     </Button>
                                

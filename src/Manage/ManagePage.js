@@ -170,7 +170,7 @@ function ManagePage() {
                             <br />
                             <Card border="secondary" style={{ background: '#ECEFF1' }}>
                                 <Card.Body>
-                                    <h2>From Edit</h2>
+                                    <h2>แก้ไขข้อมูลกระบองเพชร</h2>
                                     <br />
                                     <br />
                                     <div>
@@ -179,9 +179,9 @@ function ManagePage() {
                                                 <Col>
                                                     <Form.Select aria-label="select" value={cactusFamily}
                                                         onChange={e => setCactusFamily(e.target.value)}>
-                                                        <option value="0">เลือกตระกุล</option>
-                                                        <option value="Mammillaria">Mammillaria</option>
-                                                        <option value="Gymnocalycium">Gymnocalycium</option>
+                                                        <option value="0">- เลือกตระกุล -</option>
+                                                        <option value="Mammillaria">แมมมิลลาเรีย</option>
+                                                        <option value="Gymnocalycium">ยิมโนคาไลเซียม</option>
                                                     </Form.Select>
                                                 </Col>
                                             </Row>
@@ -441,7 +441,7 @@ function ManagePage() {
                                 <tr>
                                     <th scope="col" style={{ width: '10%' }}>ลำดับ</th>
                                     <th scope="col" style={{ width: '32%' }}>ชื่อ</th>
-                                    <th scope="col" style={{ width: '32%' }}>ตระกุล</th>
+                                    <th scope="col" style={{ width: '32%' }}>ตระกูล</th>
                                     <th scope="col" style={{ width: '8%' }}>แก้ไข</th>
                                     <th scope="col" style={{ width: '8%' }}>ลบ</th>
                                 </tr>
@@ -459,7 +459,7 @@ function ManagePage() {
                                                 }}
                                                     type="button"
                                                     className="btn btn-sm btn-warning ml-2">
-                                                    Edit
+                                                    แก้ไข
                                                 </button>
                                             </td>
                                             <td>
@@ -468,7 +468,7 @@ function ManagePage() {
                                                 }}
                                                     type="button"
                                                     className="btn btn-sm btn-danger ml-2">
-                                                    Delete
+                                                    ลบข้อมูล
                                                 </button>
                                             </td>
                                         </tr>

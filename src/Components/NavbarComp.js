@@ -71,9 +71,9 @@ export default function NavbarComp() {
                                         style={{ maxHeight: '100px', width: "100%" }}
                                         navbarScroll
                                     >
-                                        <Nav.Link as={Link} to="/home">Home</Nav.Link>
-                                        <Nav.Link as={Link} to="/cactus">Cactus</Nav.Link>
-                                        <Nav.Link as={Link} to="/login">Login</Nav.Link>
+                                        <Nav.Link as={Link} to="/home">หน้าหลัก</Nav.Link>
+                                        <Nav.Link as={Link} to="/cactus">กระบองเพชร</Nav.Link>
+                                        <Nav.Link as={Link} to="/login">เข้าสู่ระบบ</Nav.Link>
                                     </Nav>
                                 </div>
 
@@ -118,10 +118,10 @@ export default function NavbarComp() {
                                     style={{ maxHeight: '100px', width: "100%" }}
                                     navbarScroll
                                 >
-                                    <Nav.Link as={Link} to="/add">Add</Nav.Link>
-                                    <Nav.Link as={Link} to="/manage">Manage</Nav.Link>
-                                    <Nav.Link as={Link} to="/picture">Picture</Nav.Link>
-                                    <Nav.Link as={Link} to="/logout" onClick={handleLogout}>Logout</Nav.Link>
+                                    <Nav.Link as={Link} to="/add">เพิ่มข้อมูล</Nav.Link>
+                                    <Nav.Link as={Link} to="/manage">จัดการ</Nav.Link>
+                                    <Nav.Link as={Link} to="/picture">รูปภาพ</Nav.Link>
+                                    <Nav.Link as={Link} to="/logout" onClick={handleLogout}>ออกจากระบบ</Nav.Link>
                                 </Nav>
                             </div>
 

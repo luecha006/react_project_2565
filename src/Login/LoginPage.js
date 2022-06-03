@@ -61,29 +61,29 @@ const LoginPage = ({ setSession }) => {
             <Card  style={{ background: '#ECEFF1' }}>
                 <Card.Body>
                 <Image src="/Images/login.png" style={{ width: 100, heigh: 100 }}></Image>
-                    <h2>Login</h2>
+                    <h3 className='text-secondary'>เข้าสู่ระบบ</h3>
                     <br />
                     <div>
                         <Form style={{ textAlign: 'start' }}>
                             <Form.Group className="mb-3" controlId="formBasicEmail">
-                                <Form.Label>Email address</Form.Label>
+                                <Form.Label>อีเมล</Form.Label>
                                 <Form.Control
                                     type="email"
-                                    placeholder="Enter email"
+                                    placeholder="กรอกอีเมล"
                                     onChange={e => setEmail(e.target.value)} />
                             </Form.Group>
 
                             <Form.Group className="mb-3" controlId="formBasicPassword">
-                                <Form.Label>Password</Form.Label>
+                                <Form.Label>รหัสผ่าน</Form.Label>
                                 <Form.Control
                                     type="password"
-                                    placeholder="Enter Password"
+                                    placeholder="กรอกรหัสผ่าน"
                                     onChange={e => setPassword(e.target.value)} />
                             </Form.Group>
-                            <Form.Group className="mb-3" controlId="formBasicCheckbox">
+                            <Form.Group className="mb-3 p-text-secondary" controlId="formBasicCheckbox">
                                 <Form.Check
                                     type="checkbox"
-                                    label="Check me out"
+                                    label="จดจำรหัสผู้ใช้งาน"
                                     onChange={e => setCheckbox(e.target.checked)} />
                             </Form.Group>
                             <Button
@@ -91,7 +91,7 @@ const LoginPage = ({ setSession }) => {
                                 type="submit"
                                 style={{ width: "100%" }}
                                 onClick={headleLogin}>
-                                Login
+                                เข้าสู่ระบบ
                             </Button>
                         </Form>
                     </div>
