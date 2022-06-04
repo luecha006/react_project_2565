@@ -38,7 +38,18 @@ function GymnocalyciumPage() {
     const [diseaseDetails1, setDiseaseDetails1] = useState(''); //คำอธิบายรูปภาพโรคที่1
     const [diseaseDetails2, setDiseaseDetails2] = useState(''); //คำอธิบายรูปภาพโรคที่2
     const [diseaseDetails3, setDiseaseDetails3] = useState(''); //คำอธิบายรูปภาพโรคที่3
-
+    const [diseaseDetails4, setDiseaseDetails4] = useState(''); //คำอธิบายรูปภาพโรคที่4
+    const [diseaseDetails5, setDiseaseDetails5] = useState(''); //คำอธิบายรูปภาพโรคที่5
+    
+    const [head1, setHead1] = useState('');
+    const [head2, setHead2] = useState('');
+    const [head3, setHead3] = useState('');
+    const [head4, setHead4] = useState('');
+    const [head5, setHead5] = useState('');
+    const [head6, setHead6] = useState('');
+    const [head7, setHead7] = useState('');
+    const [head8, setHead8] = useState('');
+    
     const [imageProfile, setImageProfile] = useState(null);
     const [image1, setImage1] = useState(null);
     const [image2, setImage2] = useState(null);
@@ -52,6 +63,11 @@ function GymnocalyciumPage() {
     const [imageDisease1, setImageDisease1] = useState(null);
     const [imageDisease2, setImageDisease2] = useState(null);
     const [imageDisease3, setImageDisease3] = useState(null);
+    const [imageDisease4, setImageDisease4] = useState(null);
+    const [imageDisease5, setImageDisease5] = useState(null);
+
+    const [refer1, setRefer1] = useState(null);
+    const [refer2, setRefer2] = useState(null);
 
     useEffect(() => {
         const getFirestrore = async () => {
@@ -110,6 +126,8 @@ function GymnocalyciumPage() {
         setImageDisease1(firestoreData[indexTable].imageDisease1);
         setImageDisease2(firestoreData[indexTable].imageDisease2);
         setImageDisease3(firestoreData[indexTable].imageDisease3);
+        setImageDisease4(firestoreData[indexTable].imageDisease4);
+        setImageDisease5(firestoreData[indexTable].imageDisease5);
 
         setCactusFamily(firestoreData[indexTable].cactusFamily);
         setFamily(firestoreData[indexTable].family);
@@ -123,6 +141,20 @@ function GymnocalyciumPage() {
         setDiseaseDetails1(firestoreData[indexTable].diseaseDetails1);
         setDiseaseDetails2(firestoreData[indexTable].diseaseDetails2);
         setDiseaseDetails3(firestoreData[indexTable].diseaseDetails3);
+        setDiseaseDetails4(firestoreData[indexTable].diseaseDetails4);
+        setDiseaseDetails5(firestoreData[indexTable].diseaseDetails5);
+
+        setHead1(firestoreData[indexTable].head1);
+        setHead2(firestoreData[indexTable].head2);
+        setHead3(firestoreData[indexTable].head3);
+        setHead4(firestoreData[indexTable].head4);
+        setHead5(firestoreData[indexTable].head5);
+        setHead6(firestoreData[indexTable].head6);
+        setHead7(firestoreData[indexTable].head7);
+        setHead8(firestoreData[indexTable].head8);
+
+        setRefer1(firestoreData[indexTable].refer1);
+        setRefer2(firestoreData[indexTable].refer2);
     }
 
     const readMore = async (index) => {
@@ -144,21 +176,35 @@ function GymnocalyciumPage() {
             image1: `${image1}`,
             image2: `${image2}`,
             image3: `${image3}`,
+            head1: `${head1}`,
             descriptionImageGrup1: `${descriptionImageGrup1}`,
             image4: `${image4}`,
             image5: `${image5}`,
             image6: `${image6}`,
+            head2: `${head2}`,
             descriptionImageGrup2: `${descriptionImageGrup2}`,
             image7: `${image7}`,
             image8: `${image8}`,
             image9: `${image9}`,
+            head3: `${head3}`,
             descriptionImageGrup3: `${descriptionImageGrup3}`,
+            head4: `${head4}`,
             imageDisease1: `${imageDisease1}`,
             diseaseDetails1: `${diseaseDetails1}`,
+            head5: `${head5}`,
             imageDisease2: `${imageDisease2}`,
             diseaseDetails2: `${diseaseDetails2}`,
+            head6: `${head6}`,
             imageDisease3: `${imageDisease3}`,
-            diseaseDetails3: `${diseaseDetails3}`
+            diseaseDetails3: `${diseaseDetails3}`,
+            head7: `${head7}`,
+            imageDisease4: `${imageDisease4}`,
+            diseaseDetails4: `${diseaseDetails4}`,
+            head8: `${head8}`,
+            imageDisease5: `${imageDisease5}`,
+            diseaseDetails5: `${diseaseDetails5}`,
+            refer1: `${refer1}`,
+            refer2: `${refer2}`
         });
 
         setIsOpenEditForm(false);
@@ -168,7 +214,7 @@ function GymnocalyciumPage() {
 
     if (dataToshowTable.length !== 0) {
         return (
-            <div className='gymPageSpace bg' style={{backgroundImage: `url(${Background})`}}>
+            <div className='mamPageSpace bg' style={{backgroundImage: `url(${Background})`}}>
                 <div className="container">
                     <Sidebar className='side-bar' visible={isOpenPage}  fullScreen  onHide={() => setIsOpenEditForm(false)}>
                         <div >
@@ -198,7 +244,7 @@ function GymnocalyciumPage() {
                                                 {/* ------------------------------------------------- */}
                                                 
                                                 <Row className='des'>
-                                                    <h3>ลักษณะทางพฤกษศาสตร์</h3>
+                                                    <h3>{head1}</h3>
                                                     <p>{descriptionImageGrup1}</p>
 
                                                     <Col style={{ textAlign: 'center' }}>
@@ -215,7 +261,7 @@ function GymnocalyciumPage() {
                                                 {/* ------------------------------------------------- */}
                                                 
                                                 <Row className='des'>
-                                                    <h3>วิธีการปลูก</h3>
+                                                    <h3>{head2}</h3>
                                                     <p>{descriptionImageGrup2}</p>
                                                     <Col style={{ textAlign: 'center' }}>
                                                         <Image className='desPic' src={image4}/>
@@ -231,7 +277,7 @@ function GymnocalyciumPage() {
                                                 {/* ------------------------------------------------- */}
                                                
                                                 <Row className='des'>
-                                                    <h3>การขยายพันธ์</h3>
+                                                    <h3>{head3}</h3>
                                                     <p>{descriptionImageGrup3}</p>
                                                     <Col style={{ textAlign: 'center' }}>
                                                         <Image className='desPic' src={image7}/>
@@ -247,33 +293,66 @@ function GymnocalyciumPage() {
                                                 {/* ----------------------------------------------- */}
                                                 
                                                 <Row className='des'>
-                                                    <h3>โรคเเละปัญหาที่พบบ่อย</h3>
-                                                    <p>{diseaseDetails1}</p>
+                                                <h2 className='mb-5'>โรคเเละปัญหาที่พบบ่อย</h2>
+                                                    <h3>{head4}</h3>
+                                                    
                                                     <Col style={{ textAlign: 'center' }}>
-                                                        <Image className='desPic2' src={imageDisease1}/>
+                                                        <Image className='desPic2 ' src={imageDisease1}/>
                                                     </Col>
+                                                    <p>{diseaseDetails1}</p>
                                                 </Row>
                                               
                                                 {/* ----------------------------------------------- */}
                                                 
                                                 <Row className='des'>
-                                                    <p>{diseaseDetails2}</p>
+                                                    <h3>{head5}</h3>
+                                                    
                                                     <Col style={{ textAlign: 'center' }}>
-                                                        <Image className='desPic2' src={imageDisease2}/>
+                                                        <Image className='desPic2 ' src={imageDisease2}/>
                                                     </Col>
+                                                    <p>{diseaseDetails2}</p>
                                                 </Row>
                                                 
                                                 {/* ----------------------------------------------- */}
                                                 
                                                 <Row className='des'>
-                                                    <p>{diseaseDetails3}</p>
+                                                    <h3>{head6}</h3>
+                                                    
                                                     <Col style={{ textAlign: 'center' }}>
-                                                        <Image className='desPic2' src={imageDisease3}/>
+                                                        <Image className='desPic2  ' src={imageDisease3}/>
                                                     </Col>
+                                                    <p>{diseaseDetails3}</p>
+                                                </Row>
+                                                 
+                                                {/* ----------------------------------------------- */}
+                                                
+                                                <Row className='des'>
+                                                    <h3>{head7}</h3>
+                                                    
+                                                    <Col style={{ textAlign: 'center' }}>
+                                                        <Image className='desPic2  ' src={imageDisease4}/>
+                                                    </Col>
+                                                    <p>{diseaseDetails4}</p>
+                                                </Row>
+                                                 
+                                                {/* ----------------------------------------------- */}
+                                                
+                                                <Row className='des'>
+                                                    <h3>{head8}</h3>
+                                                    
+                                                    <Col style={{ textAlign: 'center' }}>
+                                                        <Image className='desPic2 ' src={imageDisease5}/>
+                                                    </Col>
+                                                    <p>{diseaseDetails5}</p>
                                                 </Row>
                                             </Form>
                                         </div>
                                     </Card.Body>
+                                    <Row className='mt-4 mb-0'>
+                                            <p className='text-left mb-0'>แหล่งที่มาของข้อมูล : </p>
+                                            <p className='Reference underline '>{refer1}, {refer2}</p>
+                                            {/* <p>{refer2}</p> */}
+                                        </Row>
                                 </Card>
                             </div >
                         </div>

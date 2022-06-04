@@ -416,11 +416,11 @@ function ManagePage() {
                                             </Row>
 
                                             <div className='d-flex justify-content-center'>
-                                                <Button className='p-2 px-4 p-button-info'
+                                                <Button className='p-2 px-4 p-button-info btn-success'
                                                     style={{ width: '50%' }}
                                                     onClick={onUpdate} >
-                                                    <i className='pi pi-upload pt-1' style={{ float: 'left' }}></i>
-                                                    Update
+                                                    <i className='pi pi-upload pt-1 ' style={{ float: 'left' }}></i>
+                                                    แก้ไขข้อมูล
                                                 </ Button>
                                             </div>
                                         </Form>

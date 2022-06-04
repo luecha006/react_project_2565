@@ -65,14 +65,13 @@
  }
  
  .desPic2{
-    height: 600px;
-    width: 800px;
+    height: 440px;
+    width: 600px;
     border-radius: 5px ;
+    margin: 50px 0 50px 0;
 }
 
-.side-bar{
-  
-}
+
 
 .mamPageSpace {
     width: 100%;
@@ -80,5 +79,11 @@
     padding-bottom: 15%;
 
   }
+
+.Reference{
+    color:slateblue;
+    cursor: pointer;
+   
+}
  
 
