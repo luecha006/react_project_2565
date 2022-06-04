@@ -20,15 +20,24 @@ export default function AddPage() {
     const [commonName, setCommonName] = useState(''); //ชื่อทั่วไป
     const [otherNames, setOtherNames] = useState(''); //ชื่ออื่นๆ
     const [family, setFamily] = useState(''); //วงศ์
+
     const [head1, setHead1] = useState('');
     const [head2, setHead2] = useState('');
     const [head3, setHead3] = useState('');
+    const [head4, setHead4] = useState('');
+    const [head5, setHead5] = useState('');
+    const [head6, setHead6] = useState('');
+    const [head7, setHead7] = useState('');
+    const [head8, setHead8] = useState('');
+    
     const [descriptionImageGrup1, setDescriptionImageGrup1] = useState(''); //คำอธิบายรูปภาพชุดแรก 1-3
     const [descriptionImageGrup2, setDescriptionImageGrup2] = useState(''); //คำอธิบายรูปภาพชุดสอง 4-6
     const [descriptionImageGrup3, setDescriptionImageGrup3] = useState(''); //คำอธิบายรูปภาพชุดสาม 7-9
     const [diseaseDetails1, setDiseaseDetails1] = useState(''); //คำอธิบายรูปภาพโรคที่1
     const [diseaseDetails2, setDiseaseDetails2] = useState(''); //คำอธิบายรูปภาพโรคที่2
     const [diseaseDetails3, setDiseaseDetails3] = useState(''); //คำอธิบายรูปภาพโรคที่3
+    const [diseaseDetails4, setDiseaseDetails4] = useState(''); //คำอธิบายรูปภาพโรคที่4
+    const [diseaseDetails5, setDiseaseDetails5] = useState(''); //คำอธิบายรูปภาพโรคที่5
 
     const [imageProfile, setImageProfile] = useState([]);
     const [imageProfileURLs, setImageProfileURLs] = useState([]);
@@ -56,6 +65,13 @@ export default function AddPage() {
     const [imageDiseaseURL2, setImagesDiseaseURL2] = useState([]);
     const [imageDisease3, setImageDisease3] = useState([]);
     const [imageDiseaseURL3, setImagesDiseaseURL3] = useState([]);
+    const [imageDisease4, setImageDisease4] = useState([]);
+    const [imageDiseaseURL4, setImagesDiseaseURL4] = useState([]);
+    const [imageDisease5, setImageDisease5] = useState([]);
+    const [imageDiseaseURL5, setImagesDiseaseURL5] = useState([]);
+
+    const [refer1, setRefer1] = useState('');
+    const [refer2, setRefer2] = useState('');
 
     const toast = useRef(null);
 
@@ -148,11 +164,25 @@ export default function AddPage() {
             setImagesDiseaseURL3(newImagesDiseaseURL);
         }
 
+        if (imageDisease4.length < 1);
+        else {
+            const newImagesDiseaseURL = [];
+            imageDisease4.forEach(image => newImagesDiseaseURL.push(URL.createObjectURL(image)));
+            setImagesDiseaseURL4(newImagesDiseaseURL);
+        }
+
+        if (imageDisease5.length < 1);
+        else {
+            const newImagesDiseaseURL = [];
+            imageDisease5.forEach(image => newImagesDiseaseURL.push(URL.createObjectURL(image)));
+            setImagesDiseaseURL5(newImagesDiseaseURL);
+        }
+
 
     }, [imageProfile, image1, image2,
         image3, image4, image5,
         image6, image7, image8, image9,
-        imageDisease1, imageDisease2, imageDisease3, isUpload]);
+        imageDisease1, imageDisease2, imageDisease3, imageDisease4, imageDisease5, isUpload]);
 
     function makeid(fileExtension) { // random ชื่อ
         let currentDate = new Date();
@@ -174,7 +204,8 @@ export default function AddPage() {
 
         if ((imageProfile.length !== 0) && (image1.length !== 0) && (image2.length !== 0) && (image3.length !== 0) && (image3.length !== 0)
             && (image4.length !== 0) && (image5.length !== 0) && (image6.length !== 0) && (image7.length !== 0) && (image8.length !== 0)
-            && (image9.length !== 0) && (imageDisease1.length !== 0) && (imageDisease2.length !== 0) && (imageDisease3.length !== 0)) {
+            && (image9.length !== 0) && (imageDisease1.length !== 0) && (imageDisease2.length !== 0) && (imageDisease3.length !== 0) 
+            && (imageDisease4.length !== 0) && (imageDisease5.length !== 0)) {
 
             setIsUpload(true);
             sumfile.push(imageProfile[0]);
@@ -203,6 +234,11 @@ export default function AddPage() {
             sumName.push(makeid(imageDisease2[0].name));
             sumfile.push(imageDisease3[0]);
             sumName.push(makeid(imageDisease3[0].name));
+            sumfile.push(imageDisease4[0]);
+            sumName.push(makeid(imageDisease4[0].name));
+            sumfile.push(imageDisease5[0]);
+            sumName.push(makeid(imageDisease5[0].name));
+            
 
             const storageRef = firebaseConfig.storage().ref();
 
@@ -240,6 +276,11 @@ export default function AddPage() {
                 head1: `${head1}`,
                 head2: `${head2}`,
                 head3: `${head3}`,
+                head4: `${head4}`,
+                head5: `${head5}`,
+                head6: `${head6}`,
+                head7: `${head7}`,
+                head8: `${head8}`,
                 image1: `${sumUrls[1]}`,
                 image2: `${sumUrls[2]}`,
                 image3: `${sumUrls[3]}`,
@@ -257,7 +298,13 @@ export default function AddPage() {
                 imageDisease2: `${sumUrls[11]}`,
                 diseaseDetails2: `${diseaseDetails2}`,
                 imageDisease3: `${sumUrls[12]}`,
-                diseaseDetails3: `${diseaseDetails3}`
+                diseaseDetails3: `${diseaseDetails3}`,
+                imageDisease4: `${sumUrls[13]}`,
+                diseaseDetails4: `${diseaseDetails4}`,
+                imageDisease5: `${sumUrls[14]}`,
+                diseaseDetails5: `${diseaseDetails5}`,
+                refer1: `${refer1}`,
+                refer2: `${refer2}`
             });
             setIsUpload(false);
         } catch (e) {
@@ -297,7 +344,7 @@ export default function AddPage() {
                                 <Col style={{ textAlign: 'center' }}>
                                     <Form.Control style={{ width: '100%', textAlign: 'center' }} className='mt-2 mb-2'
                                         type="file" onChange={e => setImageProfile([...e.target.files])} />
-                                        
+                                
                                 </Col>
                                 <Col xl lg xxl="3" style={{ textAlign: 'center' }}></Col>
                             </Row>
@@ -334,78 +381,81 @@ export default function AddPage() {
                                 </Col>
                             </Row>
                             {/* ------------------------------------------------- */}
-                            
-                            <Row className='mt-3'>
-                            <Col>
-                                    <Form.Group className="mb-3" controlId="formHead1">
+                            <Row>
+                            <Col className='head mb-0 mt-7'>
+                                    <Form.Group controlId="formHead1">
                                         <Form.Label>หัวข้อ</Form.Label>
                                         <Form.Control type="text" placeholder="เพิ่มหัวข้อ"
                                             onChange={e => setHead1(e.target.value)} />
                                     </Form.Group>
                                 </Col>
+                                </Row>
+                            <Row className='mt-1'>
                                 <Col style={{ textAlign: 'center' }}>
-                                    <Image src={imagesURL1} rounded style={{ width: "210px", height: "auto" }} />
+                                    <Image className='addImgDes' src={imagesURL1} />
                                 </Col>
                                 <Col style={{ textAlign: 'center' }}>
-                                    <Image src={imagesURL2} rounded style={{ width: "210px", height: "auto" }} />
+                                    <Image className='addImgDes' src={imagesURL2} />
                                 </Col>
                                 <Col style={{ textAlign: 'center' }}>
-                                    <Image src={imagesURL3} rounded style={{ width: "210px", height: "auto" }} />
+                                    <Image className='addImgDes' src={imagesURL3} />
                                 </Col>
                             </Row>
                             <Row>
                                 <Col style={{ textAlign: 'center' }}>
-                                    <Form.Control className='mt-2 styleInput' type="file"
+                                    <Form.Control className='mt-0 styleInput' type="file"
                                         onChange={e => setImage1([...e.target.files])} />
                                 </Col>
                                 <Col style={{ textAlign: 'center' }}>
-                                    <Form.Control className='mt-2' type="file"
+                                    <Form.Control className='mt-0 styleInput' type="file"
                                         onChange={e => setImage2([...e.target.files])} />
                                 </Col>
                                 <Col style={{ textAlign: 'center' }}>
-                                    <Form.Control className='mt-2' type="file"
+                                    <Form.Control className='mt-0 styleInput' type="file"
                                         onChange={e => setImage3([...e.target.files])} />
                                 </Col>
                             </Row>
-                            <Row className='mt-2 mb-3'>
+                            <Row className='mt-1'>
                                 <Col>
                                     <Form.Group className="mb-2" controlId="natureOfCactus">
                                         <Form.Label>คำอธิบาย</Form.Label>
-                                        <Form.Control as="textarea" rows={3} placeholder="เพิ่มคำอธิบาย"
+                                        <Form.Control as="textarea" rows={10} placeholder="เพิ่มคำอธิบาย"
                                             onChange={e => setDescriptionImageGrup1(e.target.value)} />
                                     </Form.Group>
                                 </Col>
                             </Row>
                             {/* ------------------------------------------------- */}
-                            <Row>
-                            <Col>
-                                    <Form.Group className="mb-3" controlId="formHead2">
+                            <Row >
+                            <Col className='head mb-0'>
+                                    <Form.Group  controlId="formHead2">
                                         <Form.Label>หัวข้อ</Form.Label>
                                         <Form.Control type="text" placeholder="เพิ่มหัวข้อ"
                                             onChange={e => setHead2(e.target.value)} />
                                     </Form.Group>
                                 </Col>
+                            </Row>
+                            <Row>
                                 <Col style={{ textAlign: 'center' }}>
-                                    <Image src={imagesURL4} rounded style={{ width: "210px", height: "auto" }} />
+                                    <Image className='addImgDes' src={imagesURL4} />
                                 </Col>
                                 <Col style={{ textAlign: 'center' }}>
-                                    <Image src={imagesURL5} rounded style={{ width: "210px", height: "auto" }} />
+                                    <Image className='addImgDes' src={imagesURL5} />
                                 </Col>
                                 <Col style={{ textAlign: 'center' }}>
-                                    <Image src={imagesURL6} rounded style={{ width: "210px", height: "auto" }} />
+                                    <Image className='addImgDes' src={imagesURL6} />
                                 </Col>
                             </Row>
                             <Row>
                                 <Col style={{ textAlign: 'center' }}>
-                                    <Form.Control className='mt-2 styleInput' type="file"
+                                    <Form.Control className='mt-0 styleInput' type="file"
                                         onChange={e => setImage4([...e.target.files])} />
                                 </Col>
                                 <Col style={{ textAlign: 'center' }}>
-                                    <Form.Control className='mt-2' type="file"
+                                    <Form.Control className='mt-0' type="file"
                                         onChange={e => setImage5([...e.target.files])} />
                                 </Col>
                                 <Col style={{ textAlign: 'center' }}>
-                                    <Form.Control className='mt-2' type="file"
+                                    <Form.Control className='mt-0' type="file"
                                         onChange={e => setImage6([...e.target.files])} />
                                 </Col>
                             </Row>
@@ -413,7 +463,7 @@ export default function AddPage() {
                                 <Col>
                                     <Form.Group className="mb-2" controlId="natureOfCactus">
                                         <Form.Label>คำอธิบาย</Form.Label>
-                                        <Form.Control as="textarea" rows={3} placeholder="เพิ่มคำอธิบาย"
+                                        <Form.Control as="textarea" rows={10} placeholder="เพิ่มคำอธิบาย"
                                             onChange={e => setDescriptionImageGrup2(e.target.value)} />
                                     </Form.Group>
                                 </Col>
@@ -421,34 +471,36 @@ export default function AddPage() {
                             {/* ------------------------------------------------- */}
                             
                             <Row>
-                            <Col>
+                            <Col className='head mb-0'>
                                     <Form.Group className="mb-3" controlId="formHead3">
                                         <Form.Label>หัวข้อ</Form.Label>
                                         <Form.Control type="text" placeholder="เพิ่มหัวข้อ"
                                             onChange={e => setHead3(e.target.value)} />
                                     </Form.Group>
                                 </Col>
+                            </Row>
+                            <Row>
                                 <Col style={{ textAlign: 'center' }}>
-                                    <Image src={imagesURL7} rounded style={{ width: "210px", height: "auto" }} />
+                                    <Image className='addImgDes' src={imagesURL7}/>
                                 </Col>
                                 <Col style={{ textAlign: 'center' }}>
-                                    <Image src={imagesURL8} rounded style={{ width: "210px", height: "auto" }} />
+                                    <Image className='addImgDes' src={imagesURL8}/>
                                 </Col>
                                 <Col style={{ textAlign: 'center' }}>
-                                    <Image src={imagesURL9} rounded style={{ width: "210px", height: "auto" }} />
+                                    <Image className='addImgDes' src={imagesURL9}/>
                                 </Col>
                             </Row>
                             <Row>
                                 <Col style={{ textAlign: 'center' }}>
-                                    <Form.Control className='mt-2 styleInput' type="file"
+                                    <Form.Control className='mt-0 styleInput' type="file"
                                         onChange={e => setImage7([...e.target.files])} />
                                 </Col>
                                 <Col style={{ textAlign: 'center' }}>
-                                    <Form.Control className='mt-2' type="file"
+                                    <Form.Control className='mt-0' type="file"
                                         onChange={e => setImage8([...e.target.files])} />
                                 </Col>
                                 <Col style={{ textAlign: 'center' }}>
-                                    <Form.Control className='mt-2' type="file"
+                                    <Form.Control className='mt-0' type="file"
                                         onChange={e => setImage9([...e.target.files])} />
                                 </Col>
                             </Row>
@@ -456,16 +508,25 @@ export default function AddPage() {
                                 <Col>
                                     <Form.Group className="mb-2" controlId="natureOfCactus">
                                         <Form.Label>คำอธิบาย</Form.Label>
-                                        <Form.Control as="textarea" rows={3} placeholder="เพิ่มคำอธิบาย"
+                                        <Form.Control as="textarea" rows={10} placeholder="เพิ่มคำอธิบาย"
                                             onChange={e => setDescriptionImageGrup3(e.target.value)} />
                                     </Form.Group>
                                 </Col>
                             </Row>
-                            {/* ----------------------------------------------- */}
-                            <h5>โรคที่1</h5>
+                            {/* ------------------------1----------------------- */}
+                            <h5>โรคเเละปัญหาที่พบบ่อย</h5>
+                           
+                            <Row >
+                            <Col className='head '>
+                                    <Form.Group  controlId="formHead4">
+                                        <Form.Control type="text" placeholder="เพิ่มโรคเเละปัญหาที่พบบ่อย"
+                                            onChange={e => setHead4(e.target.value)} />
+                                    </Form.Group>
+                                </Col>
+                            </Row>
                             <Row>
                                 <Col style={{ textAlign: 'center' }}>
-                                    <Image src={imageDiseaseURL1} rounded style={{ width: "340px", height: "auto" }} />
+                                    <Image src={imageDiseaseURL1} rounded style={{ width: "300px", height: "auto" }} />
                                 </Col>
                             </Row>
                             <Row>
@@ -476,20 +537,28 @@ export default function AddPage() {
                                 </Col>
                                 <Col xl lg xxl="3" style={{ textAlign: 'center' }}></Col>
                             </Row>
-                            <Row className='mt-2 mb-3'>
+                            <Row className='mt-2 pb-7'>
                                 <Col>
                                     <Form.Group className="mb-2" controlId="natureOfCactus">
                                         <Form.Label>คำอธิบาย</Form.Label>
-                                        <Form.Control as="textarea" rows={3} placeholder="คำอธิบายโรคที่1"
+                                        <Form.Control as="textarea" rows={10} placeholder="เพิ่มคำอธิบาย"
                                             onChange={e => setDiseaseDetails1(e.target.value)} />
                                     </Form.Group>
                                 </Col>
                             </Row>
-                            {/* ----------------------------------------------- */}
-                            <h5>โรคที่2</h5>
+                         
+                            {/* ------------------------2----------------------- */}
+                            <Row >
+                            <Col className='head mb-0'>
+                                    <Form.Group  controlId="formHead5">
+                                        <Form.Control type="text" placeholder="เพิ่มโรคเเละปัญหาที่พบบ่อย"
+                                            onChange={e => setHead5(e.target.value)} />
+                                    </Form.Group>
+                                </Col>
+                            </Row>
                             <Row>
                                 <Col style={{ textAlign: 'center' }}>
-                                    <Image src={imageDiseaseURL2} rounded style={{ width: "340px", height: "auto" }} />
+                                    <Image src={imageDiseaseURL2} rounded style={{ width: "300px", height: "auto" }} />
                                 </Col>
                             </Row>
                             <Row>
@@ -500,20 +569,27 @@ export default function AddPage() {
                                 </Col>
                                 <Col xl lg xxl="3" style={{ textAlign: 'center' }}></Col>
                             </Row>
-                            <Row className='mt-2 mb-3'>
+                            <Row className='mt-2 pb-7'>
                                 <Col>
                                     <Form.Group className="mb-2" controlId="natureOfCactus">
                                         <Form.Label>คำอธิบาย</Form.Label>
-                                        <Form.Control as="textarea" rows={3} placeholder="คำอธิบายโรคที่2"
+                                        <Form.Control as="textarea" rows={10} placeholder="เพิ่มคำอธิบาย"
                                             onChange={e => setDiseaseDetails2(e.target.value)} />
                                     </Form.Group>
                                 </Col>
                             </Row>
-                            {/* ----------------------------------------------- */}
-                            <h5>โรคที่3</h5>
+                            {/* -----------------------3------------------------ */}
+                            <Row >
+                            <Col className='head mb-0'>
+                                    <Form.Group  controlId="formHead6">
+                                        <Form.Control type="text" placeholder="เพิ่มโรคเเละปัญหาที่พบบ่อย"
+                                            onChange={e => setHead6(e.target.value)} />
+                                    </Form.Group>
+                                </Col>
+                            </Row>
                             <Row>
                                 <Col style={{ textAlign: 'center' }}>
-                                    <Image src={imageDiseaseURL3} rounded style={{ width: "340px", height: "auto" }} />
+                                    <Image src={imageDiseaseURL3} rounded style={{ width: "300px", height: "auto" }} />
                                 </Col>
                             </Row>
                             <Row>
@@ -524,17 +600,97 @@ export default function AddPage() {
                                 </Col>
                                 <Col xl lg xxl="3" style={{ textAlign: 'center' }}></Col>
                             </Row>
-                            <Row className='mt-2 mb-3'>
+                            <Row className='mt-2 pb-7'>
                                 <Col>
                                     <Form.Group className="mb-2" controlId="natureOfCactus">
                                         <Form.Label>คำอธิบาย</Form.Label>
-                                        <Form.Control as="textarea" rows={3} placeholder="คำอธิบายโรคที่3"
+                                        <Form.Control as="textarea" rows={10} placeholder="เพิ่มคำอธิบาย"
                                             onChange={e => setDiseaseDetails3(e.target.value)} />
                                     </Form.Group>
                                 </Col>
                             </Row>
+                             {/* ----------------------4------------------------- */}
+                             <Row >
+                            <Col className='head mb-0'>
+                                    <Form.Group  controlId="formHead7">
+                                        <Form.Control type="text" placeholder="เพิ่มโรคเเละปัญหาที่พบบ่อย"
+                                            onChange={e => setHead7(e.target.value)} />
+                                    </Form.Group>
+                                </Col>
+                            </Row>
+                            <Row>
+                                <Col style={{ textAlign: 'center' }}>
+                                    <Image src={imageDiseaseURL4} rounded style={{ width: "300px", height: "auto" }} />
+                                </Col>
+                            </Row>
+                            <Row>
+                                <Col xl lg xxl="3" style={{ textAlign: 'center' }}></Col>
+                                <Col style={{ textAlign: 'center' }}>
+                                    <Form.Control style={{ width: '100%', textAlign: 'center' }} className='mt-2 mb-2'
+                                        type="file" onChange={e => setImageDisease4([...e.target.files])} />
+                                </Col>
+                                <Col xl lg xxl="3" style={{ textAlign: 'center' }}></Col>
+                            </Row>
+                            <Row className='mt-2 pb-7'>
+                                <Col>
+                                    <Form.Group className="mb-2" controlId="natureOfCactus">
+                                        <Form.Label>คำอธิบาย</Form.Label>
+                                        <Form.Control as="textarea" rows={10} placeholder="เพิ่มคำอธิบาย"
+                                            onChange={e => setDiseaseDetails4(e.target.value)} />
+                                    </Form.Group>
+                                </Col>
+                            </Row>
+                             {/* ----------------------5------------------------- */}
+                             <Row >
+                            <Col className='head mb-0'>
+                                    <Form.Group  controlId="formHead8">
+                                        <Form.Control type="text" placeholder="เพิ่มโรคเเละปัญหาที่พบบ่อย"
+                                            onChange={e => setHead8(e.target.value)} />
+                                    </Form.Group>
+                                </Col>
+                            </Row>
+                            <Row>
+                                <Col style={{ textAlign: 'center' }}>
+                                    <Image src={imageDiseaseURL5} rounded style={{ width: "300px", height: "auto" }} />
+                                </Col>
+                            </Row>
+                            <Row>
+                                <Col xl lg xxl="3" style={{ textAlign: 'center' }}></Col>
+                                <Col style={{ textAlign: 'center' }}>
+                                    <Form.Control style={{ width: '100%', textAlign: 'center' }} className='mt-2 mb-2'
+                                        type="file" onChange={e => setImageDisease5([...e.target.files])} />
+                                </Col>
+                                <Col xl lg xxl="3" style={{ textAlign: 'center' }}></Col>
+                            </Row>
+                            <Row className='mt-2 pb-2'>
+                                <Col>
+                                    <Form.Group className="mb-2" controlId="natureOfCactus">
+                                        <Form.Label>คำอธิบาย</Form.Label>
+                                        <Form.Control as="textarea" rows={10} placeholder="เพิ่มคำอธิบาย"
+                                            onChange={e => setDiseaseDetails5(e.target.value)} />
+                                    </Form.Group>
+                                </Col>
+                            </Row>
+                            {/* ---------------------------แหล่งอ้างอิง------------------------------ */}
+                            <h5>แหล่งที่มาของข้อมูล</h5>
+                           
+                           <Row className='pb-8 pt-0' >
+                           <Col className='head '>
+                                   <Form.Group  controlId="formHead4">
+                                       <Form.Control type="text" placeholder="เพิ่มที่มาของแหล่งข้อมูล"
+                                           onChange={e => setRefer1(e.target.value)} />
+                                   </Form.Group>
+                               </Col>
+                               <Col className='head '>
+                                   <Form.Group  controlId="formHead4">
+                                       <Form.Control type="text" placeholder="เพิ่มที่มาของแหล่งข้อมูล"
+                                           onChange={e => setRefer2(e.target.value)} />
+                                   </Form.Group>
+                               </Col>
+                           </Row>
+                           {/* -------------------------btn upload------------------------------- */}
                             <div style={{ textAlign: 'center' }}>
-                                <Button className='p-2 px-4 p-button-info'
+                                <Button className='btn-success p-2 px-4 p-button-info'
                                     style={{ width: '50%' }}
                                     disabled={isUpload}
                                     onClick={onUpload} >

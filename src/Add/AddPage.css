@@ -4,7 +4,7 @@
 }
 
 .styleInput{
-    width: 200px;
+    width: 240px;
 }
 
 .addPageSpace {
@@ -20,3 +20,16 @@
       background-color: whitesmoke;
       
   }
+
+.head{
+    max-width: 50%;
+}
+
+.addImgDes{
+    height: auto;
+    width: 240px;
+    border-radius: 5px ;
+    
+
+}
+
