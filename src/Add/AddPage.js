@@ -10,6 +10,7 @@ import { Toast } from 'primereact/toast';
 import firebaseConfig from '../Firebase/config';
 import { addDoc, getFirestore, collection } from "firebase/firestore";
 import'./AddPage.css'
+import { Refresh } from '@mui/icons-material';
 const Background = '/Images/bg-dark.jpg';
 
 export default function AddPage() {
@@ -27,18 +28,12 @@ export default function AddPage() {
     const [head4, setHead4] = useState('');
     const [head5, setHead5] = useState('');
     const [head6, setHead6] = useState('');
-    const [head7, setHead7] = useState('');
-    const [head8, setHead8] = useState('');
-    
     const [descriptionImageGrup1, setDescriptionImageGrup1] = useState(''); //คำอธิบายรูปภาพชุดแรก 1-3
     const [descriptionImageGrup2, setDescriptionImageGrup2] = useState(''); //คำอธิบายรูปภาพชุดสอง 4-6
     const [descriptionImageGrup3, setDescriptionImageGrup3] = useState(''); //คำอธิบายรูปภาพชุดสาม 7-9
     const [diseaseDetails1, setDiseaseDetails1] = useState(''); //คำอธิบายรูปภาพโรคที่1
     const [diseaseDetails2, setDiseaseDetails2] = useState(''); //คำอธิบายรูปภาพโรคที่2
     const [diseaseDetails3, setDiseaseDetails3] = useState(''); //คำอธิบายรูปภาพโรคที่3
-    const [diseaseDetails4, setDiseaseDetails4] = useState(''); //คำอธิบายรูปภาพโรคที่4
-    const [diseaseDetails5, setDiseaseDetails5] = useState(''); //คำอธิบายรูปภาพโรคที่5
-
     const [imageProfile, setImageProfile] = useState([]);
     const [imageProfileURLs, setImageProfileURLs] = useState([]);
     const [image1, setImage1] = useState([]);
@@ -65,11 +60,6 @@ export default function AddPage() {
     const [imageDiseaseURL2, setImagesDiseaseURL2] = useState([]);
     const [imageDisease3, setImageDisease3] = useState([]);
     const [imageDiseaseURL3, setImagesDiseaseURL3] = useState([]);
-    const [imageDisease4, setImageDisease4] = useState([]);
-    const [imageDiseaseURL4, setImagesDiseaseURL4] = useState([]);
-    const [imageDisease5, setImageDisease5] = useState([]);
-    const [imageDiseaseURL5, setImagesDiseaseURL5] = useState([]);
-
     const [refer1, setRefer1] = useState('');
     const [refer2, setRefer2] = useState('');
 
@@ -164,25 +154,12 @@ export default function AddPage() {
             setImagesDiseaseURL3(newImagesDiseaseURL);
         }
 
-        if (imageDisease4.length < 1);
-        else {
-            const newImagesDiseaseURL = [];
-            imageDisease4.forEach(image => newImagesDiseaseURL.push(URL.createObjectURL(image)));
-            setImagesDiseaseURL4(newImagesDiseaseURL);
-        }
-
-        if (imageDisease5.length < 1);
-        else {
-            const newImagesDiseaseURL = [];
-            imageDisease5.forEach(image => newImagesDiseaseURL.push(URL.createObjectURL(image)));
-            setImagesDiseaseURL5(newImagesDiseaseURL);
-        }
-
 
     }, [imageProfile, image1, image2,
         image3, image4, image5,
         image6, image7, image8, image9,
-        imageDisease1, imageDisease2, imageDisease3, imageDisease4, imageDisease5, isUpload]);
+        imageDisease1, imageDisease2, imageDisease3, isUpload]);
+
 
     function makeid(fileExtension) { // random ชื่อ
         let currentDate = new Date();
@@ -198,14 +175,14 @@ export default function AddPage() {
     }
 
     async function onUpload() {
+       
         var sumfile = [];
         var sumName = [];
         var sumUrls = [];
 
         if ((imageProfile.length !== 0) && (image1.length !== 0) && (image2.length !== 0) && (image3.length !== 0) && (image3.length !== 0)
             && (image4.length !== 0) && (image5.length !== 0) && (image6.length !== 0) && (image7.length !== 0) && (image8.length !== 0)
-            && (image9.length !== 0) && (imageDisease1.length !== 0) && (imageDisease2.length !== 0) && (imageDisease3.length !== 0) 
-            && (imageDisease4.length !== 0) && (imageDisease5.length !== 0)) {
+            && (image9.length !== 0) && (imageDisease1.length !== 0) && (imageDisease2.length !== 0) && (imageDisease3.length !== 0) ) {
 
             setIsUpload(true);
             sumfile.push(imageProfile[0]);
@@ -234,10 +211,7 @@ export default function AddPage() {
             sumName.push(makeid(imageDisease2[0].name));
             sumfile.push(imageDisease3[0]);
             sumName.push(makeid(imageDisease3[0].name));
-            sumfile.push(imageDisease4[0]);
-            sumName.push(makeid(imageDisease4[0].name));
-            sumfile.push(imageDisease5[0]);
-            sumName.push(makeid(imageDisease5[0].name));
+            
             
 
             const storageRef = firebaseConfig.storage().ref();
@@ -279,8 +253,7 @@ export default function AddPage() {
                 head4: `${head4}`,
                 head5: `${head5}`,
                 head6: `${head6}`,
-                head7: `${head7}`,
-                head8: `${head8}`,
+                
                 image1: `${sumUrls[1]}`,
                 image2: `${sumUrls[2]}`,
                 image3: `${sumUrls[3]}`,
@@ -299,10 +272,7 @@ export default function AddPage() {
                 diseaseDetails2: `${diseaseDetails2}`,
                 imageDisease3: `${sumUrls[12]}`,
                 diseaseDetails3: `${diseaseDetails3}`,
-                imageDisease4: `${sumUrls[13]}`,
-                diseaseDetails4: `${diseaseDetails4}`,
-                imageDisease5: `${sumUrls[14]}`,
-                diseaseDetails5: `${diseaseDetails5}`,
+                
                 refer1: `${refer1}`,
                 refer2: `${refer2}`
             });
@@ -609,68 +579,7 @@ export default function AddPage() {
                                     </Form.Group>
                                 </Col>
                             </Row>
-                             {/* ----------------------4------------------------- */}
-                             <Row >
-                            <Col className='head mb-0'>
-                                    <Form.Group  controlId="formHead7">
-                                        <Form.Control type="text" placeholder="เพิ่มโรคเเละปัญหาที่พบบ่อย"
-                                            onChange={e => setHead7(e.target.value)} />
-                                    </Form.Group>
-                                </Col>
-                            </Row>
-                            <Row>
-                                <Col style={{ textAlign: 'center' }}>
-                                    <Image src={imageDiseaseURL4} rounded style={{ width: "300px", height: "auto" }} />
-                                </Col>
-                            </Row>
-                            <Row>
-                                <Col xl lg xxl="3" style={{ textAlign: 'center' }}></Col>
-                                <Col style={{ textAlign: 'center' }}>
-                                    <Form.Control style={{ width: '100%', textAlign: 'center' }} className='mt-2 mb-2'
-                                        type="file" onChange={e => setImageDisease4([...e.target.files])} />
-                                </Col>
-                                <Col xl lg xxl="3" style={{ textAlign: 'center' }}></Col>
-                            </Row>
-                            <Row className='mt-2 pb-7'>
-                                <Col>
-                                    <Form.Group className="mb-2" controlId="natureOfCactus">
-                                        <Form.Label>คำอธิบาย</Form.Label>
-                                        <Form.Control as="textarea" rows={10} placeholder="เพิ่มคำอธิบาย"
-                                            onChange={e => setDiseaseDetails4(e.target.value)} />
-                                    </Form.Group>
-                                </Col>
-                            </Row>
-                             {/* ----------------------5------------------------- */}
-                             <Row >
-                            <Col className='head mb-0'>
-                                    <Form.Group  controlId="formHead8">
-                                        <Form.Control type="text" placeholder="เพิ่มโรคเเละปัญหาที่พบบ่อย"
-                                            onChange={e => setHead8(e.target.value)} />
-                                    </Form.Group>
-                                </Col>
-                            </Row>
-                            <Row>
-                                <Col style={{ textAlign: 'center' }}>
-                                    <Image src={imageDiseaseURL5} rounded style={{ width: "300px", height: "auto" }} />
-                                </Col>
-                            </Row>
-                            <Row>
-                                <Col xl lg xxl="3" style={{ textAlign: 'center' }}></Col>
-                                <Col style={{ textAlign: 'center' }}>
-                                    <Form.Control style={{ width: '100%', textAlign: 'center' }} className='mt-2 mb-2'
-                                        type="file" onChange={e => setImageDisease5([...e.target.files])} />
-                                </Col>
-                                <Col xl lg xxl="3" style={{ textAlign: 'center' }}></Col>
-                            </Row>
-                            <Row className='mt-2 pb-2'>
-                                <Col>
-                                    <Form.Group className="mb-2" controlId="natureOfCactus">
-                                        <Form.Label>คำอธิบาย</Form.Label>
-                                        <Form.Control as="textarea" rows={10} placeholder="เพิ่มคำอธิบาย"
-                                            onChange={e => setDiseaseDetails5(e.target.value)} />
-                                    </Form.Group>
-                                </Col>
-                            </Row>
+                             
                             {/* ---------------------------แหล่งอ้างอิง------------------------------ */}
                             <h5>แหล่งที่มาของข้อมูล</h5>
                            

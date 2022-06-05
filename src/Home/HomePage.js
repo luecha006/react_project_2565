@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
 import "bootstrap/dist/css/bootstrap.min.css";
-import {InputGroup, FormControl, Button, Container, Row, Col, Card} from "react-bootstrap";
-import { BsFillChatTextFill, BsFillPhoneFill, BsFillPeopleFill } from "react-icons/bs";
+import {InputGroup, FormControl, Button, Container, Row, Col, Card, Carousel } from "react-bootstrap";
+import { BsFillChatTextFill, BsFillPhoneFill, BsFillPeopleFill, BsSearch } from "react-icons/bs";
 
 import './HomePage.css';
 
 const Background = '/Images/bg.jpg';
+const colbg = '/Images/gymnocalycium.jpg';
 export default class HomePage extends Component {
     
     render() {
@@ -22,24 +23,112 @@ export default class HomePage extends Component {
         );
         return (
             <div className="container-fluid m-0 mb-6 p-0">
-                <div className='SpaceHomePage bg' style={{backgroundImage: `url(${Background})`}}>
+                <Carousel fade>
+                <Carousel.Item interval={3000}>
+                {/* <div className='SpaceHomePage bg' style={{backgroundImage: `url(${Background})`}}>
                     <div className="row  justify-content-center align-items-center  " >
-                        <h2 className='text-white font-weight-lighter'>ยินดีต้อนรับสู่ CACTUS FAMILY</h2>
+                        
                     </div>
-                    <div className='row mt-0 justify-content-center align-items-center'>
-                        <InputGroup className="SearchStyle">
+                    <div className='row justify-content-end align-items-end'>
+                        <InputGroup className="SearchStyle " >
                             <FormControl
                                 placeholder="ค้นหา"
                                 aria-label="Search"
                                 aria-describedby="basic-addon2"
                                 id='search'
                             />
-                            <Button variant="success" id="button-addon2">
-                                ค้นหา
+                            <Button variant="secondary" id="button-addon2">
+                            <span className='iconSize-s'>
+                                        <BsSearch />
+                                    </span>
                             </Button>
                         </InputGroup>
+                        <div>
+                            <h2 className='text-white font-weight-lighter pt-lg-5'>ยินดีต้อนรับสู่ CACTUS FAMILY</h2>
+                            
+                        </div>
+                        
                     </div>
-                </div>
+                </div> */}
+                
+                <InputGroup className="SearchStyle" >
+                            <FormControl
+                                placeholder="ค้นหา"
+                                aria-label="Search"
+                                aria-describedby="basic-addon2"
+                                id='search'
+                            />
+                            <Button variant="secondary" id="button-addon2">
+                            <span className='iconSize-s'>
+                                        <BsSearch />
+                                    </span>
+                            </Button>
+                        </InputGroup>
+                        
+    <img
+      className="myCol "
+      src={Background}
+      alt="First slide"
+    />
+    
+    <Carousel.Caption>
+                
+      <h3 className='text-white'>First slide label</h3>
+      <p className='text-white'>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+    </Carousel.Caption>
+  </Carousel.Item>
+  <Carousel.Item interval={3000}>
+  <InputGroup className="SearchStyle" >
+                            <FormControl
+                                placeholder="ค้นหา"
+                                aria-label="Search"
+                                aria-describedby="basic-addon2"
+                                id='search'
+                            />
+                            <Button variant="secondary" id="button-addon2">
+                            <span className='iconSize-s'>
+                                        <BsSearch />
+                                    </span>
+                            </Button>
+                        </InputGroup>
+    <img
+      className="myCol"
+      src={Background}
+      alt="Second slide"
+    />
+
+    <Carousel.Caption>
+      <h3 className='text-white'>Second slide label</h3>
+      <p className='text-white'>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+    </Carousel.Caption>
+  </Carousel.Item>
+  <Carousel.Item interval={3000}>
+  <InputGroup className="SearchStyle" >
+                            <FormControl
+                                placeholder="ค้นหา"
+                                aria-label="Search"
+                                aria-describedby="basic-addon2"
+                                id='search'
+                            />
+                            <Button variant="secondary" id="button-addon2">
+                            <span className='iconSize-s'>
+                                        <BsSearch />
+                                    </span>
+                            </Button>
+                        </InputGroup>
+    <img
+      className="myCol"
+      src={Background}
+      alt="Third slide"
+    />
+
+    <Carousel.Caption >
+      <h3 className='text-white'>Third slide label</h3>
+      <p className='text-white'>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
+    </Carousel.Caption>
+  </Carousel.Item>
+                </Carousel>
+                {/* --------------------------------------------- */}
                 <div className="container-fluid cardStyle" style={{ height: '250px' }}>
                     <Container>
                         <Row>

@@ -62,7 +62,7 @@ export default function NavbarComp() {
                     <div>
                         <Navbar className='NavbarStyle' bg="dark" variant={"dark"} expand="lg">
                            
-                            <Navbar.Brand href="#">CACTUS FAMILY</Navbar.Brand>
+                            <Navbar.Brand href="#">แคคตัส แฟมิลี</Navbar.Brand>
                             <Navbar.Toggle aria-controls="navbarScroll" />
                             <Navbar.Collapse id="navbarScroll">
                                 <div style={{ width: "100%" }}>

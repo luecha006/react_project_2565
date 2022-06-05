@@ -38,8 +38,7 @@ function MammillariaPage() {
     const [diseaseDetails1, setDiseaseDetails1] = useState(''); //คำอธิบายรูปภาพโรคที่1
     const [diseaseDetails2, setDiseaseDetails2] = useState(''); //คำอธิบายรูปภาพโรคที่2
     const [diseaseDetails3, setDiseaseDetails3] = useState(''); //คำอธิบายรูปภาพโรคที่3
-    const [diseaseDetails4, setDiseaseDetails4] = useState(''); //คำอธิบายรูปภาพโรคที่4
-    const [diseaseDetails5, setDiseaseDetails5] = useState(''); //คำอธิบายรูปภาพโรคที่5
+    
     
     const [head1, setHead1] = useState('');
     const [head2, setHead2] = useState('');
@@ -47,8 +46,7 @@ function MammillariaPage() {
     const [head4, setHead4] = useState('');
     const [head5, setHead5] = useState('');
     const [head6, setHead6] = useState('');
-    const [head7, setHead7] = useState('');
-    const [head8, setHead8] = useState('');
+
     
     const [imageProfile, setImageProfile] = useState(null);
     const [image1, setImage1] = useState(null);
@@ -63,8 +61,7 @@ function MammillariaPage() {
     const [imageDisease1, setImageDisease1] = useState(null);
     const [imageDisease2, setImageDisease2] = useState(null);
     const [imageDisease3, setImageDisease3] = useState(null);
-    const [imageDisease4, setImageDisease4] = useState(null);
-    const [imageDisease5, setImageDisease5] = useState(null);
+
 
     const [refer1, setRefer1] = useState(null);
     const [refer2, setRefer2] = useState(null);
@@ -126,8 +123,7 @@ function MammillariaPage() {
         setImageDisease1(firestoreData[indexTable].imageDisease1);
         setImageDisease2(firestoreData[indexTable].imageDisease2);
         setImageDisease3(firestoreData[indexTable].imageDisease3);
-        setImageDisease4(firestoreData[indexTable].imageDisease4);
-        setImageDisease5(firestoreData[indexTable].imageDisease5);
+        
 
         setCactusFamily(firestoreData[indexTable].cactusFamily);
         setFamily(firestoreData[indexTable].family);
@@ -141,8 +137,7 @@ function MammillariaPage() {
         setDiseaseDetails1(firestoreData[indexTable].diseaseDetails1);
         setDiseaseDetails2(firestoreData[indexTable].diseaseDetails2);
         setDiseaseDetails3(firestoreData[indexTable].diseaseDetails3);
-        setDiseaseDetails4(firestoreData[indexTable].diseaseDetails4);
-        setDiseaseDetails5(firestoreData[indexTable].diseaseDetails5);
+       
 
         setHead1(firestoreData[indexTable].head1);
         setHead2(firestoreData[indexTable].head2);
@@ -150,8 +145,7 @@ function MammillariaPage() {
         setHead4(firestoreData[indexTable].head4);
         setHead5(firestoreData[indexTable].head5);
         setHead6(firestoreData[indexTable].head6);
-        setHead7(firestoreData[indexTable].head7);
-        setHead8(firestoreData[indexTable].head8);
+        
 
         setRefer1(firestoreData[indexTable].refer1);
         setRefer2(firestoreData[indexTable].refer2);
@@ -197,12 +191,7 @@ function MammillariaPage() {
             head6: `${head6}`,
             imageDisease3: `${imageDisease3}`,
             diseaseDetails3: `${diseaseDetails3}`,
-            head7: `${head7}`,
-            imageDisease4: `${imageDisease4}`,
-            diseaseDetails4: `${diseaseDetails4}`,
-            head8: `${head8}`,
-            imageDisease5: `${imageDisease5}`,
-            diseaseDetails5: `${diseaseDetails5}`,
+            
             refer1: `${refer1}`,
             refer2: `${refer2}`
         });
@@ -216,14 +205,12 @@ function MammillariaPage() {
         return (
             <div className='mamPageSpace bg' style={{backgroundImage: `url(${Background})`}}>
                 <div className="container">
-                    <Sidebar className='side-bar' visible={isOpenPage}  fullScreen  onHide={() => setIsOpenEditForm(false)}>
+                    <Sidebar className='side-bar '  style={{backgroundImage: `url(${Background})`}} visible={isOpenPage}  fullScreen  onHide={() => setIsOpenEditForm(false)}>
                         <div >
                             <div className='container' style={{ width: '100%', height: '100%', marginBottom: '4%', textAlign: 'center' }}>
                                 <br />
                                 <Card border="secondary" style={{ background: '#ECEFF1' }}>
-                                   
                                     <Card.Body>
-                                        
                                         <div>
                                             <Form style={{ textAlign: 'start' }}>
                                                
@@ -323,35 +310,13 @@ function MammillariaPage() {
                                                     </Col>
                                                     <p>{diseaseDetails3}</p>
                                                 </Row>
-                                                 
-                                                {/* ----------------------------------------------- */}
-                                                
-                                                <Row className='des'>
-                                                    <h3>{head7}</h3>
-                                                    
-                                                    <Col style={{ textAlign: 'center' }}>
-                                                        <Image className='desPic2  ' src={imageDisease4}/>
-                                                    </Col>
-                                                    <p>{diseaseDetails4}</p>
-                                                </Row>
-                                                 
-                                                {/* ----------------------------------------------- */}
-                                                
-                                                <Row className='des'>
-                                                    <h3>{head8}</h3>
-                                                    
-                                                    <Col style={{ textAlign: 'center' }}>
-                                                        <Image className='desPic2 ' src={imageDisease5}/>
-                                                    </Col>
-                                                    <p>{diseaseDetails5}</p>
-                                                </Row>
                                             </Form>
                                         </div>
                                     </Card.Body>
-                                    <Row className='mt-4 mb-0'>
+                                    <Row className='mt-4 mb-5'>
                                             <p className='text-left mb-0'>แหล่งที่มาของข้อมูล : </p>
-                                            <p className='Reference underline '>{refer1}, {refer2}</p>
-                                            {/* <p>{refer2}</p> */}
+                                            <p className='Reference underline '>{refer1}</p>
+                                            <p className='Reference underline '>{refer2}</p>
                                         </Row>
                                 </Card>
                             </div >
