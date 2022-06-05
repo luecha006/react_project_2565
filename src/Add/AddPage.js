@@ -9,7 +9,7 @@ import { Toast } from 'primereact/toast';
 
 import firebaseConfig from '../Firebase/config';
 import { addDoc, getFirestore, collection } from "firebase/firestore";
-import'./AddPage.css'
+import './AddPage.css'
 import { Refresh } from '@mui/icons-material';
 const Background = '/Images/bg-dark.jpg';
 
@@ -175,14 +175,14 @@ export default function AddPage() {
     }
 
     async function onUpload() {
-       
+
         var sumfile = [];
         var sumName = [];
         var sumUrls = [];
 
         if ((imageProfile.length !== 0) && (image1.length !== 0) && (image2.length !== 0) && (image3.length !== 0) && (image3.length !== 0)
             && (image4.length !== 0) && (image5.length !== 0) && (image6.length !== 0) && (image7.length !== 0) && (image8.length !== 0)
-            && (image9.length !== 0) && (imageDisease1.length !== 0) && (imageDisease2.length !== 0) && (imageDisease3.length !== 0) ) {
+            && (image9.length !== 0) && (imageDisease1.length !== 0) && (imageDisease2.length !== 0) && (imageDisease3.length !== 0)) {
 
             setIsUpload(true);
             sumfile.push(imageProfile[0]);
@@ -211,8 +211,8 @@ export default function AddPage() {
             sumName.push(makeid(imageDisease2[0].name));
             sumfile.push(imageDisease3[0]);
             sumName.push(makeid(imageDisease3[0].name));
-            
-            
+
+
 
             const storageRef = firebaseConfig.storage().ref();
 
@@ -253,7 +253,7 @@ export default function AddPage() {
                 head4: `${head4}`,
                 head5: `${head5}`,
                 head6: `${head6}`,
-                
+
                 image1: `${sumUrls[1]}`,
                 image2: `${sumUrls[2]}`,
                 image3: `${sumUrls[3]}`,
@@ -272,7 +272,7 @@ export default function AddPage() {
                 diseaseDetails2: `${diseaseDetails2}`,
                 imageDisease3: `${sumUrls[12]}`,
                 diseaseDetails3: `${diseaseDetails3}`,
-                
+
                 refer1: `${refer1}`,
                 refer2: `${refer2}`
             });
@@ -282,336 +282,335 @@ export default function AddPage() {
         }
     }
     return (
-        
-        <div className='addPageSpace bg container-fluid m-0 mb-6 p-0 ' style={{backgroundImage: `url(${Background})`}}>
-        <div className='container' style={{ width: '70%', height: '100%', marginBottom: '4%' }}>
-            <Toast ref={toast} />
-            <br />
-            <Card className='card-body' >
-                <Card.Body className='card-body' >
-                    <h3>เพิ่มข้อมูลกระบองเพชร</h3>
-                    <br />
-                    <br />
-                    <div>
-                        <Form style={{ textAlign: 'start' }}>
-                            <Row className='mb-2'>
-                                <Col>
-                                    <Form.Select aria-label="select" onChange={e => setCactusFamily(e.target.value)}>
-                                        <option value="0">- เลือกตระกูล -</option>
-                                        <option value="Mammillaria">แมมมิลลาเรีย</option>
-                                        <option value="Gymnocalycium">ยิมโนคาไลเซียม</option>
-                                    </Form.Select>
-                                </Col>
-                            </Row>
-                            <Row>
-                                <Col style={{ textAlign: 'center' }}>
-                                    <h5 className=' font-weight-lighter '>รูปกระบองเพชร</h5>
-                                    <Image src={imageProfileURLs} rounded style={{ width: "340px", height: "auto" }} />
-                                </Col>
-                            </Row>
-                            <Row>
-                                <Col xl lg xxl="3" style={{ textAlign: 'center' }}></Col>
-                                <Col style={{ textAlign: 'center' }}>
-                                    <Form.Control style={{ width: '100%', textAlign: 'center' }} className='mt-2 mb-2'
-                                        type="file" onChange={e => setImageProfile([...e.target.files])} />
-                                
-                                </Col>
-                                <Col xl lg xxl="3" style={{ textAlign: 'center' }}></Col>
-                            </Row>
-                            <Row>
-                                <Col>
-                                    <Form.Group className="mb-3" controlId="formScientificName">
-                                        <Form.Label>ชื่อวิทยาศาสตร์</Form.Label>
-                                        <Form.Control type="text" placeholder="ชื่อวิทยาศาสตร์"
-                                            onChange={e => setScientificName(e.target.value)} />
-                                    </Form.Group>
-                                </Col>
-                                <Col>
-                                    <Form.Group className="mb-3" controlId="formCommonName">
-                                        <Form.Label>ชื่อสามัญ</Form.Label>
-                                        <Form.Control type="text" placeholder="ชื่อสามัญ"
-                                            onChange={e => setCommonName(e.target.value)} />
-                                    </Form.Group>
-                                </Col>
-                            </Row>
-                            <Row>
-                                <Col>
-                                    <Form.Group className="mb-3" controlId="formScientificName">
-                                        <Form.Label>ชื่ออื่นๆ</Form.Label>
-                                        <Form.Control type="text" placeholder="ชื่ออื่นๆ"
-                                            onChange={e => setOtherNames(e.target.value)} />
-                                    </Form.Group>
-                                </Col>
-                                <Col>
-                                    <Form.Group className="mb-3" controlId="formFamily">
-                                        <Form.Label>วงศ์</Form.Label>
-                                        <Form.Control type="text" placeholder="วงศ์"
-                                            onChange={e => setFamily(e.target.value)} />
-                                    </Form.Group>
-                                </Col>
-                            </Row>
-                            {/* ------------------------------------------------- */}
-                            <Row>
-                            <Col className='head mb-0 mt-7'>
-                                    <Form.Group controlId="formHead1">
-                                        <Form.Label>หัวข้อ</Form.Label>
-                                        <Form.Control type="text" placeholder="เพิ่มหัวข้อ"
-                                            onChange={e => setHead1(e.target.value)} />
-                                    </Form.Group>
-                                </Col>
+
+        <div className='addPageSpace bg container-fluid m-0 mb-6 p-0 ' style={{ backgroundImage: `url(${Background})` }}>
+            <div className='container' style={{ width: '70%', height: '100%', marginBottom: '4%' }}>
+                <Toast ref={toast} />
+                <br />
+                <Card className='card-body' >
+                    <Card.Body className='card-body' >
+                        <h3>เพิ่มข้อมูลกระบองเพชร</h3>
+                        <br />
+                        <br />
+                        <div>
+                            <Form style={{ textAlign: 'start' }}>
+                                <Row className='mb-2'>
+                                    <Col>
+                                        <Form.Select aria-label="select" onChange={e => setCactusFamily(e.target.value)}>
+                                            <option value="0">- เลือกตระกูล -</option>
+                                            <option value="Mammillaria">แมมมิลลาเรีย</option>
+                                            <option value="Gymnocalycium">ยิมโนคาไลเซียม</option>
+                                        </Form.Select>
+                                    </Col>
                                 </Row>
-                            <Row className='mt-1'>
-                                <Col style={{ textAlign: 'center' }}>
-                                    <Image className='addImgDes' src={imagesURL1} />
-                                </Col>
-                                <Col style={{ textAlign: 'center' }}>
-                                    <Image className='addImgDes' src={imagesURL2} />
-                                </Col>
-                                <Col style={{ textAlign: 'center' }}>
-                                    <Image className='addImgDes' src={imagesURL3} />
-                                </Col>
-                            </Row>
-                            <Row>
-                                <Col style={{ textAlign: 'center' }}>
-                                    <Form.Control className='mt-0 styleInput' type="file"
-                                        onChange={e => setImage1([...e.target.files])} />
-                                </Col>
-                                <Col style={{ textAlign: 'center' }}>
-                                    <Form.Control className='mt-0 styleInput' type="file"
-                                        onChange={e => setImage2([...e.target.files])} />
-                                </Col>
-                                <Col style={{ textAlign: 'center' }}>
-                                    <Form.Control className='mt-0 styleInput' type="file"
-                                        onChange={e => setImage3([...e.target.files])} />
-                                </Col>
-                            </Row>
-                            <Row className='mt-1'>
-                                <Col>
-                                    <Form.Group className="mb-2" controlId="natureOfCactus">
-                                        <Form.Label>คำอธิบาย</Form.Label>
-                                        <Form.Control as="textarea" rows={10} placeholder="เพิ่มคำอธิบาย"
-                                            onChange={e => setDescriptionImageGrup1(e.target.value)} />
-                                    </Form.Group>
-                                </Col>
-                            </Row>
-                            {/* ------------------------------------------------- */}
-                            <Row >
-                            <Col className='head mb-0'>
-                                    <Form.Group  controlId="formHead2">
-                                        <Form.Label>หัวข้อ</Form.Label>
-                                        <Form.Control type="text" placeholder="เพิ่มหัวข้อ"
-                                            onChange={e => setHead2(e.target.value)} />
-                                    </Form.Group>
-                                </Col>
-                            </Row>
-                            <Row>
-                                <Col style={{ textAlign: 'center' }}>
-                                    <Image className='addImgDes' src={imagesURL4} />
-                                </Col>
-                                <Col style={{ textAlign: 'center' }}>
-                                    <Image className='addImgDes' src={imagesURL5} />
-                                </Col>
-                                <Col style={{ textAlign: 'center' }}>
-                                    <Image className='addImgDes' src={imagesURL6} />
-                                </Col>
-                            </Row>
-                            <Row>
-                                <Col style={{ textAlign: 'center' }}>
-                                    <Form.Control className='mt-0 styleInput' type="file"
-                                        onChange={e => setImage4([...e.target.files])} />
-                                </Col>
-                                <Col style={{ textAlign: 'center' }}>
-                                    <Form.Control className='mt-0' type="file"
-                                        onChange={e => setImage5([...e.target.files])} />
-                                </Col>
-                                <Col style={{ textAlign: 'center' }}>
-                                    <Form.Control className='mt-0' type="file"
-                                        onChange={e => setImage6([...e.target.files])} />
-                                </Col>
-                            </Row>
-                            <Row className='mt-2 mb-3'>
-                                <Col>
-                                    <Form.Group className="mb-2" controlId="natureOfCactus">
-                                        <Form.Label>คำอธิบาย</Form.Label>
-                                        <Form.Control as="textarea" rows={10} placeholder="เพิ่มคำอธิบาย"
-                                            onChange={e => setDescriptionImageGrup2(e.target.value)} />
-                                    </Form.Group>
-                                </Col>
-                            </Row>
-                            {/* ------------------------------------------------- */}
-                            
-                            <Row>
-                            <Col className='head mb-0'>
-                                    <Form.Group className="mb-3" controlId="formHead3">
-                                        <Form.Label>หัวข้อ</Form.Label>
-                                        <Form.Control type="text" placeholder="เพิ่มหัวข้อ"
-                                            onChange={e => setHead3(e.target.value)} />
-                                    </Form.Group>
-                                </Col>
-                            </Row>
-                            <Row>
-                                <Col style={{ textAlign: 'center' }}>
-                                    <Image className='addImgDes' src={imagesURL7}/>
-                                </Col>
-                                <Col style={{ textAlign: 'center' }}>
-                                    <Image className='addImgDes' src={imagesURL8}/>
-                                </Col>
-                                <Col style={{ textAlign: 'center' }}>
-                                    <Image className='addImgDes' src={imagesURL9}/>
-                                </Col>
-                            </Row>
-                            <Row>
-                                <Col style={{ textAlign: 'center' }}>
-                                    <Form.Control className='mt-0 styleInput' type="file"
-                                        onChange={e => setImage7([...e.target.files])} />
-                                </Col>
-                                <Col style={{ textAlign: 'center' }}>
-                                    <Form.Control className='mt-0' type="file"
-                                        onChange={e => setImage8([...e.target.files])} />
-                                </Col>
-                                <Col style={{ textAlign: 'center' }}>
-                                    <Form.Control className='mt-0' type="file"
-                                        onChange={e => setImage9([...e.target.files])} />
-                                </Col>
-                            </Row>
-                            <Row className='mt-2 mb-3'>
-                                <Col>
-                                    <Form.Group className="mb-2" controlId="natureOfCactus">
-                                        <Form.Label>คำอธิบาย</Form.Label>
-                                        <Form.Control as="textarea" rows={10} placeholder="เพิ่มคำอธิบาย"
-                                            onChange={e => setDescriptionImageGrup3(e.target.value)} />
-                                    </Form.Group>
-                                </Col>
-                            </Row>
-                            {/* ------------------------1----------------------- */}
-                            <h5>โรคเเละปัญหาที่พบบ่อย</h5>
-                           
-                            <Row >
-                            <Col className='head '>
-                                    <Form.Group  controlId="formHead4">
-                                        <Form.Control type="text" placeholder="เพิ่มโรคเเละปัญหาที่พบบ่อย"
-                                            onChange={e => setHead4(e.target.value)} />
-                                    </Form.Group>
-                                </Col>
-                            </Row>
-                            <Row>
-                                <Col style={{ textAlign: 'center' }}>
-                                    <Image src={imageDiseaseURL1} rounded style={{ width: "300px", height: "auto" }} />
-                                </Col>
-                            </Row>
-                            <Row>
-                                <Col xl lg xxl="3" style={{ textAlign: 'center' }}></Col>
-                                <Col style={{ textAlign: 'center' }}>
-                                    <Form.Control style={{ width: '100%', textAlign: 'center' }} className='mt-2 mb-2'
-                                        type="file" onChange={e => setImageDisease1([...e.target.files])} />
-                                </Col>
-                                <Col xl lg xxl="3" style={{ textAlign: 'center' }}></Col>
-                            </Row>
-                            <Row className='mt-2 pb-7'>
-                                <Col>
-                                    <Form.Group className="mb-2" controlId="natureOfCactus">
-                                        <Form.Label>คำอธิบาย</Form.Label>
-                                        <Form.Control as="textarea" rows={10} placeholder="เพิ่มคำอธิบาย"
-                                            onChange={e => setDiseaseDetails1(e.target.value)} />
-                                    </Form.Group>
-                                </Col>
-                            </Row>
-                         
-                            {/* ------------------------2----------------------- */}
-                            <Row >
-                            <Col className='head mb-0'>
-                                    <Form.Group  controlId="formHead5">
-                                        <Form.Control type="text" placeholder="เพิ่มโรคเเละปัญหาที่พบบ่อย"
-                                            onChange={e => setHead5(e.target.value)} />
-                                    </Form.Group>
-                                </Col>
-                            </Row>
-                            <Row>
-                                <Col style={{ textAlign: 'center' }}>
-                                    <Image src={imageDiseaseURL2} rounded style={{ width: "300px", height: "auto" }} />
-                                </Col>
-                            </Row>
-                            <Row>
-                                <Col xl lg xxl="3" style={{ textAlign: 'center' }}></Col>
-                                <Col style={{ textAlign: 'center' }}>
-                                    <Form.Control style={{ width: '100%', textAlign: 'center' }} className='mt-2 mb-2'
-                                        type="file" onChange={e => setImageDisease2([...e.target.files])} />
-                                </Col>
-                                <Col xl lg xxl="3" style={{ textAlign: 'center' }}></Col>
-                            </Row>
-                            <Row className='mt-2 pb-7'>
-                                <Col>
-                                    <Form.Group className="mb-2" controlId="natureOfCactus">
-                                        <Form.Label>คำอธิบาย</Form.Label>
-                                        <Form.Control as="textarea" rows={10} placeholder="เพิ่มคำอธิบาย"
-                                            onChange={e => setDiseaseDetails2(e.target.value)} />
-                                    </Form.Group>
-                                </Col>
-                            </Row>
-                            {/* -----------------------3------------------------ */}
-                            <Row >
-                            <Col className='head mb-0'>
-                                    <Form.Group  controlId="formHead6">
-                                        <Form.Control type="text" placeholder="เพิ่มโรคเเละปัญหาที่พบบ่อย"
-                                            onChange={e => setHead6(e.target.value)} />
-                                    </Form.Group>
-                                </Col>
-                            </Row>
-                            <Row>
-                                <Col style={{ textAlign: 'center' }}>
-                                    <Image src={imageDiseaseURL3} rounded style={{ width: "300px", height: "auto" }} />
-                                </Col>
-                            </Row>
-                            <Row>
-                                <Col xl lg xxl="3" style={{ textAlign: 'center' }}></Col>
-                                <Col style={{ textAlign: 'center' }}>
-                                    <Form.Control style={{ width: '100%', textAlign: 'center' }} className='mt-2 mb-2'
-                                        type="file" onChange={e => setImageDisease3([...e.target.files])} />
-                                </Col>
-                                <Col xl lg xxl="3" style={{ textAlign: 'center' }}></Col>
-                            </Row>
-                            <Row className='mt-2 pb-7'>
-                                <Col>
-                                    <Form.Group className="mb-2" controlId="natureOfCactus">
-                                        <Form.Label>คำอธิบาย</Form.Label>
-                                        <Form.Control as="textarea" rows={10} placeholder="เพิ่มคำอธิบาย"
-                                            onChange={e => setDiseaseDetails3(e.target.value)} />
-                                    </Form.Group>
-                                </Col>
-                            </Row>
-                             
-                            {/* ---------------------------แหล่งอ้างอิง------------------------------ */}
-                            <h5>แหล่งที่มาของข้อมูล</h5>
-                           
-                           <Row className='pb-8 pt-0' >
-                           <Col className='head '>
-                                   <Form.Group  controlId="formHead4">
-                                       <Form.Control type="text" placeholder="เพิ่มที่มาของแหล่งข้อมูล"
-                                           onChange={e => setRefer1(e.target.value)} />
-                                   </Form.Group>
-                               </Col>
-                               <Col className='head '>
-                                   <Form.Group  controlId="formHead4">
-                                       <Form.Control type="text" placeholder="เพิ่มที่มาของแหล่งข้อมูล"
-                                           onChange={e => setRefer2(e.target.value)} />
-                                   </Form.Group>
-                               </Col>
-                           </Row>
-                           {/* -------------------------btn upload------------------------------- */}
-                            <div style={{ textAlign: 'center' }}>
-                                <Button className='btn-success p-2 px-4 p-button-info'
-                                    style={{ width: '50%' }}
-                                    disabled={isUpload}
-                                    onClick={onUpload} >
-                                    <i className='pi pi-upload pt-1' style={{ float: 'left' }}></i>
-                                    {isUpload ? 'กำลังเพิ่มข้อมูล...' : 'เพิ่มข้อมูล'}
-                                </ Button>
-                            </div>
-                        </Form>
-                    </div>
-                </Card.Body>
-            </Card>
-        </div >
+                                <Row>
+                                    <Col style={{ textAlign: 'center' }}>
+                                        <h5 className=' font-weight-lighter '>รูปกระบองเพชร</h5>
+                                        <Image src={imageProfileURLs} rounded style={{ width: "340px", height: "auto" }} />
+                                    </Col>
+                                </Row>
+                                <Row>
+                                    <Col xl lg xxl="3" style={{ textAlign: 'center' }}></Col>
+                                    <Col style={{ textAlign: 'center' }}>
+                                        <Form.Control style={{ width: '100%', textAlign: 'center' }} className='mt-2 mb-2'
+                                            type="file" onChange={e => setImageProfile([...e.target.files])} />
+
+                                    </Col>
+                                    <Col xl lg xxl="3" style={{ textAlign: 'center' }}></Col>
+                                </Row>
+                                <Row>
+                                    <Col>
+                                        <Form.Group className="mb-3" controlId="formScientificName">
+                                            <Form.Label>ชื่อวิทยาศาสตร์</Form.Label>
+                                            <Form.Control type="text" placeholder="ชื่อวิทยาศาสตร์"
+                                                onChange={e => setScientificName(e.target.value)} />
+                                        </Form.Group>
+                                    </Col>
+                                    <Col>
+                                        <Form.Group className="mb-3" controlId="formCommonName">
+                                            <Form.Label>ชื่อสามัญ</Form.Label>
+                                            <Form.Control type="text" placeholder="ชื่อสามัญ"
+                                                onChange={e => setCommonName(e.target.value)} />
+                                        </Form.Group>
+                                    </Col>
+                                </Row>
+                                <Row>
+                                    <Col>
+                                        <Form.Group className="mb-3" controlId="formScientificName">
+                                            <Form.Label>ชื่ออื่นๆ</Form.Label>
+                                            <Form.Control type="text" placeholder="ชื่ออื่นๆ"
+                                                onChange={e => setOtherNames(e.target.value)} />
+                                        </Form.Group>
+                                    </Col>
+                                    <Col>
+                                        <Form.Group className="mb-3" controlId="formFamily">
+                                            <Form.Label>วงศ์</Form.Label>
+                                            <Form.Control type="text" placeholder="วงศ์"
+                                                onChange={e => setFamily(e.target.value)} />
+                                        </Form.Group>
+                                    </Col>
+                                </Row>
+                                {/* ------------------------------------------------- */}
+                                <Row>
+                                    <Col className='head mb-0 mt-7'>
+                                        <Form.Group controlId="formHead1">
+                                            <Form.Label>หัวข้อ</Form.Label>
+                                            <Form.Control type="text" placeholder="เพิ่มหัวข้อ"
+                                                onChange={e => setHead1(e.target.value)} />
+                                        </Form.Group>
+                                    </Col>
+                                </Row>
+                                <Row className='mt-1'>
+                                    <Col style={{ textAlign: 'center' }}>
+                                        <Image className='addImgDes' src={imagesURL1} />
+                                    </Col>
+                                    <Col style={{ textAlign: 'center' }}>
+                                        <Image className='addImgDes' src={imagesURL2} />
+                                    </Col>
+                                    <Col style={{ textAlign: 'center' }}>
+                                        <Image className='addImgDes' src={imagesURL3} />
+                                    </Col>
+                                </Row>
+                                <Row>
+                                    <Col style={{ textAlign: 'center' }}>
+                                        <Form.Control className='mt-0 styleInput' type="file"
+                                            onChange={e => setImage1([...e.target.files])} />
+                                    </Col>
+                                    <Col style={{ textAlign: 'center' }}>
+                                        <Form.Control className='mt-0 styleInput' type="file"
+                                            onChange={e => setImage2([...e.target.files])} />
+                                    </Col>
+                                    <Col style={{ textAlign: 'center' }}>
+                                        <Form.Control className='mt-0 styleInput' type="file"
+                                            onChange={e => setImage3([...e.target.files])} />
+                                    </Col>
+                                </Row>
+                                <Row className='mt-1'>
+                                    <Col>
+                                        <Form.Group className="mb-2" controlId="natureOfCactus">
+                                            <Form.Label>คำอธิบาย</Form.Label>
+                                            <Form.Control as="textarea" rows={10} placeholder="เพิ่มคำอธิบาย"
+                                                onChange={e => setDescriptionImageGrup1(e.target.value)} />
+                                        </Form.Group>
+                                    </Col>
+                                </Row>
+                                {/* ------------------------------------------------- */}
+                                <Row >
+                                    <Col className='head mb-0'>
+                                        <Form.Group controlId="formHead2">
+                                            <Form.Label>หัวข้อ</Form.Label>
+                                            <Form.Control type="text" placeholder="เพิ่มหัวข้อ"
+                                                onChange={e => setHead2(e.target.value)} />
+                                        </Form.Group>
+                                    </Col>
+                                </Row>
+                                <Row>
+                                    <Col style={{ textAlign: 'center' }}>
+                                        <Image className='addImgDes' src={imagesURL4} />
+                                    </Col>
+                                    <Col style={{ textAlign: 'center' }}>
+                                        <Image className='addImgDes' src={imagesURL5} />
+                                    </Col>
+                                    <Col style={{ textAlign: 'center' }}>
+                                        <Image className='addImgDes' src={imagesURL6} />
+                                    </Col>
+                                </Row>
+                                <Row>
+                                    <Col style={{ textAlign: 'center' }}>
+                                        <Form.Control className='mt-0 styleInput' type="file"
+                                            onChange={e => setImage4([...e.target.files])} />
+                                    </Col>
+                                    <Col style={{ textAlign: 'center' }}>
+                                        <Form.Control className='mt-0' type="file"
+                                            onChange={e => setImage5([...e.target.files])} />
+                                    </Col>
+                                    <Col style={{ textAlign: 'center' }}>
+                                        <Form.Control className='mt-0' type="file"
+                                            onChange={e => setImage6([...e.target.files])} />
+                                    </Col>
+                                </Row>
+                                <Row className='mt-2 mb-3'>
+                                    <Col>
+                                        <Form.Group className="mb-2" controlId="natureOfCactus">
+                                            <Form.Label>คำอธิบาย</Form.Label>
+                                            <Form.Control as="textarea" rows={10} placeholder="เพิ่มคำอธิบาย"
+                                                onChange={e => setDescriptionImageGrup2(e.target.value)} />
+                                        </Form.Group>
+                                    </Col>
+                                </Row>
+                                {/* ------------------------------------------------- */}
+
+                                <Row>
+                                    <Col className='head mb-0'>
+                                        <Form.Group className="mb-3" controlId="formHead3">
+                                            <Form.Label>หัวข้อ</Form.Label>
+                                            <Form.Control type="text" placeholder="เพิ่มหัวข้อ"
+                                                onChange={e => setHead3(e.target.value)} />
+                                        </Form.Group>
+                                    </Col>
+                                </Row>
+                                <Row>
+                                    <Col style={{ textAlign: 'center' }}>
+                                        <Image className='addImgDes' src={imagesURL7} />
+                                    </Col>
+                                    <Col style={{ textAlign: 'center' }}>
+                                        <Image className='addImgDes' src={imagesURL8} />
+                                    </Col>
+                                    <Col style={{ textAlign: 'center' }}>
+                                        <Image className='addImgDes' src={imagesURL9} />
+                                    </Col>
+                                </Row>
+                                <Row>
+                                    <Col style={{ textAlign: 'center' }}>
+                                        <Form.Control className='mt-0 styleInput' type="file"
+                                            onChange={e => setImage7([...e.target.files])} />
+                                    </Col>
+                                    <Col style={{ textAlign: 'center' }}>
+                                        <Form.Control className='mt-0' type="file"
+                                            onChange={e => setImage8([...e.target.files])} />
+                                    </Col>
+                                    <Col style={{ textAlign: 'center' }}>
+                                        <Form.Control className='mt-0' type="file"
+                                            onChange={e => setImage9([...e.target.files])} />
+                                    </Col>
+                                </Row>
+                                <Row className='mt-2 mb-3'>
+                                    <Col>
+                                        <Form.Group className="mb-2" controlId="natureOfCactus">
+                                            <Form.Label>คำอธิบาย</Form.Label>
+                                            <Form.Control as="textarea" rows={10} placeholder="เพิ่มคำอธิบาย"
+                                                onChange={e => setDescriptionImageGrup3(e.target.value)} />
+                                        </Form.Group>
+                                    </Col>
+                                </Row>
+                                {/* ------------------------1----------------------- */}
+                                <h5>โรคเเละปัญหาที่พบบ่อย</h5>
+
+                                <Row >
+                                    <Col className='head '>
+                                        <Form.Group controlId="formHead4">
+                                            <Form.Control type="text" placeholder="เพิ่มโรคเเละปัญหาที่พบบ่อย"
+                                                onChange={e => setHead4(e.target.value)} />
+                                        </Form.Group>
+                                    </Col>
+                                </Row>
+                                <Row>
+                                    <Col style={{ textAlign: 'center' }}>
+                                        <Image src={imageDiseaseURL1} rounded style={{ width: "300px", height: "auto" }} />
+                                    </Col>
+                                </Row>
+                                <Row>
+                                    <Col xl lg xxl="3" style={{ textAlign: 'center' }}></Col>
+                                    <Col style={{ textAlign: 'center' }}>
+                                        <Form.Control style={{ width: '100%', textAlign: 'center' }} className='mt-2 mb-2'
+                                            type="file" onChange={e => setImageDisease1([...e.target.files])} />
+                                    </Col>
+                                    <Col xl lg xxl="3" style={{ textAlign: 'center' }}></Col>
+                                </Row>
+                                <Row className='mt-2 pb-7'>
+                                    <Col>
+                                        <Form.Group className="mb-2" controlId="natureOfCactus">
+                                            <Form.Label>คำอธิบาย</Form.Label>
+                                            <Form.Control as="textarea" rows={10} placeholder="เพิ่มคำอธิบาย"
+                                                onChange={e => setDiseaseDetails1(e.target.value)} />
+                                        </Form.Group>
+                                    </Col>
+                                </Row>
+
+                                {/* ------------------------2----------------------- */}
+                                <Row >
+                                    <Col className='head mb-0'>
+                                        <Form.Group controlId="formHead5">
+                                            <Form.Control type="text" placeholder="เพิ่มโรคเเละปัญหาที่พบบ่อย"
+                                                onChange={e => setHead5(e.target.value)} />
+                                        </Form.Group>
+                                    </Col>
+                                </Row>
+                                <Row>
+                                    <Col style={{ textAlign: 'center' }}>
+                                        <Image src={imageDiseaseURL2} rounded style={{ width: "300px", height: "auto" }} />
+                                    </Col>
+                                </Row>
+                                <Row>
+                                    <Col xl lg xxl="3" style={{ textAlign: 'center' }}></Col>
+                                    <Col style={{ textAlign: 'center' }}>
+                                        <Form.Control style={{ width: '100%', textAlign: 'center' }} className='mt-2 mb-2'
+                                            type="file" onChange={e => setImageDisease2([...e.target.files])} />
+                                    </Col>
+                                    <Col xl lg xxl="3" style={{ textAlign: 'center' }}></Col>
+                                </Row>
+                                <Row className='mt-2 pb-7'>
+                                    <Col>
+                                        <Form.Group className="mb-2" controlId="natureOfCactus">
+                                            <Form.Label>คำอธิบาย</Form.Label>
+                                            <Form.Control as="textarea" rows={10} placeholder="เพิ่มคำอธิบาย"
+                                                onChange={e => setDiseaseDetails2(e.target.value)} />
+                                        </Form.Group>
+                                    </Col>
+                                </Row>
+                                {/* -----------------------3------------------------ */}
+                                <Row >
+                                    <Col className='head mb-0'>
+                                        <Form.Group controlId="formHead6">
+                                            <Form.Control type="text" placeholder="เพิ่มโรคเเละปัญหาที่พบบ่อย"
+                                                onChange={e => setHead6(e.target.value)} />
+                                        </Form.Group>
+                                    </Col>
+                                </Row>
+                                <Row>
+                                    <Col style={{ textAlign: 'center' }}>
+                                        <Image src={imageDiseaseURL3} rounded style={{ width: "300px", height: "auto" }} />
+                                    </Col>
+                                </Row>
+                                <Row>
+                                    <Col xl lg xxl="3" style={{ textAlign: 'center' }}></Col>
+                                    <Col style={{ textAlign: 'center' }}>
+                                        <Form.Control style={{ width: '100%', textAlign: 'center' }} className='mt-2 mb-2'
+                                            type="file" onChange={e => setImageDisease3([...e.target.files])} />
+                                    </Col>
+                                    <Col xl lg xxl="3" style={{ textAlign: 'center' }}></Col>
+                                </Row>
+                                <Row className='mt-2 pb-7'>
+                                    <Col>
+                                        <Form.Group className="mb-2" controlId="natureOfCactus">
+                                            <Form.Label>คำอธิบาย</Form.Label>
+                                            <Form.Control as="textarea" rows={10} placeholder="เพิ่มคำอธิบาย"
+                                                onChange={e => setDiseaseDetails3(e.target.value)} />
+                                        </Form.Group>
+                                    </Col>
+                                </Row>
+
+                                {/* ---------------------------แหล่งอ้างอิง------------------------------ */}
+                                <h5>แหล่งที่มาของข้อมูล</h5>
+
+                                <Row className='pb-8 pt-0' >
+                                    <Col>
+                                        <Form.Group className="mb-3" controlId="refer1">
+                                            <Form.Control type="text" placeholder="เพิ่มที่มาของแหล่งข้อมูล"
+                                                onChange={e => setRefer1(e.target.value)} />
+                                        </Form.Group>
+                                        <Form.Group  controlId="refer2">
+                                            <Form.Control type="text" placeholder="เพิ่มที่มาของแหล่งข้อมูล"
+                                                onChange={e => setRefer2(e.target.value)} />
+                                        </Form.Group>
+                                    </Col>
+
+                                </Row>
+                                {/* -------------------------btn upload------------------------------- */}
+                                <div style={{ textAlign: 'center' }}>
+                                    <Button className='btn-success p-2 px-4 p-button-info'
+                                        style={{ width: '50%' }}
+                                        disabled={isUpload}
+                                        onClick={onUpload} >
+                                        <i className='pi pi-upload pt-1' style={{ float: 'left' }}></i>
+                                        {isUpload ? 'กำลังเพิ่มข้อมูล...' : 'เพิ่มข้อมูล'}
+                                    </ Button>
+                                </div>
+                            </Form>
+                        </div>
+                    </Card.Body>
+                </Card>
+            </div >
         </div>
     )
 };

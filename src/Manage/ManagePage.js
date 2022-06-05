@@ -8,23 +8,20 @@ import { ProgressSpinner } from 'primereact/progressspinner';
 import { Sidebar } from 'primereact/sidebar';
 import { Form, Button, Image, Card, Row, Col } from 'react-bootstrap';
 import { getFirestore, getDocs, collection, deleteDoc, doc, setDoc } from "firebase/firestore";
-import { getStorage } from "firebase/storage";
 
 import './ManagePage.css';
 
 import firebaseConfig from '../Firebase/config';
 const db = getFirestore(firebaseConfig);
-const storage = getStorage(firebaseConfig);
 let indexTable = 0;
 
 function ManagePage() {
-    let url = [];
 
     const [dataToshowTable, setDataToshowTable] = useState([]);
     const [firestoreData, setFirestoreData] = useState([]);
     const [isGetFirebase, setIsGetFirebase] = useState(false);
     const [isOpenEditForm, setIsOpenEditForm] = useState(false);
-    // const [indexTable, setIndexTable] = useState(0);
+    const [isUpdate, setIsUpdate] = useState(false);
 
     const [cactusFamily, setCactusFamily] = useState(''); //ตระกุล
     const [scientificName, setScientificName] = useState(''); //ชื่อทางวิทยา
@@ -51,6 +48,20 @@ function ManagePage() {
     const [imageDisease1, setImageDisease1] = useState(null);
     const [imageDisease2, setImageDisease2] = useState(null);
     const [imageDisease3, setImageDisease3] = useState(null);
+
+    const [head, setHead] = useState({
+        head1: '',
+        head2: '',
+        head3: '',
+        head4: '',
+        head5: '',
+        head6: ''
+    });
+
+    const [reference, setReference] = useState({
+        refer1: '',
+        refer2: ''
+    });
 
     useEffect(() => {
         const getFirestrore = async () => {
@@ -81,9 +92,7 @@ function ManagePage() {
         getFirestrore();
         setIsGetFirebase(true);
 
-        // console.log('dataToshowTable is', dataToshowTable);
-        // console.log('firestoreData is', firestoreData);
-    }, [dataToshowTable, isGetFirebase, firestoreData, scientificName, commonName]);
+    }, [dataToshowTable, isGetFirebase, firestoreData, scientificName, commonName, head, reference]);
 
     const onDelete = async (index) => {
         var documant = dataToshowTable[index - 1].id;
@@ -105,7 +114,6 @@ function ManagePage() {
         setImageDisease1(firestoreData[indexTable].imageDisease1);
         setImageDisease2(firestoreData[indexTable].imageDisease2);
         setImageDisease3(firestoreData[indexTable].imageDisease3);
-
         setCactusFamily(firestoreData[indexTable].cactusFamily);
         setFamily(firestoreData[indexTable].family);
         setScientificName(firestoreData[indexTable].scientificName);
@@ -118,6 +126,20 @@ function ManagePage() {
         setDiseaseDetails1(firestoreData[indexTable].diseaseDetails1);
         setDiseaseDetails2(firestoreData[indexTable].diseaseDetails2);
         setDiseaseDetails3(firestoreData[indexTable].diseaseDetails3);
+
+        setHead({
+            head1: firestoreData[indexTable].head1,
+            head2: firestoreData[indexTable].head2,
+            head3: firestoreData[indexTable].head3,
+            head4: firestoreData[indexTable].head4,
+            head5: firestoreData[indexTable].head5,
+            head6: firestoreData[indexTable].head6,
+        });
+
+        setReference({
+            refer1: firestoreData[indexTable].refer1,
+            refer2: firestoreData[indexTable].refer2,
+        });
     }
 
     const onEdit = async (index) => {
@@ -127,7 +149,9 @@ function ManagePage() {
     }
 
     const onUpdate = async () => {
+        setIsUpdate(true);
         var documant = dataToshowTable[indexTable].id;
+        console.log('head ', head);
 
         await setDoc(doc(db, "WebCactusInformation", documant), {
             cactusFamily: `${cactusFamily}`,
@@ -136,6 +160,14 @@ function ManagePage() {
             commonName: `${commonName}`,
             otherNames: `${otherNames}`,
             family: `${family}`,
+            head1: `${head.head1}`,
+            head2: `${head.head2}`,
+            head3: `${head.head3}`,
+            head4: `${head.head4}`,
+            head5: `${head.head5}`,
+            head6: `${head.head6}`,
+            head7: `${head.head7}`,
+            head8: `${head.head8}`,
             image1: `${image1}`,
             image2: `${image2}`,
             image3: `${image3}`,
@@ -153,12 +185,15 @@ function ManagePage() {
             imageDisease2: `${imageDisease2}`,
             diseaseDetails2: `${diseaseDetails2}`,
             imageDisease3: `${imageDisease3}`,
-            diseaseDetails3: `${diseaseDetails3}`
+            diseaseDetails3: `${diseaseDetails3}`,
+            refer1: `${reference.refer1}`,
+            refer2: `${reference.refer2}`
         });
 
         setIsOpenEditForm(false);
         setIsGetFirebase(false);
         setValueToEdit();
+        setIsUpdate(false);
     }
 
     if (dataToshowTable.length !== 0) {
@@ -231,8 +266,24 @@ function ManagePage() {
                                                     </Form.Group>
                                                 </Col>
                                             </Row>
-                                            {/* ------------------------------------------------- */}
-                                            <h5>ลักษณะของกระบองเพชร</h5>
+                                            {/* ----------------------h1--------------------------- */}
+                                            {/* <h5>ลักษณะของกระบองเพชร</h5> */}
+                                            <Form.Group className="mb-3" controlId="head1">
+                                                <Form.Label>หัวข้อ</Form.Label>
+                                                <Form.Control
+                                                    type="text"
+                                                    placeholder="head1"
+                                                    value={head.head1}
+                                                    style={{ width: '49%' }}
+                                                    onChange={e => setHead({
+                                                        head1: e.target.value,
+                                                        head2: head.head2,
+                                                        head3: head.head3,
+                                                        head4: head.head4,
+                                                        head5: head.head5,
+                                                        head6: head.head6,
+                                                    })} />
+                                            </Form.Group>
                                             <Row className='mt-3'>
                                                 <Col style={{ textAlign: 'center' }}>
                                                     <Image src={image1} rounded style={{ width: "210px", height: "auto" }} />
@@ -268,8 +319,24 @@ function ManagePage() {
                                                     </Form.Group>
                                                 </Col>
                                             </Row>
-                                            {/* ------------------------------------------------- */}
-                                            <h5>การปลูก</h5>
+                                            {/* -------------------------h2------------------------ */}
+                                            {/* <h5>การปลูก</h5> */}
+                                            <Form.Group className="mb-3" controlId="head2">
+                                                <Form.Label>หัวข้อ</Form.Label>
+                                                <Form.Control
+                                                    type="text"
+                                                    placeholder="head2"
+                                                    value={head.head2}
+                                                    style={{ width: '49%' }}
+                                                    onChange={e => setHead({
+                                                        head1: head.head1,
+                                                        head2: e.target.value,
+                                                        head3: head.head3,
+                                                        head4: head.head4,
+                                                        head5: head.head5,
+                                                        head6: head.head6,
+                                                    })} />
+                                            </Form.Group>
                                             <Row>
                                                 <Col style={{ textAlign: 'center' }}>
                                                     <Image src={image4} rounded style={{ width: "210px", height: "auto" }} />
@@ -304,8 +371,24 @@ function ManagePage() {
                                                     </Form.Group>
                                                 </Col>
                                             </Row>
-                                            {/* ------------------------------------------------- */}
-                                            <h5>การขยายพันธ์</h5>
+                                            {/* -----------------------h3-------------------------- */}
+                                            {/* <h5>การขยายพันธ์</h5> */}
+                                            <Form.Group className="mb-3" controlId="head3">
+                                                <Form.Label>หัวข้อ</Form.Label>
+                                                <Form.Control
+                                                    type="text"
+                                                    placeholder="head3"
+                                                    value={head.head3}
+                                                    style={{ width: '49%' }}
+                                                    onChange={e => setHead({
+                                                        head1: head.head1,
+                                                        head2: head.head2,
+                                                        head3: e.target.value,
+                                                        head4: head.head4,
+                                                        head5: head.head5,
+                                                        head6: head.head6,
+                                                    })} />
+                                            </Form.Group>
                                             <Row>
                                                 <Col style={{ textAlign: 'center' }}>
                                                     <Image src={image7} rounded style={{ width: "210px", height: "auto" }} />
@@ -340,8 +423,24 @@ function ManagePage() {
                                                     </Form.Group>
                                                 </Col>
                                             </Row>
-                                            {/* ----------------------------------------------- */}
-                                            <h5>โรคที่1</h5>
+                                            {/* -----------------------h4------------------------ */}
+                                            {/* <h5>โรคที่1</h5> */}
+                                            <Form.Group className="mb-3" controlId="head4">
+                                                <Form.Label>หัวข้อโรค</Form.Label>
+                                                <Form.Control
+                                                    type="text"
+                                                    placeholder="head4"
+                                                    value={head.head4}
+                                                    style={{ width: '49%' }}
+                                                    onChange={e => setHead({
+                                                        head1: head.head1,
+                                                        head2: head.head2,
+                                                        head3: head.head3,
+                                                        head4: e.target.value,
+                                                        head5: head.head5,
+                                                        head6: head.head6,
+                                                    })} />
+                                            </Form.Group>
                                             <Row>
                                                 <Col style={{ textAlign: 'center' }}>
                                                     <Image src={imageDisease1} rounded style={{ width: "340px", height: "auto" }} />
@@ -365,8 +464,24 @@ function ManagePage() {
                                                     </Form.Group>
                                                 </Col>
                                             </Row>
-                                            {/* ----------------------------------------------- */}
-                                            <h5>โรคที่2</h5>
+                                            {/* -------------------------h5---------------------- */}
+                                            {/* <h5>โรคที่2</h5> */}
+                                            <Form.Group className="mb-3" controlId="head5">
+                                                <Form.Label>หัวข้อโรค</Form.Label>
+                                                <Form.Control
+                                                    type="text"
+                                                    placeholder="head5"
+                                                    value={head.head5}
+                                                    style={{ width: '49%' }}
+                                                    onChange={e => setHead({
+                                                        head1: head.head1,
+                                                        head2: head.head2,
+                                                        head3: head.head3,
+                                                        head4: head.head4,
+                                                        head5: e.target.value,
+                                                        head6: head.head6,
+                                                    })} />
+                                            </Form.Group>
                                             <Row>
                                                 <Col style={{ textAlign: 'center' }}>
                                                     <Image src={imageDisease2} rounded style={{ width: "340px", height: "auto" }} />
@@ -390,8 +505,24 @@ function ManagePage() {
                                                     </Form.Group>
                                                 </Col>
                                             </Row>
-                                            {/* ----------------------------------------------- */}
-                                            <h5>โรคที่3</h5>
+                                            {/* ------------------------h6----------------------- */}
+                                            {/* <h5>โรคที่3</h5> */}
+                                            <Form.Group className="mb-3" controlId="head6">
+                                                <Form.Label>หัวข้อโรค</Form.Label>
+                                                <Form.Control
+                                                    type="text"
+                                                    placeholder="head6"
+                                                    value={head.head6}
+                                                    style={{ width: '49%' }}
+                                                    onChange={e => setHead({
+                                                        head1: head.head1,
+                                                        head2: head.head2,
+                                                        head3: head.head3,
+                                                        head4: head.head4,
+                                                        head5: head.head5,
+                                                        head6: e.target.value,
+                                                    })} />
+                                            </Form.Group>
                                             <Row>
                                                 <Col style={{ textAlign: 'center' }}>
                                                     <Image src={imageDisease3} rounded style={{ width: "340px", height: "auto" }} />
@@ -415,9 +546,31 @@ function ManagePage() {
                                                 </Col>
                                             </Row>
 
+                                            <Row>
+                                                <Col>
+                                                    <Form.Group className="mb-3" controlId="refer1">
+                                                        <Form.Label>แหล่งที่มา</Form.Label>
+                                                        <Form.Control type="text" placeholder="แหล่งที่มา" value={reference.refer1}
+                                                            onChange={e => setReference({
+                                                                refer1: e.target.value,
+                                                                refer2: reference.refer2
+                                                            })} />
+                                                    </Form.Group>
+                                                    <Form.Group className="mb-3" controlId="refer2">
+                                                        <Form.Control type="text" placeholder="แหล่งที่มา" value={reference.refer2}
+                                                            onChange={e => setReference({
+                                                                refer1: reference.refer1,
+                                                                refer2: e.target.value
+                                                            })} />
+                                                    </Form.Group>
+                                                </Col>
+                                            </Row>
+
                                             <div className='d-flex justify-content-center'>
-                                                <Button className='p-2 px-4 p-button-info btn-success'
+                                                <Button
+                                                    className='p-2 px-4 p-button-info btn-success'
                                                     style={{ width: '50%' }}
+                                                    disabled={isUpdate}
                                                     onClick={onUpdate} >
                                                     <i className='pi pi-upload pt-1 ' style={{ float: 'left' }}></i>
                                                     แก้ไขข้อมูล
@@ -450,7 +603,7 @@ function ManagePage() {
                                 {dataToshowTable.map(cactus => {
                                     return (
                                         <tr key={cactus.id}>
-                                            <td scope="row">{cactus.index}</td>
+                                            <td>{cactus.index}</td>
                                             <td>{cactus.name}</td>
                                             <td>{cactus.cactusFamily}</td>
                                             <td>
