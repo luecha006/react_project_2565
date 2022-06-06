@@ -38,13 +38,13 @@ const PicturePage = () => {
   }, [docs]);
 
   return (
-    <div className="picture-bg">
-      <h2>Incorrect Detect</h2>
+    <div className="prePicture">
+      <h2>รูปภาพที่ตรวจจับ</h2>
       <br/>
       
-      <div className="swiper container-fluid ">
+      <div className="swiper container ">
       {docs.map(image => (
-        <div className="d-flex justify-content-center">
+        <div className="d-flex justify-content-center align-content-center">
       <Imgix className="Imgix"
         // sizes="(min-width: 960px) 33vw, (min-width: 640px) 50vw, 100vw"
         src={(image)}

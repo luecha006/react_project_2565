@@ -4,6 +4,7 @@
     width: 180px;
     height: 170px;
     border-radius: 10px;
+    
 }
 .btnt{
   
@@ -46,6 +47,8 @@
      margin: 3rem;
      margin-right: 5rem;
      margin-bottom: 4rem;
+     align-content: center;
+     justify-content: center;
  }
 
  p{
@@ -59,9 +62,10 @@
  }
 
  .desPic{
-     height: 300px;
-     width: 360px;
+     height: 250px;
+     width: 280px;
      border-radius: 5px ;
+     margin: 0;
  }
  
  .desPic2{
@@ -86,6 +90,20 @@
     margin: 0;
    
 }
+.Btn{
+    width: 80px;
+    background-color: transparent;
+    border: none;
+    float: left;
+  }
+
+  .backPage{
+    font-size:35px;
+    color: rgb(21, 126, 82);
+    
+    
+
+  }
 
 
 

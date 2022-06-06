@@ -201,7 +201,7 @@ function ManagePage() {
             <div className="container">
                 <Sidebar visible={isOpenEditForm} fullScreen onHide={() => setIsOpenEditForm(false)}>
                     <div >
-                        <div className='container' style={{ width: '60%', height: '100%', marginBottom: '4%', textAlign: 'center' }}>
+                        <div className='container' style={{ width: '80%', height: '100%', marginBottom: '4%', textAlign: 'center' }}>
                             <br />
                             <Card border="secondary" style={{ background: '#ECEFF1' }}>
                                 <Card.Body>
@@ -313,7 +313,7 @@ function ManagePage() {
                                                 <Col>
                                                     <Form.Group className="mb-2" controlId="descriptionImageGrup1">
                                                         <Form.Label>คำอธิบาย</Form.Label>
-                                                        <Form.Control as="textarea" rows={4} placeholder="ลักษณะของกระบองเพชร"
+                                                        <Form.Control as="textarea" rows={10} placeholder="ลักษณะของกระบองเพชร"
                                                             value={descriptionImageGrup1}
                                                             onChange={e => setDescriptionImageGrup1(e.target.value)} />
                                                     </Form.Group>
@@ -366,7 +366,7 @@ function ManagePage() {
                                                 <Col>
                                                     <Form.Group className="mb-2" controlId="descriptionImageGrup2">
                                                         <Form.Label>คำอธิบาย</Form.Label>
-                                                        <Form.Control as="textarea" rows={4} placeholder="คำอธิบายการปลูก" value={descriptionImageGrup2}
+                                                        <Form.Control as="textarea" rows={10} placeholder="คำอธิบายการปลูก" value={descriptionImageGrup2}
                                                             onChange={e => setDescriptionImageGrup2(e.target.value)} />
                                                     </Form.Group>
                                                 </Col>
@@ -418,7 +418,7 @@ function ManagePage() {
                                                 <Col>
                                                     <Form.Group className="mb-2" controlId="descriptionImageGrup3">
                                                         <Form.Label>คำอธิบาย</Form.Label>
-                                                        <Form.Control as="textarea" rows={4} placeholder="คำอธิบายการขยายพันธ์" value={descriptionImageGrup3}
+                                                        <Form.Control as="textarea" rows={10} placeholder="คำอธิบายการขยายพันธ์" value={descriptionImageGrup3}
                                                             onChange={e => setDescriptionImageGrup3(e.target.value)} />
                                                     </Form.Group>
                                                 </Col>
@@ -459,7 +459,7 @@ function ManagePage() {
                                                 <Col>
                                                     <Form.Group className="mb-2" controlId="diseaseDetails1">
                                                         <Form.Label>คำอธิบาย</Form.Label>
-                                                        <Form.Control as="textarea" rows={4} placeholder="คำอธิบายโรคที่1" value={diseaseDetails1}
+                                                        <Form.Control as="textarea" rows={10} placeholder="คำอธิบายโรคที่1" value={diseaseDetails1}
                                                             onChange={e => setDiseaseDetails1(e.target.value)} />
                                                     </Form.Group>
                                                 </Col>
@@ -500,7 +500,7 @@ function ManagePage() {
                                                 <Col>
                                                     <Form.Group className="mb-2" controlId="diseaseDetails2">
                                                         <Form.Label>คำอธิบาย</Form.Label>
-                                                        <Form.Control as="textarea" rows={4} placeholder="คำอธิบายโรคที่2" value={diseaseDetails2}
+                                                        <Form.Control as="textarea" rows={10} placeholder="คำอธิบายโรคที่2" value={diseaseDetails2}
                                                             onChange={e => setDiseaseDetails2(e.target.value)} />
                                                     </Form.Group>
                                                 </Col>
@@ -540,7 +540,7 @@ function ManagePage() {
                                                 <Col>
                                                     <Form.Group className="mb-2" controlId="diseaseDetails2">
                                                         <Form.Label>คำอธิบาย</Form.Label>
-                                                        <Form.Control as="textarea" rows={4} placeholder="คำอธิบายโรคที่3" value={diseaseDetails3}
+                                                        <Form.Control as="textarea" rows={10} placeholder="คำอธิบายโรคที่3" value={diseaseDetails3}
                                                             onChange={e => setDiseaseDetails3(e.target.value)} />
                                                     </Form.Group>
                                                 </Col>
@@ -568,8 +568,8 @@ function ManagePage() {
 
                                             <div className='d-flex justify-content-center'>
                                                 <Button
-                                                    className='p-2 px-4 p-button-info btn-success'
-                                                    style={{ width: '50%' }}
+                                                    className='p-2 m-3 px-4 p-button-info btn-success'
+                                                    style={{ width: '25%' }}
                                                     disabled={isUpdate}
                                                     onClick={onUpdate} >
                                                     <i className='pi pi-upload pt-1 ' style={{ float: 'left' }}></i>

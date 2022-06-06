@@ -64,6 +64,7 @@ export default function AddPage() {
     const [refer2, setRefer2] = useState('');
 
     const toast = useRef(null);
+    
 
     useEffect(() => {
         if (imageProfile.length < 1);
@@ -283,8 +284,8 @@ export default function AddPage() {
     }
     return (
 
-        <div className='addPageSpace bg container-fluid m-0 mb-6 p-0 ' style={{ backgroundImage: `url(${Background})` }}>
-            <div className='container' style={{ width: '70%', height: '100%', marginBottom: '4%' }}>
+        <div className='addPageSpace bg container-fluid  mb-4  ' style={{ backgroundImage: `url(${Background})` }}>
+            <div className='container' style={{ width: '80%', height: '100%', marginBottom: '4%' }}>
                 <Toast ref={toast} />
                 <br />
                 <Card className='card-body' >
@@ -598,8 +599,8 @@ export default function AddPage() {
                                 </Row>
                                 {/* -------------------------btn upload------------------------------- */}
                                 <div style={{ textAlign: 'center' }}>
-                                    <Button className='btn-success p-2 px-4 p-button-info'
-                                        style={{ width: '50%' }}
+                                    <Button className='btn-success  p-2 px-4 p-button-info'
+                                        style={{ width: '25%' }}
                                         disabled={isUpload}
                                         onClick={onUpload} >
                                         <i className='pi pi-upload pt-1' style={{ float: 'left' }}></i>

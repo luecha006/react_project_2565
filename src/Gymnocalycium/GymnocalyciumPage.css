@@ -4,4 +4,19 @@
     padding-bottom: 15%;
 
   }
+
+  .Btn{
+    width: 80px;
+    background-color: transparent;
+    border: none;
+    float: left;
+  }
+
+  .backPage{
+    font-size:35px;
+    color: rgb(21, 126, 82);
+    
+    
+
+  }
  
