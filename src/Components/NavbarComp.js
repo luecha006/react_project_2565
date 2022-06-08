@@ -17,10 +17,14 @@ import MammillariaPage from '../Mammillaria/MammillariaPage';
 import AddPage from '../Add/AddPage';
 import ManagePage from '../Manage/ManagePage';
 import PicturePage from '../Picture/PicturePage';
+import Correct from '../Correct/CorrectPage';
+import Incorrect from '../Incorrect/IncorrectPage';
 
 import firebaseConfig from '../Firebase/config';
 
 import './ComponentStyle.css';
+import CorrectPage from '../Correct/CorrectPage';
+import IncorrectPage from '../Incorrect/IncorrectPage';
 
 export default function NavbarComp() {
 
@@ -133,6 +137,12 @@ export default function NavbarComp() {
                         <Route path="/picture">
                             <PicturePage />
                         </Route>
+                        <Route path="/correct">
+                                <CorrectPage />
+                            </Route>Correct
+                            <Route path="/incorrect">
+                                <IncorrectPage />
+                            </Route>
                         <Route path="/add">
                             <AddPage />
                         </Route>

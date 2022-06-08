@@ -10,11 +10,11 @@ import { Toast } from 'primereact/toast';
 import firebaseConfig from '../Firebase/config';
 import { addDoc, getFirestore, collection } from "firebase/firestore";
 import './AddPage.css'
-import { Refresh } from '@mui/icons-material';
+
 const Background = '/Images/bg-dark.jpg';
 
 export default function AddPage() {
-    // const [sumUrls, setSumUrls] = useState([]);
+   
     const [isUpload, setIsUpload] = useState(false);
     const [cactusFamily, setCactusFamily] = useState(''); //ตระกุล
     const [scientificName, setScientificName] = useState(''); //ชื่อทางวิทยา

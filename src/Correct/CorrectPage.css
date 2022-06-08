@@ -1,0 +1,30 @@
+.Btn-pic{
+    width: 80px;
+    background-color: transparent;
+    border: none;
+    float: left;
+    margin-bottom: 0 6% 1% 0;
+    
+  }
+
+  .backPage{
+    font-size:30px;
+    color: rgb(21, 126, 82);
+  }
+ 
+  .swiper {
+    margin-top: 3%;
+    display: grid;
+    overflow: hidden;
+    grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
+     
+  }
+  .Imgix{
+      margin: 10px 0 10px 0;
+      border-radius: 7px ;
+  }
+  
+  .prePicture{
+    margin: 3% 0 5% 0;
+  }
+  
