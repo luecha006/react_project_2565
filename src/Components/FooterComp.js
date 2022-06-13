@@ -1,11 +1,12 @@
-import React from 'react';
-import './ComponentStyle.css';
-
+import React from "react";
+import "./ComponentStyle.css";
 
 const Footer = () => (
-    <footer className="footer">
-        <p className='footer-copy' style={{margin: "11px"}}>Copyright &copy; All Rights Reserved 2021-2022</p>
-    </footer>
+  <footer className="footer">
+    <p className="footer-copy" style={{ margin: "11px" }}>
+      Copyright &copy; All Rights Reserved 2021-2022
+    </p>
+  </footer>
 );
 
 export default Footer;

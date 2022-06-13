@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Card, Container, Row, Col, Button, Image } from "react-bootstrap";
+import { Row, Col, Button, Image } from "react-bootstrap";
 
 import { Link } from "react-router-dom";
 
@@ -12,11 +12,11 @@ export default class ContactPage extends Component {
     return (
       <div className="container-fluid m-0 mb-6 p-0">
         <div
-          className="SpaceCactusPage bg"
+          className="SpaceCactusPage bgm"
           style={{ backgroundImage: `url(${Background})` }}
         >
           <h1 className="mt-0 mb-5 pt-lg-5 text-white ">
-            เลือกสายพันธุ์ที่สนใจ
+            เลือกตระกูลที่สนใจ
           </h1>
           <br />
           <div className="mt-5">

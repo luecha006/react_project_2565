@@ -40,7 +40,7 @@ export default class HomePage extends Component {
     let contact =
       "โทร 092-453-4025 (หญิง) 062-376-2354 (ดิว) ทีมงานพัฒนาแอปพลิเคชันและเว็บไซต์";
     return (
-      <div className="container-fluid m-0 mb-6 p-0">
+      <div className="container-fluid m-0 mb-7 p-0">
         <div className="d-flex align-content-center justify-content-end ">
           <InputGroup className="SearchStyle ">
             <FormControl

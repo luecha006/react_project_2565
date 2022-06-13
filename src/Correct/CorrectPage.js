@@ -36,14 +36,15 @@ const CorrectPage = () => {
   }, [docs]);
 
   return (
+    <div className="bg">
     <div className="prePicture">
-        <button className="Btn-pic " onClick={() => history.goBack()}>
-          <span className="backPage d-flex align-content-center justify-content-center">
-            <ImArrowLeft2 />
-          </span>
-        </button>
+      <button className="Btn-pic " onClick={() => history.goBack()}>
+        <span className="backPage d-flex align-content-center justify-content-center">
+          <ImArrowLeft2 />
+        </span>
+      </button>
       <h2>รูปภาพที่ประมวลผลสำเร็จ</h2>
-      
+
       <div className="swiper container ">
         {docs.map((image) => (
           <div className="d-flex justify-content-center align-content-center">
@@ -56,6 +57,7 @@ const CorrectPage = () => {
           </div>
         ))}
       </div>
+    </div>
     </div>
   );
 };

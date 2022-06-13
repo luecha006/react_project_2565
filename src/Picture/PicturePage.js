@@ -10,22 +10,22 @@ import "./PicturePage.css";
 export default class PicturePage extends Component {
   render() {
     return (
-      <div className="container-fluid m-0  p-0">
-        <div
-          className="SpaceCactusPage bg">
-          <h1 className="mt-0 mb-5 pt-lg-5 ">
+      <div className="bg">
+      <div className="container-fluid ">
+        <div className="space">
+          <h2 className="pt-7">
             รูปภาพที่ประมวลผล
-          </h1>
+          </h2>
           <br />
-          <div className="mt-5">
+          <div className="mt-2">
             <div className="d-flex align-content-center justify-content-center">
               <Row>
                 <Col >
-                  <div className="mb-4">
+                  <div >
                     <Image
                       className="imageLogo1"
                       rounded="true"
-                      src="/Images/mam-pre.jpg"
+                      src="/Images/correct.png"
                       style={{ width: "50%", height: "50%" }}
                     ></Image>
                   </div>
@@ -39,12 +39,12 @@ export default class PicturePage extends Component {
                     </Nav.Link>
                   </Button>
                 </Col>
-                <Col className="">
-                  <div className="mb-4">
+                <Col >
+                  <div >
                     <Image
                       className="imageLogo2"
                       rounded="true"
-                      src="/Images/gymno-pre.jpg"
+                      src="/Images/incorrect.png"
                       style={{ width: "50%", height: "50%" }}
                     ></Image>
                   </div>
@@ -64,6 +64,7 @@ export default class PicturePage extends Component {
           <br />
           <br />
         </div>
+      </div>
       </div>
     );
   }

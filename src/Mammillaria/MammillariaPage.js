@@ -8,7 +8,7 @@ import { ProgressSpinner } from "primereact/progressspinner";
 import { Sidebar } from "primereact/sidebar";
 import { ImArrowLeft2 } from "react-icons/im";
 import { useHistory } from "react-router-dom";
-import { Form, Button, Image, Card, Row, Col } from "react-bootstrap";
+import { Form, Image, Card, Row, Col } from "react-bootstrap";
 import {
   getFirestore,
   getDocs,
@@ -23,7 +23,6 @@ import "./MammillariaPage.css";
 
 import firebaseConfig from "../Firebase/config";
 const db = getFirestore(firebaseConfig);
-const storage = getStorage(firebaseConfig);
 let indexTable = 0;
 const Background = "/Images/bg-dark.jpg";
 
@@ -34,7 +33,6 @@ function MammillariaPage() {
   const [firestoreData, setFirestoreData] = useState([]);
   const [isGetFirebase, setIsGetFirebase] = useState(false);
   const [isOpenPage, setIsOpenEditForm] = useState(false);
-  // const [indexTable, setIndexTable] = useState(0);
 
   const [cactusFamily, setCactusFamily] = useState(""); //ตระกุล
   const [scientificName, setScientificName] = useState(""); //ชื่อทางวิทยา
@@ -368,7 +366,7 @@ function MammillariaPage() {
                 className="text-center mt-lg-5 mb-lg-5 text-white "
                 style={{ fontSize: 40 }}
               >
-                สายพันธุ์ แมมมิลลาเรีย
+                แมมมิลลาเรีย
               </h2>
             </span>
             <div
@@ -383,15 +381,14 @@ function MammillariaPage() {
                     </span>
                   </button>
                   <tr>
-                    {/* <th scope="col" style={{ width: '10%', fontSize: 20 }}>NO.</th> */}
                     <th scope="col" style={{ width: "20%", fontSize: 20 }}>
                       รูปภาพ
                     </th>
                     <th scope="col" style={{ width: "40%", fontSize: 20 }}>
-                      ชื่อ
+                      ชื่อสายพันธุ์
                     </th>
                     <th scope="col" style={{ width: "25%", fontSize: 20 }}>
-                      สายพันธุ์
+                      ตระกูล
                     </th>
                     <th scope="col" style={{ width: "15%", fontSize: 20 }}>
                       รายละเอียด
@@ -402,7 +399,6 @@ function MammillariaPage() {
                   {dataToshowTable.map((cactus) => {
                     return (
                       <tr key={cactus.id}>
-                        {/* <td scope="row"><h5>{cactus.index}</h5></td> */}
                         <td>
                           <img className="img-list" src={cactus.image}></img>
                         </td>

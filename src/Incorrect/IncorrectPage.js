@@ -36,6 +36,7 @@ const IncorrectPage = () => {
   }, [docs]);
 
   return (
+    <div className="bg ">
     <div className="prePicture">
       <button className="Btn-pic " onClick={() => history.goBack()}>
         <span className="backPage d-flex align-content-center justify-content-center">
@@ -55,6 +56,7 @@ const IncorrectPage = () => {
           </div>
         ))}
       </div>
+    </div>
     </div>
   );
 };
